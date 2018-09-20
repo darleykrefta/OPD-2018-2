@@ -133,51 +133,51 @@ ALTER TABLE Pessoa_Institucao
 
 
 ALTER TABLE Campanha_Doacao
-	ADD FOREIGN KEY Fk_Pessoa_Campanha (Id_Pessoa) REFERENCES Pessoa_Institucao (Id_Pessoa) ON DELETE RESTRICT ON UPDATE RESTRICT;
+	ADD CONSTRAINT Fk_Pessoa_Campanha FOREIGN KEY (Id_Pessoa) REFERENCES Pessoa_Institucao (Id_Pessoa) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 
 ALTER TABLE Campanha_Doacao
-	ADD FOREIGN KEY Fk_Categoria_Campanha (Id_Categoria) REFERENCES Categoria (Id_Categoria) ON DELETE RESTRICT ON UPDATE RESTRICT;
+	ADD CONSTRAINT  Fk_Categoria_Campanha FOREIGN KEY (Id_Categoria) REFERENCES Categoria (Id_Categoria) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 
 ALTER TABLE Campanha_Doacao
-	ADD FOREIGN KEY Fk_Recebedor_Campanha (id_Recebedor) REFERENCES Pessoa_Institucao (Id_Pessoa) ON DELETE RESTRICT ON UPDATE RESTRICT;
+	ADD CONSTRAINT Fk_Recebedor_Campanha FOREIGN KEY (id_Recebedor) REFERENCES Pessoa_Institucao (Id_Pessoa) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 
 ALTER TABLE Endereco
-	ADD FOREIGN KEY Fk_Cidade_Endereco (Id_Cidade) REFERENCES Cidade (Id_Cidade) ON DELETE RESTRICT ON UPDATE RESTRICT;
+	ADD CONSTRAINT Fk_Cidade_Endereco FOREIGN KEY (Id_Cidade) REFERENCES Cidade (Id_Cidade) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 
 
 ALTER TABLE Endereco_Campanha
-	ADD FOREIGN KEY Fk_Campanha_Endereco_Campanha (Id_Doacao) REFERENCES Campanha_Doacao (Id_Doacao) ON DELETE RESTRICT ON UPDATE RESTRICT;
+	ADD CONSTRAINT Fk_Campanha_Endereco_Campanha FOREIGN KEY  (Id_Doacao) REFERENCES Campanha_Doacao (Id_Doacao) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 
 ALTER TABLE Endereco_Campanha
-	ADD FOREIGN KEY Fk_Endereco_Endereco_Campanha (Id_Endereco) REFERENCES Endereco (Id_Endereco) ON DELETE RESTRICT ON UPDATE RESTRICT;
+	ADD CONSTRAINT Fk_Endereco_Endereco_Campanha FOREIGN KEY (Id_Endereco) REFERENCES Endereco (Id_Endereco) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 
 ALTER TABLE Fotos
-	ADD FOREIGN KEY Fk_Campanha_Fotos (Id_Doacao) REFERENCES Campanha_Doacao (Id_Doacao) ON DELETE RESTRICT ON UPDATE RESTRICT;
+	ADD CONSTRAINT Fk_Campanha_Fotos FOREIGN KEY  (Id_Doacao) REFERENCES Campanha_Doacao (Id_Doacao) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 
 ALTER TABLE Mensagem
-	ADD FOREIGN KEY Fk_Campanha_Mensagem (Id_Doacao) REFERENCES Campanha_Doacao (Id_Doacao) ON DELETE RESTRICT ON UPDATE RESTRICT;
+	ADD CONSTRAINT Fk_Campanha_Mensagem FOREIGN KEY  (Id_Doacao) REFERENCES Campanha_Doacao (Id_Doacao) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 
 ALTER TABLE Mensagem
-	ADD FOREIGN KEY Fk_Pessoa_Mensagem (Id_Pessoa) REFERENCES Pessoa_Institucao (Id_Pessoa) ON DELETE RESTRICT ON UPDATE RESTRICT;
+	ADD CONSTRAINT Fk_Pessoa_Mensagem FOREIGN KEY (Id_Pessoa) REFERENCES Pessoa_Institucao (Id_Pessoa) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 
 ALTER TABLE Pessoa_Institucao
-	ADD FOREIGN KEY Fk_Endereco_Pessoa (Id_Endereco) REFERENCES Endereco (Id_Endereco) ON DELETE RESTRICT ON UPDATE RESTRICT;
+	ADD CONSTRAINT Fk_Endereco_Pessoa FOREIGN KEY (Id_Endereco) REFERENCES Endereco (Id_Endereco) ON DELETE RESTRICT ON UPDATE RESTRICT;
 

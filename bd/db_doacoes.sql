@@ -39,7 +39,7 @@ CREATE TABLE Cidade
 (
 	Id_Cidade            SMALLINT NOT NULL ,
 	Nome                 VARCHAR(80) NOT NULL ,
-	Id_Estado            SMALLINT NOT NULL 
+    Sigla                CHAR(2) NOT NULL
 );
 
 
@@ -56,6 +56,7 @@ CREATE TABLE Endereco
 	Numero               VARCHAR(10) NOT NULL ,
 	Bairro               VARCHAR(60) NOT NULL ,
 	CEP                  VARCHAR(8) NOT NULL ,
+    Complemento          VARCHAR(60) NULL ,
 	Id_Cidade            SMALLINT NOT NULL 
 );
 
@@ -77,22 +78,6 @@ CREATE TABLE Endereco_Campanha
 
 ALTER TABLE Endereco_Campanha
 	ADD  PRIMARY KEY (Id_CampanhaEndereco);
-
-
-
-CREATE TABLE Estado
-(
-	Id_Estado            SMALLINT NOT NULL ,
-	Nome                 VARCHAR(60) NOT NULL ,
-	Sigla                CHAR(2) NOT NULL 
-);
-
-
-
-ALTER TABLE Estado
-	ADD  PRIMARY KEY (Id_Estado);
-
-
 
 CREATE TABLE Fotos
 (
@@ -159,11 +144,6 @@ ALTER TABLE Campanha_Doacao
 
 ALTER TABLE Campanha_Doacao
 	ADD FOREIGN KEY Fk_Recebedor_Campanha (id_Recebedor) REFERENCES Pessoa_Institucao (Id_Pessoa) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-
-
-ALTER TABLE Cidade
-	ADD FOREIGN KEY Fk_Estado_Cidade (Id_Estado) REFERENCES Estado (Id_Estado) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 

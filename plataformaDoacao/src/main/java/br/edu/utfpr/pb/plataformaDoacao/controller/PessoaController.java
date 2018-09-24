@@ -11,28 +11,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
+import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
 import br.edu.utfpr.pb.plataformaDoacao.service.PessoaService;
 
 @RestController
-@RequestMapping("/pessoa")
-public class PessoaController{
+@RequestMapping("pessoa")
+public class PessoaController  extends CrudController<Pessoa, Long> {
 
 	@Autowired
 	private PessoaService pessoaService;
-	
-	@GetMapping
-	public java.util.List<Pessoa> findAll(){
-		return pessoaService.findAll();
-	}
 
-	@GetMapping("{id}")
-	public Pessoa findOne(@PathVariable Long id) {
-		return pessoaService.findOne(id);
+	@Override
+	protected CrudService<Pessoa, Long> getService() {
+		return pessoaService;
 	}
 	
-	@PostMapping
-	public Pessoa save(@RequestBody @Valid Pessoa pessoa) {
-		return pessoaService.save(pessoa);
-	}
+	
 	
 }

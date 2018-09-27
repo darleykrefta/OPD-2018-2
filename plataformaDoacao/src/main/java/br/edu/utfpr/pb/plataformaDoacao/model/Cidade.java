@@ -24,15 +24,17 @@ import lombok.ToString;
 @EqualsAndHashCode(of= {"id"})
 @ToString
 public class Cidade implements Serializable{
-	
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable=false)
+	@Column(length=50, nullable=false)
 	private String nome;
 
-	@Column(nullable=false)
+	@Column(length=2, nullable=false)
 	private String sigla;
 	
 }

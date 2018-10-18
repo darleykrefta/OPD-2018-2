@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { GeneroService } from './genero.service';
 import { Genero } from '../model/genero';
 import { Message, ConfirmationService } from 'primeng/api';
-import { toUnicode } from 'punycode';
 
 @Component({
   selector: 'app-genero',
@@ -16,20 +15,21 @@ export class GeneroComponent implements OnInit {
   showDialog = false;
   msgs: Message[] = [];
 
-  // injects de dependencias
-  constructor(private generoService: GeneroService, private confirmationService: ConfirmationService) { }
+  constructor(private generoService: GeneroService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
     this.findAll();
   }
 
   findAll() {
-    this.generoService.findAll().subscribe(e => this.generos = e);
+    this.generoService.findAll().subscribe(
+      e => this.generos = e);
   }
 
   newEntity() {
-    this.showDialog = true;
     this.generoEdit = new Genero();
+    this.showDialog = true;
   }
 
   cancel() {
@@ -37,21 +37,28 @@ export class GeneroComponent implements OnInit {
   }
 
   save() {
-    this.generoService.save(this.generoEdit).subscribe(
-      e => {
+    this.generoService.save(this.generoEdit).
+      subscribe(e => {
         this.generoEdit = new Genero();
         this.findAll();
         this.showDialog = false;
-        this.msgs = [{severity: 'success', summary: 'Confirmado', detail: 'Registro salvo com sucesso!'}];
+        this.msgs = [{
+          severity: 'success',
+          summary: 'Confirmado',
+          detail: 'Registro salvo com sucesso'
+        }];
       }, error => {
-        this.msgs = [{severity: 'error', summary: 'Erro', detail: 'Erro! Verifique os dados!'}];
+        this.msgs = [{
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Certifique-se de preencher todos dos campos.'
+        }];
       }
-    );
+      );
   }
 
   edit(genero: Genero) {
     // this.generoEdit = genero;
-    // assign remove a referencia
     this.generoEdit = Object.assign({}, genero);
     this.showDialog = true;
   }
@@ -63,12 +70,21 @@ export class GeneroComponent implements OnInit {
       acceptLabel: 'Confirmar',
       rejectLabel: 'Cancelar',
       accept: () => {
-        this.generoService.delete(genero.id).subscribe(() => {
-          this.findAll();
-          this.msgs = [{severity: 'success', summary: 'Removido', detail: 'Registro removido com sucesso!'}];
-        }, error => {
-          this.msgs = [{severity: 'error', summary: 'Erro', detail: 'Erro! Falha aos remover registro!'}];
-        });
+        this.generoService.delete(genero.id)
+          .subscribe(() => {
+            this.findAll();
+            this.msgs = [{
+              severity: 'success',
+              summary: 'Removido',
+              detail: 'Registro removido com sucesso'
+            }];
+          }, error => {
+            this.msgs = [{
+              severity: 'error',
+              summary: 'Erro',
+              detail: 'Falha ao remover registro.'
+            }];
+          });
       }
     });
   }

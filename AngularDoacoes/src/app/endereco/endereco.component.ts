@@ -1,0 +1,89 @@
+import { Endereco } from './../model/endereco';
+import { Component, OnInit } from '@angular/core';
+import { EnderecoService } from './endereco.service';
+import { Message, ConfirmationService } from 'primeng/api';
+
+@Component({
+  selector: 'app-endereco',
+  templateUrl: './endereco.component.html',
+  styleUrls: ['./endereco.component.css']
+})
+export class EnderecoComponent implements OnInit {
+
+  enderecos: Endereco[];
+  enderecoEdit = new Endereco();
+  showDialog = false;
+  msgs: Message[] = [];
+
+  constructor(private enderecoService: EnderecoService, private confirmationService: ConfirmationService) { }
+
+  ngOnInit() {
+  }
+
+  findAll() {
+    this.enderecoService.findAll().subscribe(
+      e => this.enderecos = e);
+  }
+
+  newEntity() {
+    this.enderecoEdit = new Endereco();
+    this.showDialog = true;
+  }
+
+  cancel() {
+    this.showDialog = false;
+  }
+
+  save() {
+    this.enderecoService.save(this.enderecoEdit).
+      subscribe(e => {
+        this.enderecoEdit = new Endereco();
+        this.findAll();
+        this.showDialog = false;
+        this.msgs = [{
+          severity: 'success',
+          summary: 'Confirmado',
+          detail: 'Registro salvo com sucesso'
+        }];
+      }, error => {
+        this.msgs = [{
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Certifique-se de preencher todos dos campos.'
+        }];
+      }
+      );
+  }
+
+  edit(endereco: Endereco) {
+    // this.enderecoEdit = endereco;
+    this.enderecoEdit = Object.assign({}, endereco);
+    this.showDialog = true;
+  }
+
+  delete(endereco: Endereco) {
+    this.confirmationService.confirm({
+      message: 'essa acao nao pode ser desfeita.',
+      header: 'Deseja remover esse registro?',
+      acceptLabel: 'Confirmar',
+      rejectLabel: 'Cancelar',
+      accept: () => {
+        this.enderecoService.delete(endereco.id).subscribe(() => {
+          this.findAll();
+          this.msgs = [{
+            severity: 'success',
+            summary: 'Confirmado',
+            detail: 'Registro removido com sucesso'
+          }];
+        }, error => {
+          this.msgs = [{
+            severity: 'error',
+            summary: 'Erro',
+            detail: 'Certifique-se de preencher todos dos campos.'
+          }];
+        });
+
+      }
+    });
+  }
+}

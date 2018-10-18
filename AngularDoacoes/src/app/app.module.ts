@@ -15,6 +15,7 @@ import { GeneroService } from './genero/genero.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProdutoraComponent } from './produtora/produtora.component';
 import { ProdutoraService } from './produtora/produtora.service';
+import { EnderecoComponent } from './endereco/endereco.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProdutoraService } from './produtora/produtora.service';
     MenuComponent,
     IndexComponent,
     GeneroComponent,
-    ProdutoraComponent
+    ProdutoraComponent,
+    EnderecoComponent
   ],
   imports: [
     BrowserModule,

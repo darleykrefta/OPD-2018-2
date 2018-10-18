@@ -5,11 +5,15 @@ import { FormsModule } from '@angular/forms';
 
 // Imports PrimeNG
 import {TableModule} from 'primeng/table';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {GrowlModule} from 'primeng/growl';
+import {DialogModule} from 'primeng/dialog';
+import {ConfirmationService} from 'primeng/api';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { GeneroComponent } from './genero/genero.component';
 import { GeneroService } from './genero/genero.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -30,11 +34,15 @@ import { ProdutoraService } from './produtora/produtora.service';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    TableModule
+    TableModule,
+    ConfirmDialogModule,
+    GrowlModule,
+    DialogModule
   ],
   providers: [
     GeneroService,
-    ProdutoraService
+    ProdutoraService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })

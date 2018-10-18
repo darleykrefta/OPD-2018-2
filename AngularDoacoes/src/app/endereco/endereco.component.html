@@ -1,7 +1,15 @@
 <div class="container">
-  <h1>Lista de Endereco</h1>
-  <p-table [value]="enderecos" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 25]">
-    <ng-template pTemplate="header">
+    <h2><span class="badge badge-light">
+        Cadastro de Endereco
+      </span> </h2>
+    <button class="btn btn-primary"
+        (click)="newEntity()">
+      <i class="fa fa-plus-square"></i>Novo
+    </button>
+  
+    <p-table #dt [value]="enderecos" [lazy]="true" [rows]="5" [paginator]="true" [rowsPerPageOptions]="[5,10,15,20,50]"
+      [totalRecords]="totalRecords" (onLazyLoad)="load($event)">
+      <ng-template pTemplate="header">
         <tr>
             <th>Cod.</th>
             <th>Rua</th>
@@ -21,7 +29,7 @@
             <td>{{endereco.bairro}}</td>
             <td>{{endereco.cep}}</td>
             <td>{{endereco.complemento}}</td>
-            <td>{{endereco.cidade.nome}}</td>
+            <!-- <td>{{endereco.cidade.nome}}</td> -->
             <td>
                 <button type="button" 
                   (click)="edit(endereco)"
@@ -85,7 +93,7 @@
         <div class="ui-g-12 ui-fluid">
           <label for="cidade">Cidade</label>
           
-          
+
         </div>
       </div>
     </div>

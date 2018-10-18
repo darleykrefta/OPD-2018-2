@@ -1,3 +1,4 @@
+import { EnderecoService } from './endereco/endereco.service';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -5,6 +6,10 @@ import { FormsModule } from '@angular/forms';
 
 // Imports PrimeNG
 import {TableModule} from 'primeng/table';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {GrowlModule} from 'primeng/growl';
+import {DialogModule} from 'primeng/dialog';
+import {ConfirmationService} from 'primeng/api';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -32,11 +37,16 @@ import { EnderecoComponent } from './endereco/endereco.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    TableModule
+    TableModule,
+    ConfirmDialogModule,
+    GrowlModule,
+    DialogModule
   ],
   providers: [
     GeneroService,
-    ProdutoraService
+    ProdutoraService,
+    EnderecoService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })

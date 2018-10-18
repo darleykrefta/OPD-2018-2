@@ -1,3 +1,4 @@
+import { EnderecoComponent } from './endereco/endereco.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
@@ -8,7 +9,8 @@ import { ProdutoraComponent } from './produtora/produtora.component';
 const routes: Routes = [
   {path: '', component: IndexComponent},
   {path: 'genero', component: GeneroComponent},
-  {path: 'produtora', component: ProdutoraComponent}
+  {path: 'produtora', component: ProdutoraComponent},
+  {path: 'endereco', component: EnderecoComponent}
 ];
 
 @NgModule({

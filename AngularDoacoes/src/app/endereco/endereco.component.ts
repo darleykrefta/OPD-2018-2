@@ -1,6 +1,7 @@
 import { Endereco } from './../model/endereco';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EnderecoService } from './endereco.service';
+import {DataTable} from 'primeng/components/datatable/datatable';
 import { Message, ConfirmationService } from 'primeng/api';
 
 @Component({
@@ -9,6 +10,8 @@ import { Message, ConfirmationService } from 'primeng/api';
   styleUrls: ['./endereco.component.css']
 })
 export class EnderecoComponent implements OnInit {
+
+  @ViewChild('dt') dataTable: DataTable;
 
   enderecos: Endereco[];
   enderecoEdit = new Endereco();

@@ -18,7 +18,7 @@ import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
 import br.edu.utfpr.pb.plataformaDoacao.service.EnderecoService;
 
 @Controller
-@RequestMapping("/endereco")
+@RequestMapping("endereco")
 public class EnderecoController extends CrudController<Endereco, Long> {
 
 	@Autowired

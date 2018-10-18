@@ -1,0 +1,90 @@
+<div class="container">
+  <h2>
+    <span class="badge badge-light">
+      Cadastro de Pessoas/Instituições
+    </span>
+  </h2>
+  <button class="btn btn-primary" (click)="newEntity()">
+    <i class="fa fa-plus-square"></i> Novo
+  </button>
+  <p-table #dt [value]="pessoas" [lazy]="true" [rows]="5" [paginator]="true" [rowsPerPageOptions]="[5,10,15,20,50]"  [totalRecords]="totalRecords" (onLazyLoad)="load($event)">
+    <ng-template pTemplate="header">
+      <tr>
+        <td>Código</td>
+        <td>Nome</td>
+        <td>Apelido</td>
+        <td>CPF/CNPJ</td>
+        <td>Email</td>
+        <td>Telefone</td>
+        <td>Celular</td>
+        <td>Ações</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pessoa>
+      <tr>
+        <td>{{pessoa.id}}</td>
+        <td>{{pessoa.nome}}</td>
+        <td>{{pessoa.apelido}}</td>
+        <td>{{pessoa.cpf_cnpj}}</td>
+        <td>{{pessoa.email}}</td>
+        <td>{{pessoa.telefone}}</td>
+        <td>{{pessoa.celular}}</td>
+        <td>
+          <button type="button" class="btn btn-dark" (click)="edit(pessoa)">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button type="button" (click)="delete(pessoa)" class="btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  
+  <p-confirmDialog></p-confirmDialog>
+
+  <p-growl [(value)]="msgs"></p-growl>
+
+  <p-dialog header="Cadastro de Pessoas/Instituições" [(visible)]="showDialog" modal="modal" [responsive]="true" [width]="700">
+    <div class="row">
+      <div class="ui-g-12 ui-fluid">
+        <div class="ui-g-12 ui-fluid">
+          <label for="id">Código</label>
+          <input class="form-control" type="text" name="id" id="id" readonly [(ngModel)]="pessoaEdit.id"/>
+        </div>
+        <div class="ui-g-12 ui-fluid">
+          <label for="nome">Nome</label>
+          <input class="form-control" type="text" name="nome" id="nome" [(ngModel)]="pessoaEdit.nome"/>
+        </div>
+        <div class="ui-g-12 ui-fluid">
+          <label for="apelido">Apelido</label>
+          <input class="form-control" type="text" name="apelido" id="apelido" [(ngModel)]="pessoaEdit.apelido"/>
+        </div>
+        <div class="ui-g-12 ui-fluid">
+          <label for="cpf_cnpj">CPF/CNPJ</label>
+          <input class="form-control" type="text" name="cpf_cnpj" id="cpf_cnpj" [(ngModel)]="pessoaEdit.cpf_cnpj"/>
+        </div>
+        <div class="ui-g-12 ui-fluid">
+          <label for="email">Email</label>
+          <input class="form-control" type="text" name="email" id="email" [(ngModel)]="pessoaEdit.email"/>
+        </div>
+        <div class="ui-g-12 ui-fluid">
+          <label for="telefone">Telefone</label>
+          <input class="form-control" type="text" name="telefone" id="telefone" [(ngModel)]="pessoaEdit.telefone"/>
+        </div>
+        <div class="ui-g-12 ui-fluid">
+          <label for="celular">Celular</label>
+          <input class="form-control" type="text" name="celular" id="celular" [(ngModel)]="pessoaEdit.celular"/>
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <button type="button" class="btn btn-danger" (click)="cancel()">
+        <i class="fa fa-ban"></i> Cancelar
+      </button>
+      <button type="button" class="btn btn-success" (click)="save()">
+        <i class="fa fa-save"></i> Salvar
+      </button>
+    </p-footer>
+  </p-dialog>
+</div>

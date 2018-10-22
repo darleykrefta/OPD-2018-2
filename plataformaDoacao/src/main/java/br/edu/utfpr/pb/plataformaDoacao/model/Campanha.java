@@ -1,6 +1,7 @@
 package br.edu.utfpr.pb.plataformaDoacao.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,55 +19,58 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name = "Pessoa_Institucao")
+@Table(name = "Campanha_Doacao")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = { "id" })
 @ToString
-public class Pessoa implements Serializable {
+public class Campanha implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name="Id_Pessoa")
+	//@Column(name="Id_Doacao")
 	private Long id;
 
-	@Column(name = "CPF_CNPJ", length = 14, nullable = false)
-	private String cpf_cnpj;
+	@Column(name = "Titulo", length = 60, nullable = false)
+	private String titulo;
 
-	@Column(name = "Nome", length = 60, nullable = false)
-	private String nome;
+	@Column(name = "TipoAnuncio", nullable = false)
+	private Integer tipoAnuncio;
 
-	@Column(name = "Email", length = 60, nullable = false)
-	private String email;
+	@Column(name = "Descricao", length = 60, nullable = false)
+	private String descricao;
 
-	@Column(name = "Senha", length = 60, nullable = false)
-	private String senha;
+	@Column(name = "Status", nullable = false)
+	private Integer status;
 
-	@Column(name = "Apelido", length = 60, nullable = false)
-	private String apelido;
+	@Column(name = "Data_Inicio", nullable = false)
+	private LocalDate data_Inicio;
+
+	@Column(name = "Data_Final", nullable = false)
+	private LocalDate data_Final;
 
 	@Column(name = "Telefone", length = 12, nullable = false)
 	private String telefone;
-
+	
 	@Column(name = "Celular", length = 12, nullable = true)
 	private String celular;
 
 	@Column(name = "Foto", length = 666, nullable = true)
 	private String foto;
 
-	@Column(name = "Status", length = 60, nullable = false)
-	private Boolean status;
-
 	@ManyToOne
-	@JoinColumn(name = "Id_Endereco", referencedColumnName = "id")
-	private Endereco endereco;
-
-	public Pessoa(String email, String senha) {
-		this.email = email;
-		this.senha = senha;
-	}
+	@JoinColumn(name = "Id_Pessoa", referencedColumnName = "id")
+	private Pessoa pessoa;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_Recebedor", referencedColumnName = "id")
+	private Pessoa recebedor;
+	
+	@ManyToOne
+	@JoinColumn(name = "Id_Categoria", referencedColumnName = "id")
+	private Categoria categoria;
 
 }

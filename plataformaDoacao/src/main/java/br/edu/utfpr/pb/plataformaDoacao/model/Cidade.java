@@ -7,26 +7,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
+import lombok.ToString;
 
 @Entity
+@Table(name = "Cidade")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cidade implements Serializable{
-	
+@EqualsAndHashCode(of = { "id" })
+@ToString
+public class Cidade implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@Column(name = "Id_Cidade")
 	private Long id;
 
-	@Column(nullable=false)
+	@Column(name = "Nome", nullable = false)
 	private String nome;
 
-	@Column(nullable=false)
+	@Column(name = "Sigla", nullable = false)
 	private String sigla;
-	
+
 }

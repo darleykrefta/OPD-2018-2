@@ -8,6 +8,6 @@ export class Pessoa {
     telefone: string;
     celular: string;
     foto: string;
-    status: number;
+    status: boolean;
     // endereco: Endereco;
 }

@@ -46,8 +46,27 @@
   <p-growl [(value)]="msgs"></p-growl>
 
   <p-dialog header="Cadastro de Pessoas/Instituições" [(visible)]="showDialog" modal="modal" [responsive]="true" [width]="700">
+    <div class="ui-g">
+        <div class="ui-g-12 ui-g-nopad">
+            <div class="ui-g-6">
+              <div class="img-thumbnail" style="height: 180px; width: 150px;">
+                <img [src]="pessoaEdit.foto" >
+              </div>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" class="btn btn-danger" (click)="cancel()">
+                    <i class="fa fa-ban"></i> Cancelar
+                  </button>
+            </div>
+        </div>
+        <div class="ui-g-12">12</div>
+    </div>
+
     <div class="row">
       <div class="ui-g-12 ui-fluid">
+        <div class="ui-g-12 ui-fluid">
+          <p-checkbox name="status" value="pessoaEdit.status" [(ngModel)]="pessoaEdit.status" label="Ativo"></p-checkbox>
+        </div>
         <div class="ui-g-12 ui-fluid">
           <label for="id">Código</label>
           <input class="form-control" type="text" name="id" id="id" readonly [(ngModel)]="pessoaEdit.id"/>

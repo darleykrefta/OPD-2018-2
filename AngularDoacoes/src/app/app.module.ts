@@ -9,6 +9,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {GrowlModule} from 'primeng/growl';
 import {DialogModule} from 'primeng/dialog';
 import {ConfirmationService} from 'primeng/api';
+import { CheckboxModule } from 'primeng/checkbox';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -40,7 +41,8 @@ import { PessoaService } from './pessoa/pessoa.service';
     TableModule,
     ConfirmDialogModule,
     GrowlModule,
-    DialogModule
+    DialogModule,
+    CheckboxModule
   ],
   providers: [
     GeneroService,

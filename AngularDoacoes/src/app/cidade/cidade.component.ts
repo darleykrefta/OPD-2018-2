@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {DataTable} from 'primeng/components/datatable/datatable';
 import { CidadeService } from './cidade.service';
 import { Cidade } from '../model/cidade';
-import { Message, ConfirmationService } from 'primeng/api';
+import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-cidade',
@@ -10,7 +11,10 @@ import { Message, ConfirmationService } from 'primeng/api';
 })
 export class CidadeComponent implements OnInit {
 
+  @ViewChild('dt') dataTable: DataTable;
+
   cidades: Cidade[];
+  totalRecords: number;
   cidadeEdit = new Cidade();
   showDialog = false;
   msgs: Message[] = [];
@@ -20,6 +24,21 @@ export class CidadeComponent implements OnInit {
 
   ngOnInit() {
     this.findAll();
+  }
+
+  findAllPaged(page: number, size: number) {
+    this.cidadeService.count().subscribe(e =>
+      this.totalRecords = e);
+    this.cidadeService.findPageable(page, size)
+      .subscribe(e => this.cidades = e.content);
+  }
+
+  load(event: LazyLoadEvent) {
+    const currentPage = event.first / event.rows;
+    const maxRecords = event.rows;
+    setTimeout(() => {
+      this.findAllPaged(currentPage, maxRecords);
+    }, 250);
   }
 
   findAll() {

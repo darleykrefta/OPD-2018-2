@@ -1,79 +1,84 @@
 <div class="container">
-  
-  <h1>Lista de Cidades</h1>
-  
-  <button class="btn btn-primary"
-    (click)="newEntity()">
-    <i class="fa fa-plus"></i> Novo</button>
+  <h2><span class="badge badge-light">Cadastro de Cidades</span></h2>
 
-  <p-table [value]="cidades" [paginator]="true"
-      [rows]="5" [rowsPerPageOptions]="[5,10,25]">
+  <button class="btn btn-primary" (click)="newEntity()">
+    <i class="fa fa-plus-square"></i> Novo
+  </button>
+
+  <p-table [value]="cidades" [lazy]="true" [rows]="5" [paginator]="true" [rowsPerPageOptions]="[5,10,15,20,50]"
+    [totalRecords]="totalRecords" (onLazyLoad)="load($event)">
     <ng-template pTemplate="header">
-        <tr>
-            <th>Código</th>
-            <th>Nome</th>
-            <th>Sigla</th>
-            <th>Ações</th>
-        </tr>
+      <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Sigla</th>
+        <th>Ações</th>
+      </tr>
     </ng-template>
     <ng-template pTemplate="body" let-cidade>
-        <tr>
-            <td>{{cidade.id}}</td>
-            <td>{{cidade.nome}}</td>
-            <td>{{cidade.sigla}}</td>
-            <td>
-              <button type="button" 
-                (click)="edit(cidade)"
-                class="btn btn-dark">
-                <i class="fa fa-edit"></i></button>
-              
-              <button type="button" 
-                (click)="delete(cidade)"
-                class="btn btn-danger">
-                <i class="fa fa-trash"></i></button>
-            </td>
-        </tr>
+      <tr>
+        <td>{{cidade.id}}</td>
+        <td>{{cidade.nome}}</td>
+        <td>{{cidade.sigla}}</td>
+        <td>
+          <button type="button" (click)="edit(cidade)" class="btn btn-dark">
+            <i class="fa fa-edit"></i></button>
+          <button type="button" (click)="delete(cidade)" class="btn btn-danger">
+            <i class="fa fa-trash"></i></button>
+        </td>
+      </tr>
     </ng-template>
-</p-table>
+  </p-table>
 
-<p-confirmDialog></p-confirmDialog>
-<p-growl [(value)]="msgs"></p-growl>
+  <p-confirmDialog></p-confirmDialog>
+  <p-growl [(value)]="msgs"></p-growl>
 
-<p-dialog header="Cadastro" 
-    [(visible)]="showDialog" modal="modal" 
-    [responsive]="true" [width]="500">
-    <div class="row">
-      <div class="ui-g-12 ui-fluid">
-        <div class="ui-g-12 ui-fluid">
-          <label for="id">Código</label>
-          <input class="form-control" readonly
-              type="text" name="id" id="id"
-              [(ngModel)]="cidadeEdit.id">
+  <p-dialog header="Cadastro" [(visible)]="showDialog" modal="modal" [responsive]="true" [width]="500">
+
+    <p-tabView>
+      <p-tabPanel header="Cadastro">
+        <div class="row">
+
+          <div class="ui-g-12 ui-fluid">
+
+            <div class="ui-g-12 ui-fluid">
+              <label for="id">Código</label>
+              <input class="form-control" readonly type="text" name="id" id="id" [(ngModel)]="cidadeEdit.id">
+            </div>
+
+            <div class="ui-g-12 ui-fluid">
+              <label for="nome">Nome</label>
+              <input pInputText type="text" class="form-control" name="nome" id="nome" [(ngModel)]="cidadeEdit.nome">
+            </div>
+
+            <div class="ui-g-12 ui-fluid">
+              <label for="sigla">Sigla</label>
+              <input pInputText type="text" class="form-control" name="sigla" id="sigla" [(ngModel)]="cidadeEdit.sigla">
+            </div>
+            <!--
+            <div class="ui-g-12 ui-fluid">
+              <label for="sigla">Sigla</label>
+              <p-dropdown [style]="{'width':'100%'}" 
+              [options]="sigla"
+                [(ngModel)]="cidadeEdit.sigla" optionLabel="sigla">
+              </p-dropdown>
+            </div>
+            -->
+
+          </div>
+
         </div>
-
-        <div class="ui-g-12 ui-fluid">
-          <label for="nome">Nome</label>
-          <input class="form-control"
-              type="text" name="nome" id="nome"
-              [(ngModel)]="cidadeEdit.nome">
-        </div>
-
-        <div class="ui-g-12 ui-fluid">
-          <label for="sigla">Sigla</label>
-          <input class="form-control"
-              type="text" name="sigla" id="sigla"
-              [(ngModel)]="cidadeEdit.sigla">
-        </div>
-      </div>
-    </div>
+      </p-tabPanel>
+    </p-tabView>
 
     <p-footer>
-      <button type="button" (click)="cancel()" class="btn btn-default">
-        <i class="fa fa-ban"></i> Cancelar</button>  
-      <button type="button" (click)="save()" class="btn btn-success">
+      <button type="button" class="btn btn-default" (click)="cancel()">
+        <i class="fa fa-ban"></i> Cancelar
+      </button>
+
+      <button type="button" class="btn btn-success" (click)="save()">
         <i class="fa fa-save"></i> Salvar
       </button>
     </p-footer>
-
-</p-dialog>
+  </p-dialog>
 </div>

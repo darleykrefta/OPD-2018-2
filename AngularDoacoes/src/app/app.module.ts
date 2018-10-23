@@ -9,6 +9,9 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {GrowlModule} from 'primeng/growl';
 import {DialogModule} from 'primeng/dialog';
 import {ConfirmationService} from 'primeng/api';
+import {DropdownModule} from 'primeng/dropdown';
+import {PanelModule} from 'primeng/panel';
+import {TabViewModule} from 'primeng/tabview';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -40,7 +43,10 @@ import { CidadeService } from './cidade/cidade.service';
     TableModule,
     ConfirmDialogModule,
     GrowlModule,
-    DialogModule
+    DialogModule,
+    DropdownModule,
+    PanelModule,
+    TabViewModule
   ],
   providers: [
     GeneroService,

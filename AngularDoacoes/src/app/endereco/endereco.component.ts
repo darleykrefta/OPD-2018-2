@@ -1,7 +1,8 @@
+import { TableModule } from 'primeng/table';
 import { Endereco } from './../model/endereco';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EnderecoService } from './endereco.service';
-import {DataTable} from 'primeng/components/datatable/datatable';
+import { DataTable } from 'primeng/components/datatable/datatable';
 import { Message, ConfirmationService } from 'primeng/api';
 
 @Component({
@@ -18,9 +19,32 @@ export class EnderecoComponent implements OnInit {
   showDialog = false;
   msgs: Message[] = [];
 
-  constructor(private enderecoService: EnderecoService, private confirmationService: ConfirmationService) { }
+  cidades: Cidade[];
+  cidadesFiltred: Cidade[];
+
+
+  constructor(private enderecoService: EnderecoService, private confirmationService: ConfirmationService, private cidadeService: CidadeService) { }
+
+
+  search(event) {
+    this.cidadesFiltred = this.cidades.filter(
+      p => p.nome.toLocaleLowerCase().includes(event.query.toLocaleLowerCase())
+    );
+  }
+
+  filterCountry(query, cidades: any[]): any[] {
+    const filtered: any[] = [];
+    for (let i = 0; i < cidades.length; i++) {
+      const cidade = cidades[i];
+      if (cidade.nome.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+        filtered.push(cidade);
+      }
+    }
+    return filtered;
+  }
 
   ngOnInit() {
+    this.findAll();
   }
 
   findAll() {

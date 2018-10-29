@@ -10,11 +10,11 @@ import {GrowlModule} from 'primeng/growl';
 import {DialogModule} from 'primeng/dialog';
 import {ConfirmationService} from 'primeng/api';
 import { CheckboxModule } from 'primeng/checkbox';
-import {PanelModule} from 'primeng/panel';
 import {SpinnerModule} from 'primeng/spinner';
 import {FileUploadModule} from 'primeng/fileupload';
+import {DropdownModule} from 'primeng/dropdown';
+import {PanelModule} from 'primeng/panel';
 import {TabViewModule} from 'primeng/tabview';
-
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -27,6 +27,8 @@ import { ProdutoraComponent } from './produtora/produtora.component';
 import { ProdutoraService } from './produtora/produtora.service';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaService } from './pessoa/pessoa.service';
+import { CidadeComponent } from './cidade/cidade.component';
+import { CidadeService } from './cidade/cidade.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { PessoaService } from './pessoa/pessoa.service';
     IndexComponent,
     GeneroComponent,
     ProdutoraComponent,
-    PessoaComponent
+    PessoaComponent,
+    CidadeComponent
   ],
   imports: [
     BrowserModule,
@@ -47,16 +50,19 @@ import { PessoaService } from './pessoa/pessoa.service';
     ConfirmDialogModule,
     GrowlModule,
     DialogModule,
-    CheckboxModule, PanelModule,
+    CheckboxModule,
     SpinnerModule,
     FileUploadModule,
+    DropdownModule,
+    PanelModule,
     TabViewModule
   ],
   providers: [
     GeneroService,
     ProdutoraService,
     ConfirmationService,
-    PessoaService
+    PessoaService,
+    CidadeService
   ],
   bootstrap: [AppComponent]
 })

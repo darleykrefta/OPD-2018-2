@@ -11,6 +11,9 @@ import {GrowlModule} from 'primeng/growl';
 import {DialogModule} from 'primeng/dialog';
 import {ConfirmationService} from 'primeng/api';
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import {DropdownModule} from 'primeng/dropdown';
+import {PanelModule} from 'primeng/panel';
+import {TabViewModule} from 'primeng/tabview';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -22,6 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProdutoraComponent } from './produtora/produtora.component';
 import { ProdutoraService } from './produtora/produtora.service';
 import { EnderecoComponent } from './endereco/endereco.component';
+import { CidadeComponent } from './cidade/cidade.component';
+import { CidadeService } from './cidade/cidade.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,8 @@ import { EnderecoComponent } from './endereco/endereco.component';
     IndexComponent,
     GeneroComponent,
     ProdutoraComponent,
-    EnderecoComponent
+    EnderecoComponent,
+    CidadeComponent
   ],
   imports: [
     BrowserModule,
@@ -41,12 +47,16 @@ import { EnderecoComponent } from './endereco/endereco.component';
     TableModule,
     ConfirmDialogModule,
     GrowlModule,
-    DialogModule
+    DialogModule,
+    DropdownModule,
+    PanelModule,
+    TabViewModule
   ],
   providers: [
     GeneroService,
     ProdutoraService,
     EnderecoService,
+    CidadeService,
     ConfirmationService
   ],
   bootstrap: [AppComponent]

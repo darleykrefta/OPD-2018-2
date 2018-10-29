@@ -1,5 +1,7 @@
 package br.edu.utfpr.pb.plataformaDoacao.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,34 +19,37 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name = "endereco")
+@Table(name = "Endereco")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
+@AllArgsConstructor
+@EqualsAndHashCode(of = { "id" })
 @ToString
-public class Endereco {
-	
+public class Endereco implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="Id_Endereco")
 	private Long id;
-	
-	@Column(length=60, nullable=false)
+
+	@Column(name = "Rua", length = 60, nullable = false)
 	private String rua;
-	
-	@Column(length=10, nullable=false)
+
+	@Column(name = "Numero", length = 10, nullable = false)
 	private String numero;
 
-	@Column(length=60, nullable=false)
+	@Column(name = "Bairro", length = 60, nullable = false)
 	private String bairro;
-	
-	@Column(length=8, nullable=false)
+
+	@Column(name = "CEP", length = 8, nullable = false)
 	private String cep;
 
-	@Column(length=60, nullable=true)
+	@Column(name = "Complemento", length = 60, nullable = true)
 	private String complemento;
-	
+
 	@ManyToOne
-	@JoinColumn(name="cidade_id", referencedColumnName="id" ,nullable=false)
+	@JoinColumn(name = "Id_Cidade", referencedColumnName = "Id_Cidade", nullable = false)
 	private Cidade cidade;
 }

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.utfpr.pb.plataformaDoacao.model.Categoria;
-import br.edu.utfpr.pb.plataformaDoacao.repository.CategoriaRepository;
 import br.edu.utfpr.pb.plataformaDoacao.service.CategoriaService;
 import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
 

@@ -4,20 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
+import br.edu.utfpr.pb.plataformaDoacao.model.Campanha;
 import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
-import br.edu.utfpr.pb.plataformaDoacao.service.PessoaService;
+import br.edu.utfpr.pb.plataformaDoacao.service.CampanhaService;
 
 @RestController
-@RequestMapping("pessoa")
-public class PessoaController  extends CrudController<Pessoa, Long> {
+@RequestMapping("campanha")
+public class CampanhaController  extends CrudController<Campanha, Long> {
 
 	@Autowired
-	private PessoaService pessoaService;
+	private CampanhaService campanhaService;
 
 	@Override
-	protected CrudService<Pessoa, Long> getService() {
-		return pessoaService;
+	protected CrudService<Campanha, Long> getService() {
+		return campanhaService;
 	}
 	
 	

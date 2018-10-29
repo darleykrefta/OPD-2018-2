@@ -17,6 +17,7 @@
         <td>Email</td>
         <td>Telefone</td>
         <td>Celular</td>
+      
         <td>Ações</td>
       </tr>
     </ng-template>
@@ -29,6 +30,7 @@
         <td>{{pessoa.email}}</td>
         <td>{{pessoa.telefone}}</td>
         <td>{{pessoa.celular}}</td>
+ 
         <td>
           <button type="button" class="btn btn-dark" (click)="edit(pessoa)">
               <i class="fa fa-edit"></i>
@@ -45,23 +47,11 @@
 
   <p-growl [(value)]="msgs"></p-growl>
 
-  <p-dialog header="Cadastro de Pessoas/Instituições" [(visible)]="showDialog" modal="modal" [responsive]="true" [width]="700">
-    <div class="ui-g">
-        <div class="ui-g-12 ui-g-nopad">
-            <div class="ui-g-6">
-              <div class="img-thumbnail" style="height: 180px; width: 150px;">
-                <img [src]="pessoaEdit.foto" >
-              </div>
-            </div>
-            <div class="ui-g-6">
-                <button type="button" class="btn btn-danger" (click)="cancel()">
-                    <i class="fa fa-ban"></i> Cancelar
-                  </button>
-            </div>
-        </div>
-        <div class="ui-g-12">12</div>
-    </div>
-
+  <p-dialog header="Cadastro de Pessoas/Instituições" 
+  [(visible)]="showDialog" modal="modal" 
+  [responsive]="true" [width]="700">
+  <p-tabView>
+   <p-tabPanel header="Cadastro">
     <div class="row">
       <div class="ui-g-12 ui-fluid">
         <div class="ui-g-12 ui-fluid">
@@ -97,6 +87,12 @@
         </div>
       </div>
     </div>
+  </p-tabPanel>
+  <p-tabPanel header="Imagem"
+          *ngIf="pessoaEdit.id">
+
+        </p-tabPanel>
+      </p-tabView>
     <p-footer>
       <button type="button" class="btn btn-danger" (click)="cancel()">
         <i class="fa fa-ban"></i> Cancelar

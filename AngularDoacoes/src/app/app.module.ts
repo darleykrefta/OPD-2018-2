@@ -10,6 +10,11 @@ import {GrowlModule} from 'primeng/growl';
 import {DialogModule} from 'primeng/dialog';
 import {ConfirmationService} from 'primeng/api';
 import { CheckboxModule } from 'primeng/checkbox';
+import {PanelModule} from 'primeng/panel';
+import {SpinnerModule} from 'primeng/spinner';
+import {FileUploadModule} from 'primeng/fileupload';
+import {TabViewModule} from 'primeng/tabview';
+
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -42,7 +47,10 @@ import { PessoaService } from './pessoa/pessoa.service';
     ConfirmDialogModule,
     GrowlModule,
     DialogModule,
-    CheckboxModule
+    CheckboxModule, PanelModule,
+    SpinnerModule,
+    FileUploadModule,
+    TabViewModule
   ],
   providers: [
     GeneroService,

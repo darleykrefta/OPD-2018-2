@@ -30,7 +30,7 @@ public class Pessoa implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name="Id_Pessoa")
+	@Column(name="Id_Pessoa")
 	private Long id;
 
 	@Column(name = "CPF_CNPJ", length = 14, nullable = false)
@@ -61,7 +61,7 @@ public class Pessoa implements Serializable {
 	private Boolean status;
 
 	@ManyToOne
-	@JoinColumn(name = "Id_Endereco", referencedColumnName = "id")
+	@JoinColumn(name = "Id_Endereco", referencedColumnName = "Id_Endereco")
 	private Endereco endereco;
 
 	public Pessoa(String email, String senha) {

@@ -28,7 +28,7 @@ public class Cidade implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name = "Id_Cidade")
+	@Column(name = "Id_Cidade")
 	private Long id;
 
 	@Column(name = "Nome", nullable = false)

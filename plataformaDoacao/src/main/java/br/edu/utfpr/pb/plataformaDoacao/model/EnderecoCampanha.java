@@ -30,15 +30,15 @@ public class EnderecoCampanha implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name="Id_CampanhaEndereco")
+	@Column(name="Id_CampanhaEndereco")
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "Id_Doacao", referencedColumnName = "id")
+	@JoinColumn(name = "Id_Doacao", referencedColumnName = "Id_Doacao")
 	private Campanha campanha;
 
 	@ManyToOne
-	@JoinColumn(name = "Id_Endereco", referencedColumnName = "id")
+	@JoinColumn(name = "Id_Endereco", referencedColumnName = "Id_Endereco")
 	private Endereco endereco;
 
 }

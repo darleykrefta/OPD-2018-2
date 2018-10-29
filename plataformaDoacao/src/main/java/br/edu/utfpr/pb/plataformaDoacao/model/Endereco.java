@@ -31,7 +31,7 @@ public class Endereco implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name="Id_Endereco")
+	@Column(name="Id_Endereco")
 	private Long id;
 
 	@Column(name = "Rua", length = 60, nullable = false)
@@ -50,6 +50,6 @@ public class Endereco implements Serializable {
 	private String complemento;
 
 	@ManyToOne
-	@JoinColumn(name = "Id_Cidade", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "Id_Cidade", referencedColumnName = "Id_Cidade", nullable = false)
 	private Cidade cidade;
 }

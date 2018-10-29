@@ -30,11 +30,11 @@ public class Foto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name="Id_Fotos")
+	@Column(name="Id_Fotos")
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "Id_Doacao", referencedColumnName = "id")
+	@JoinColumn(name = "Id_Doacao", referencedColumnName = "Id_Doacao")
 	private Campanha campanha;
 
 	@Column(name="CaminhoFoto", length = 666, nullable = false)

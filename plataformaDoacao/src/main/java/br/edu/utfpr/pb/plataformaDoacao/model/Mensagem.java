@@ -31,15 +31,15 @@ public class Mensagem implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name="Id_Mensagem")
+	@Column(name="Id_Mensagem")
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "Id_Doacao", referencedColumnName = "id")
+	@JoinColumn(name = "Id_Doacao", referencedColumnName = "Id_Doacao")
 	private Campanha campanha;
 
 	@ManyToOne
-	@JoinColumn(name = "Id_Pessoa", referencedColumnName = "id")
+	@JoinColumn(name = "Id_Pessoa", referencedColumnName = "Id_Pessoa")
 	private Pessoa pessoa;
 	
 	@Column(name = "Mensagem", length=666, nullable = false)

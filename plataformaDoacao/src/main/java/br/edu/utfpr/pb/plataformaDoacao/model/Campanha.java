@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name = "Campanha_Doacao")
+@Table(name = "campanha_doacao")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,7 +31,7 @@ public class Campanha implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name="Id_Doacao")
+	@Column(name="Id_Doacao")
 	private Long id;
 
 	@Column(name = "Titulo", length = 60, nullable = false)
@@ -62,15 +62,15 @@ public class Campanha implements Serializable {
 	private String foto;
 
 	@ManyToOne
-	@JoinColumn(name = "Id_Pessoa", referencedColumnName = "id")
+	@JoinColumn(name = "Id_Pessoa", referencedColumnName = "Id_Pessoa")
 	private Pessoa pessoa;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_Recebedor", referencedColumnName = "id")
+	@JoinColumn(name = "id_Recebedor", referencedColumnName = "Id_Pessoa")
 	private Pessoa recebedor;
 	
 	@ManyToOne
-	@JoinColumn(name = "Id_Categoria", referencedColumnName = "id")
+	@JoinColumn(name = "Id_Categoria", referencedColumnName = "Id_Categoria")
 	private Categoria categoria;
 
 }

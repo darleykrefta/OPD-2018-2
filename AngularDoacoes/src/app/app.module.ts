@@ -62,7 +62,8 @@ import { CidadeService } from './cidade/cidade.service';
     ProdutoraService,
     ConfirmationService,
     PessoaService,
-    CidadeService
+    CidadeService,
+   
   ],
   bootstrap: [AppComponent]
 })

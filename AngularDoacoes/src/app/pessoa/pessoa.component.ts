@@ -1,8 +1,10 @@
+import { environment } from './../../environments/environment';
 import { Pessoa } from './../model/pessoa';
 import { PessoaService } from './pessoa.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {DataTable} from 'primeng/components/datatable/datatable';
 import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-pessoa',
@@ -18,6 +20,9 @@ export class PessoaComponent implements OnInit {
   totalRecords: number;
   showDialog = false;
   msgs: Message[] = [];
+  uploadFiles: any[] = [];
+  urlApi: string = environment.api;
+  today: number = Date.now();
 
   constructor(private pessoaService: PessoaService, private confirmationService: ConfirmationService) { }
 
@@ -66,6 +71,7 @@ export class PessoaComponent implements OnInit {
   edit(pessoa: Pessoa) {
     // this.generoEdit = genero;
     // assign remove a referencia
+    this.today = Date.now();
     this.pessoaEdit = Object.assign({}, pessoa);
     this.showDialog = true;
   }
@@ -85,6 +91,21 @@ export class PessoaComponent implements OnInit {
         });
       }
     });
+  }
+
+  onUpload(event) {
+    for (const file of event.files) {
+      this.uploadFiles.push(file);
+    }
+    this.msgs = [{severity : 'info',
+                  summary: 'Arquivo salvo!',
+         detail: 'Arquivo salvo com sucesso' }];
+
+    setTimeout(() => {
+      this.dataTable.reset();
+      this.showDialog = false;
+      this.uploadFiles = [];
+    }, 500);
   }
 
 }

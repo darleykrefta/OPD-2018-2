@@ -24,6 +24,8 @@ import { ProdutoraComponent } from './produtora/produtora.component';
 import { ProdutoraService } from './produtora/produtora.service';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CidadeService } from './cidade/cidade.service';
+import { CategoriaComponent } from './categoria/categoria.component';
+import { CategoriaService } from './categoria/categoria.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { CidadeService } from './cidade/cidade.service';
     IndexComponent,
     GeneroComponent,
     ProdutoraComponent,
-    CidadeComponent
+    CidadeComponent,
+    CategoriaComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { CidadeService } from './cidade/cidade.service';
     GeneroService,
     ProdutoraService,
     CidadeService,
-    ConfirmationService
+    ConfirmationService,
+    CategoriaService
   ],
   bootstrap: [AppComponent]
 })

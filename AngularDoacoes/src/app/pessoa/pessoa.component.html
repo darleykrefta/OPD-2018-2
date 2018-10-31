@@ -17,6 +17,7 @@
         <td>Email</td>
         <td>Telefone</td>
         <td>Celular</td>
+        <td>Endereco</td>
       
         <td>Ações</td>
       </tr>
@@ -30,6 +31,7 @@
         <td>{{pessoa.email}}</td>
         <td>{{pessoa.telefone}}</td>
         <td>{{pessoa.celular}}</td>
+        <td>{{pessoa.endereco.rua + " Nº:" +  pessoa.endereco.numero + "-" + pessoa.endereco.cidade.nome}}</td>
  
         <td>
           <button type="button" class="btn btn-dark" (click)="edit(pessoa)">
@@ -84,7 +86,10 @@
         <div class="ui-g-12 ui-fluid">
           <label for="celular">Celular</label>
           <input class="form-control" type="text" name="celular" id="celular" [(ngModel)]="pessoaEdit.celular"/>
-       
+        </div>
+        <div class="ui-g-12 ui-fluid">
+          <label for="endereco">Endereco</label>
+          <input class="form-control" type="text" name="endereco" id="endereco" [(ngModel)]="pessoaEdit.endereco"/>
         </div>
       </div>
       </div>

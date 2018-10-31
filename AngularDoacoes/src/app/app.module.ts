@@ -25,6 +25,7 @@ import { GeneroService } from './genero/genero.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProdutoraComponent } from './produtora/produtora.component';
 import { ProdutoraService } from './produtora/produtora.service';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaService } from './pessoa/pessoa.service';
 import { CidadeComponent } from './cidade/cidade.component';
@@ -53,6 +54,7 @@ import { CidadeService } from './cidade/cidade.service';
     CheckboxModule,
     SpinnerModule,
     FileUploadModule,
+    AutoCompleteModule,
     DropdownModule,
     PanelModule,
     TabViewModule
@@ -62,8 +64,7 @@ import { CidadeService } from './cidade/cidade.service';
     ProdutoraService,
     ConfirmationService,
     PessoaService,
-    CidadeService,
-   
+    CidadeService
   ],
   bootstrap: [AppComponent]
 })

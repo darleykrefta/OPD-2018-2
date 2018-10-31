@@ -9,5 +9,5 @@ export class Pessoa {
     celular: string;
     foto: string;
     status: boolean;
-    endereco: Endereco;
+    endereco: string;
 }

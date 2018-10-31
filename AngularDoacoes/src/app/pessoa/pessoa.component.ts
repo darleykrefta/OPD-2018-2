@@ -4,6 +4,8 @@ import { PessoaService } from './pessoa.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {DataTable} from 'primeng/components/datatable/datatable';
 import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
+//import { Produtora } from '../model/endereco';
+//import { ProdutoraService } from '../endereco/endereo.service';
 
 
 @Component({
@@ -15,6 +17,8 @@ export class PessoaComponent implements OnInit {
 
   @ViewChild('dt') dataTable: DataTable;
 
+ // enderecos: Endereco[];
+ // enderecosFiltered: Endereco[];
   pessoas: Pessoa[];
   pessoaEdit = new Pessoa();
   totalRecords: number;
@@ -24,9 +28,13 @@ export class PessoaComponent implements OnInit {
   urlApi: string = environment.api;
   today: number = Date.now();
 
-  constructor(private pessoaService: PessoaService, private confirmationService: ConfirmationService) { }
+  constructor(private pessoaService: PessoaService,
+    /*private enderecoService: EnderecoService,*/
+     private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
+    //this.enderecoService.findAll().subscribe(
+      //e => this.enderecos = e);
   }
 
   findAllPaged(page: number, size: number) {
@@ -51,6 +59,14 @@ export class PessoaComponent implements OnInit {
     this.pessoaEdit = new Pessoa();
   }
 
+  /*
+  search(event) {
+    this.enderecosFiltered = this.enderecos
+        .filter(
+    p => p.rua.toLocaleLowerCase()
+      .includes(event.query.toLocaleLowerCase())
+    );
+  }*/
   cancel() {
     this.showDialog = false;
   }

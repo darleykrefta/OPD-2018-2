@@ -24,17 +24,9 @@ public class CidadeServiceImpl extends CrudServiceImpl<Cidade, Long> implements 
 	}
 
 	@Override
-	public List<Cidade> findByNomeLikeOrderByDesc(String nome) {
+	public List<Cidade> findByNomeLikeOrderByNomeDesc(String nome) {
 		// TODO Auto-generated method stub
-		return cidadeRepository.findByNomeLikeOrderByDesc(nome);
+		return cidadeRepository.findByNomeLikeOrderByNomeDesc(nome);
 	}
-	
-	
-
-	
-
-	
-	
-	
 
 }

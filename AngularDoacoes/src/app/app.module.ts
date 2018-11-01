@@ -50,7 +50,8 @@ import { CidadeService } from './cidade/cidade.service';
     DialogModule,
     DropdownModule,
     PanelModule,
-    TabViewModule
+    TabViewModule,
+    AutoCompleteModule
   ],
   providers: [
     GeneroService,

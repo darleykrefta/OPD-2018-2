@@ -8,7 +8,6 @@ import br.edu.utfpr.pb.plataformaDoacao.model.Cidade;
 public interface CidadeService  extends CrudService<Cidade, Long>{
 	
 	
-	public List<Cidade> findByNomeLikeOrderByDesc(String nome);
-//	public List<Categoria> findByDescricaoLikeOrderByIdDesc(String descricao);
+	public List<Cidade> findByNomeLikeOrderByNomeDesc(String nome);
 
 }

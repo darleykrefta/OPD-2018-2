@@ -31,7 +31,7 @@ public class CidadeController extends CrudController<Cidade, Long> {
 	
 	@GetMapping("filter/nome")
 	public List<Cidade> findByNome(@RequestParam String nome){
-		return cidadeService.findByNomeLikeOrderByDesc("%"+nome+"%");
+		return cidadeService.findByNomeLikeOrderByNomeDesc("%"+nome+"%");
 	}
 
 }

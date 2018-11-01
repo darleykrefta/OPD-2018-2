@@ -8,5 +8,5 @@ import br.edu.utfpr.pb.plataformaDoacao.model.Cidade;
 
 public interface CidadeRepository extends JpaRepository<Cidade, Long>{
 
-	List<Cidade> findByNomeLikeOrderByDesc(String nome);
+	List<Cidade> findByNomeLikeOrderByNomeDesc(String nome);
 }

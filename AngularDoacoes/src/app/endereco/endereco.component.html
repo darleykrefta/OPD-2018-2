@@ -6,18 +6,27 @@
     <i class="fa fa-plus-square"></i>Novo
   </button>
 
+ 
+
   <p-table #dt [value]="enderecos" [lazy]="true" [rows]="5" [paginator]="true" [rowsPerPageOptions]="[5,10,15,20,50]"
-    [totalRecords]="totalRecords" (onLazyLoad)="load($event)">
-    <ng-template pTemplate="header">
+    [totalRecords]="totalRecords" (onLazyLoad)="loadLazy($event)"
+    [columns]="cols">
+
+  <!--aqui seria o filtro global, mas não está funcionando ainda-->
+  <ng-template pTemplate="caption">
+    <div style="text-align: right">        
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input type="text" pInputText size="50" placeholder="Filtro" (input)="dt.filterGlobal($event.target.value, 'contains')"
+         style="width:auto">
+    </div>
+</ng-template>
+
+    <ng-template pTemplate="header" let-columns>
       <tr>
-        <th>Cod.</th>
-        <th>Rua</th>
-        <th>Numero</th>
-        <th>Bairro</th>
-        <th>CEP</th>
-        <th>Complemento</th>
-        <th>Cidade</th>
-        <th>Açao</th>
+        <th *ngFor="let col of columns">
+          {{col.header}}
+        </th>
+        <th>Ações</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-endereco>
@@ -28,7 +37,7 @@
         <td>{{endereco.bairro}}</td>
         <td>{{endereco.cep}}</td>
         <td>{{endereco.complemento}}</td>
-        <!-- <td>{{endereco.cidade.nome}}</td> -->
+        <td>{{endereco.cidade.nome}}</td>
         <td>
           <button type="button" (click)="edit(endereco)" class="btn btn-dark">
             <i class="fa fa-edit"></i></button>
@@ -74,10 +83,15 @@
         </div>
 
         <div class="ui-g-12 ui-fluid">
+          <label for="complemento">Complemento</label>
+          <input class="form-control" type="text" name="complemento" id="complemento" [(ngModel)]="enderecoEdit.complemento">
+        </div>
+
+        <div class="ui-g-12 ui-fluid">
           <label for="cidade">Cidade</label>
 
-          <p-autoComplete [(ngModel)]="endereco.cidade" id="cidade" [suggestions]="cidadesFiltred" (completeMethod)="search($event)"
-            field="nome" [size]="30" placeholder="Cidades" [minLength]="3"></p-autoComplete>
+          <p-autoComplete [(ngModel)]="enderecoEdit.cidade" id="cidade" [suggestions]="cidadesFiltred" (completeMethod)="search($event)"
+            field="nome"></p-autoComplete>
 
         </div>
       </div>

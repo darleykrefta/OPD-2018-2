@@ -1,9 +1,11 @@
+import { CidadeService } from './../cidade/cidade.service';
+import { Cidade } from './../model/cidade';
 import { TableModule } from 'primeng/table';
 import { Endereco } from './../model/endereco';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EnderecoService } from './endereco.service';
 import { DataTable } from 'primeng/components/datatable/datatable';
-import { Message, ConfirmationService } from 'primeng/api';
+import { Message, ConfirmationService, LazyLoadEvent } from 'primeng/api';
 
 @Component({
   selector: 'app-endereco',
@@ -15,15 +17,18 @@ export class EnderecoComponent implements OnInit {
   @ViewChild('dt') dataTable: DataTable;
 
   enderecos: Endereco[];
-  enderecoEdit = new Endereco();
+  enderecoEdit: Endereco = new Endereco();
   showDialog = false;
   msgs: Message[] = [];
-
+  maxRecords = 5;
+  currentPage = 1;
+  totalRecords: number;
   cidades: Cidade[];
   cidadesFiltred: Cidade[];
+  cols: any[];
 
-
-  constructor(private enderecoService: EnderecoService, private confirmationService: ConfirmationService, private cidadeService: CidadeService) { }
+  constructor(private enderecoService: EnderecoService, private confirmationService: ConfirmationService,
+    private cidadeService: CidadeService) { }
 
 
   search(event) {
@@ -32,19 +37,19 @@ export class EnderecoComponent implements OnInit {
     );
   }
 
-  filterCountry(query, cidades: any[]): any[] {
-    const filtered: any[] = [];
-    for (let i = 0; i < cidades.length; i++) {
-      const cidade = cidades[i];
-      if (cidade.nome.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-        filtered.push(cidade);
-      }
-    }
-    return filtered;
-  }
-
   ngOnInit() {
     this.findAll();
+    this.cidadeService.findAll().subscribe(e => this.cidades = e);
+
+    this.cols = [
+      { field: 'id', header: 'Cod.' },
+      { field: 'rua', header: 'Rua' },
+      { field: 'numero', header: 'Numero' },
+      { field: 'bairro', header: 'Bairro' },
+      { field: 'cep', header: 'CEP' },
+      { field: 'complemento', header: 'Complemento' },
+      { field: 'cidade.nome', header: 'Cidade' }
+    ];
   }
 
   findAll() {
@@ -113,4 +118,26 @@ export class EnderecoComponent implements OnInit {
       }
     });
   }
+
+  loadLazy(event: LazyLoadEvent) {
+    this.currentPage = event.first / event.rows;
+    this.maxRecords = event.rows;
+    console.log(event.globalFilter);
+    if (event.globalFilter == null) {
+      setTimeout(() => {
+        this.findAllPaged(this.currentPage, this.maxRecords);
+      }, 250);
+    } else {
+      setTimeout(() => {
+        this.enderecoService.findEndereco(event.globalFilter);
+      }, 250);
+    }
+  }
+
+  findAllPaged(page: number, size: number) {
+    this.enderecoService.count().subscribe(e => this.totalRecords = e);
+    this.enderecoService.findPageable(page, size).subscribe(e => this.enderecos = e.content);
+  }
+
+
 }

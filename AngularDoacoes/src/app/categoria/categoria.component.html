@@ -1,0 +1,71 @@
+<div class="container">
+    <h1>Lista de Categorias</h1>
+    
+    <button class="btn btn-primary"
+      (click)="newEntity()">
+      <i class="fa fa-plus"></i> Novo</button>
+  
+    <p-table [value]="categorias" [paginator]="true"
+        [rows]="5" [rowsPerPageOptions]="[5,10,25]">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Código</th>
+              <th>Nome</th>
+              <th>Ações</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-categoria>
+          <tr>
+              <td>{{categoria.id}}</td>
+              <td>{{categoria.nome}}</td>
+              <td>
+                <button type="button" 
+                  (click)="edit(categoria)"
+                  class="btn btn-dark">
+                  <i class="fa fa-edit"></i></button>
+                
+                <button type="button" 
+                  (click)="delete(categoria)"
+                  class="btn btn-danger">
+                  <i class="fa fa-trash"></i></button>
+              </td>
+          </tr>
+      </ng-template>
+  </p-table>
+  
+  <p-confirmDialog></p-confirmDialog>
+  <p-growl [(value)]="msgs"></p-growl>
+  
+  <p-dialog header="Cadastro" 
+      [(visible)]="showDialog" modal="modal" 
+      [responsive]="true" [width]="500">
+      <div class="row">
+        <div class="ui-g-12 ui-fluid">
+          <div class="ui-g-12 ui-fluid">
+            <label for="id">Código</label>
+            <input class="form-control" readonly
+                type="text" name="id" id="id"
+                [(ngModel)]="categoriaEdit.id">
+          </div>
+  
+          <div class="ui-g-12 ui-fluid">
+            <label for="nome">Nome</label>
+            <input class="form-control"
+                type="text" name="nome" id="nome"
+                [(ngModel)]="categoriaEdit.nome">
+          </div>
+        </div>
+      </div>
+      <p-footer>
+        <button type="button" (click)="cancel()"
+            class="btn btn-default">
+          <i class="fa fa-ban"></i> Cancelar</button>  
+        <button type="button" (click)="save()"
+            class="btn btn-success">
+            <i class="fa fa-save"></i> Salvar
+        </button>
+      </p-footer>
+  </p-dialog>
+  
+  </div>
+  

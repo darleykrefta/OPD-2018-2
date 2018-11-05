@@ -1,3 +1,4 @@
+import { EnderecoService } from './endereco/endereco.service';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ import {ConfirmationService} from 'primeng/api';
 import { CheckboxModule } from 'primeng/checkbox';
 import {SpinnerModule} from 'primeng/spinner';
 import {FileUploadModule} from 'primeng/fileupload';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 import {DropdownModule} from 'primeng/dropdown';
 import {PanelModule} from 'primeng/panel';
 import {TabViewModule} from 'primeng/tabview';
@@ -28,8 +30,11 @@ import { ProdutoraService } from './produtora/produtora.service';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaService } from './pessoa/pessoa.service';
+import { EnderecoComponent } from './endereco/endereco.component';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CidadeService } from './cidade/cidade.service';
+import { CategoriaComponent } from './categoria/categoria.component';
+import { CategoriaService } from './categoria/categoria.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,8 @@ import { CidadeService } from './cidade/cidade.service';
     GeneroComponent,
     ProdutoraComponent,
     PessoaComponent,
+    CategoriaComponent,
+    EnderecoComponent,
     CidadeComponent
   ],
   imports: [
@@ -57,14 +64,18 @@ import { CidadeService } from './cidade/cidade.service';
     AutoCompleteModule,
     DropdownModule,
     PanelModule,
-    TabViewModule
+    TabViewModule,
+    AutoCompleteModule
   ],
   providers: [
     GeneroService,
     ProdutoraService,
     ConfirmationService,
     PessoaService,
-    CidadeService
+    EnderecoService,
+    CidadeService,
+    ConfirmationService,
+    CategoriaService
   ],
   bootstrap: [AppComponent]
 })

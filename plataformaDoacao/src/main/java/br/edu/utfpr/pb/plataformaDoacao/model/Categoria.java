@@ -16,26 +16,21 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name="cidade")
+@Table(name = "Categoria")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of= {"id"})
+@EqualsAndHashCode(of = { "id" })
 @ToString
-public class Cidade implements Serializable{
-
-
+public class Categoria implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Id_Cidade")
+	@Column(name="Id_Categoria")
 	private Long id;
 
-	@Column(length=50, nullable=false)
+	@Column(name="Nome", length = 60, nullable = false)
 	private String nome;
-
-	@Column(length=2, nullable=false)
-	private String sigla;
-
 }

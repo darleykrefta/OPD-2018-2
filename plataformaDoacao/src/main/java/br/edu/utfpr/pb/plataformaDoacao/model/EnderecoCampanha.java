@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -16,26 +18,27 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name="cidade")
+@Table(name = "Endereco_Campanha")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of= {"id"})
+@EqualsAndHashCode(of = { "id" })
 @ToString
-public class Cidade implements Serializable{
-
+public class EnderecoCampanha implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Id_Cidade")
+	@Column(name="Id_CampanhaEndereco")
 	private Long id;
 
-	@Column(length=50, nullable=false)
-	private String nome;
+	@ManyToOne
+	@JoinColumn(name = "Id_Doacao", referencedColumnName = "Id_Doacao")
+	private Campanha campanha;
 
-	@Column(length=2, nullable=false)
-	private String sigla;
+	@ManyToOne
+	@JoinColumn(name = "Id_Endereco", referencedColumnName = "Id_Endereco")
+	private Endereco endereco;
 
 }

@@ -1,0 +1,107 @@
+<div class="container">
+  <h2><span class="badge badge-light">
+      Cadastro de Endereco
+    </span> </h2>
+  <button class="btn btn-primary" (click)="newEntity()">
+    <i class="fa fa-plus-square"></i>Novo
+  </button>
+
+ 
+
+  <p-table #dt [value]="enderecos" [lazy]="true" [rows]="5" [paginator]="true" [rowsPerPageOptions]="[5,10,15,20,50]"
+    [totalRecords]="totalRecords" (onLazyLoad)="loadLazy($event)"
+    [columns]="cols">
+
+  <!--aqui seria o filtro global, mas não está funcionando ainda-->
+  <ng-template pTemplate="caption">
+    <div style="text-align: right">        
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input type="text" pInputText size="50" placeholder="Filtro" (input)="dt.filterGlobal($event.target.value, 'contains')"
+         style="width:auto">
+    </div>
+</ng-template>
+
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{col.header}}
+        </th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-endereco>
+      <tr>
+        <td>{{endereco.id}}</td>
+        <td>{{endereco.rua}}</td>
+        <td>{{endereco.numero}}</td>
+        <td>{{endereco.bairro}}</td>
+        <td>{{endereco.cep}}</td>
+        <td>{{endereco.complemento}}</td>
+        <td>{{endereco.cidade.nome}}</td>
+        <td>
+          <button type="button" (click)="edit(endereco)" class="btn btn-dark">
+            <i class="fa fa-edit"></i></button>
+
+          <button type="button" (click)="delete(endereco)" class="btn btn-danger">
+            <i class="fa fa-trash"></i></button>
+
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+
+  <p-confirmDialog></p-confirmDialog>
+  <p-growl [(value)]="msgs"></p-growl>
+
+  <p-dialog header="Cadastro" [(visible)]="showDialog" modal="modal" [responsive]="true" [width]="500">
+    <div class="row">
+      <div class="ui-g-12 ui-fluid">
+        <div class="ui-g-12 ui-fluid">
+          <label for="id">Código</label>
+          <input class="form-control" readonly type="text" name="id" id="id" [(ngModel)]="enderecoEdit.id">
+        </div>
+
+        <div class="ui-g-12 ui-fluid">
+          <label for="rua">Rua</label>
+          <input class="form-control" type="text" name="rua" id="rua" [(ngModel)]="enderecoEdit.rua">
+        </div>
+
+        <div class="ui-g-12 ui-fluid">
+          <label for="numero">Numero</label>
+          <input class="form-control" type="text" name="numero" id="numero" [(ngModel)]="enderecoEdit.numero">
+        </div>
+
+        <div class="ui-g-12 ui-fluid">
+          <label for="bairro">Bairro</label>
+          <input class="form-control" type="text" name="bairro" id="bairro" [(ngModel)]="enderecoEdit.bairro">
+        </div>
+
+        <div class="ui-g-12 ui-fluid">
+          <label for="cep">CEP</label>
+          <input class="form-control" type="text" name="cep" id="cep" [(ngModel)]="enderecoEdit.cep">
+        </div>
+
+        <div class="ui-g-12 ui-fluid">
+          <label for="complemento">Complemento</label>
+          <input class="form-control" type="text" name="complemento" id="complemento" [(ngModel)]="enderecoEdit.complemento">
+        </div>
+
+        <div class="ui-g-12 ui-fluid">
+          <label for="cidade">Cidade</label>
+
+          <p-autoComplete [(ngModel)]="enderecoEdit.cidade" id="cidade" [suggestions]="cidadesFiltred" (completeMethod)="search($event)"
+            field="nome"></p-autoComplete>
+
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <button type="button" (click)="cancel()" class="btn btn-default">
+        <i class="fa fa-ban"></i> Cancelar</button>
+      <button type="button" (click)="save()" class="btn btn-success">
+        <i class="fa fa-save"></i> Salvar
+      </button>
+    </p-footer>
+  </p-dialog>
+</div>

@@ -37,5 +37,7 @@ public interface CrudService<T, ID extends Serializable> {
 	void delete(Iterable<T> iterable);
 
 	void deleteAll();
+	
+	
 
 }

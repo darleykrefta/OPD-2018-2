@@ -6,13 +6,15 @@ import { IndexComponent } from './index/index.component';
 import { GeneroComponent } from './genero/genero.component';
 import { ProdutoraComponent } from './produtora/produtora.component';
 import { CidadeComponent } from './cidade/cidade.component';
+import { CategoriaComponent } from './categoria/categoria.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent},
   {path: 'genero', component: GeneroComponent},
   {path: 'produtora', component: ProdutoraComponent},
-  {path: 'endereco', component: EnderecoComponent},
-  {path: 'cidade', component: CidadeComponent}
+  {path: 'cidade', component: CidadeComponent},
+  {path: 'categoria', component: CategoriaComponent},
+  {path: 'endereco', component: EnderecoComponent}
 ];
 
 @NgModule({

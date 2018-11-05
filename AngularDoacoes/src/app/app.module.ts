@@ -22,12 +22,7 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { GeneroComponent } from './genero/genero.component';
-import { GeneroService } from './genero/genero.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ProdutoraComponent } from './produtora/produtora.component';
-import { ProdutoraService } from './produtora/produtora.service';
-import {AutoCompleteModule} from 'primeng/autocomplete';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaService } from './pessoa/pessoa.service';
 import { EnderecoComponent } from './endereco/endereco.component';
@@ -41,8 +36,6 @@ import { CategoriaService } from './categoria/categoria.service';
     AppComponent,
     MenuComponent,
     IndexComponent,
-    GeneroComponent,
-    ProdutoraComponent,
     PessoaComponent,
     CategoriaComponent,
     EnderecoComponent,
@@ -64,12 +57,9 @@ import { CategoriaService } from './categoria/categoria.service';
     AutoCompleteModule,
     DropdownModule,
     PanelModule,
-    TabViewModule,
-    AutoCompleteModule
+    TabViewModule
   ],
   providers: [
-    GeneroService,
-    ProdutoraService,
     ConfirmationService,
     PessoaService,
     EnderecoService,

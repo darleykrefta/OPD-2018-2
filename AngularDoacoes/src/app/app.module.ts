@@ -10,6 +10,9 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {GrowlModule} from 'primeng/growl';
 import {DialogModule} from 'primeng/dialog';
 import {ConfirmationService} from 'primeng/api';
+import { CheckboxModule } from 'primeng/checkbox';
+import {SpinnerModule} from 'primeng/spinner';
+import {FileUploadModule} from 'primeng/fileupload';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {DropdownModule} from 'primeng/dropdown';
 import {PanelModule} from 'primeng/panel';
@@ -24,6 +27,9 @@ import { GeneroService } from './genero/genero.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProdutoraComponent } from './produtora/produtora.component';
 import { ProdutoraService } from './produtora/produtora.service';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import { PessoaComponent } from './pessoa/pessoa.component';
+import { PessoaService } from './pessoa/pessoa.service';
 import { EnderecoComponent } from './endereco/endereco.component';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CidadeService } from './cidade/cidade.service';
@@ -37,6 +43,7 @@ import { CategoriaService } from './categoria/categoria.service';
     IndexComponent,
     GeneroComponent,
     ProdutoraComponent,
+    PessoaComponent,
     CategoriaComponent,
     EnderecoComponent,
     CidadeComponent
@@ -51,6 +58,10 @@ import { CategoriaService } from './categoria/categoria.service';
     ConfirmDialogModule,
     GrowlModule,
     DialogModule,
+    CheckboxModule,
+    SpinnerModule,
+    FileUploadModule,
+    AutoCompleteModule,
     DropdownModule,
     PanelModule,
     TabViewModule,
@@ -59,6 +70,8 @@ import { CategoriaService } from './categoria/categoria.service';
   providers: [
     GeneroService,
     ProdutoraService,
+    ConfirmationService,
+    PessoaService,
     EnderecoService,
     CidadeService,
     ConfirmationService,

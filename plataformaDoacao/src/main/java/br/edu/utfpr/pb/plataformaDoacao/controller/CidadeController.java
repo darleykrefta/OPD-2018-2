@@ -1,9 +1,13 @@
 package br.edu.utfpr.pb.plataformaDoacao.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.utfpr.pb.plataformaDoacao.model.Cidade;
@@ -23,6 +27,11 @@ public class CidadeController extends CrudController<Cidade, Long> {
 	protected CrudService<Cidade, Long> getService() {
 		// TODO Auto-generated method stub
 		return cidadeService;
+	}
+	
+	@GetMapping("filter/nome")
+	public List<Cidade> findByNome(@RequestParam String nome){
+		return cidadeService.findByNomeLikeOrderByNomeDesc("%"+nome+"%");
 	}
 
 }

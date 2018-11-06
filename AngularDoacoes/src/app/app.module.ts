@@ -1,4 +1,3 @@
-import { EnderecoService } from './endereco/endereco.service';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -18,6 +17,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {PanelModule} from 'primeng/panel';
 import {TabViewModule} from 'primeng/tabview';
 
+// Component-Service
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
@@ -26,10 +26,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaService } from './pessoa/pessoa.service';
 import { EnderecoComponent } from './endereco/endereco.component';
+import { EnderecoService } from './endereco/endereco.service';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CidadeService } from './cidade/cidade.service';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
+import { AnuncioComponent } from './anuncio/anuncio.component';
+import { AnuncioService } from './anuncio/anuncio.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { CategoriaService } from './categoria/categoria.service';
     PessoaComponent,
     CategoriaComponent,
     EnderecoComponent,
-    CidadeComponent
+    CidadeComponent,
+    AnuncioComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,8 @@ import { CategoriaService } from './categoria/categoria.service';
     EnderecoService,
     CidadeService,
     ConfirmationService,
-    CategoriaService
+    CategoriaService,
+    AnuncioService
   ],
   bootstrap: [AppComponent]
 })

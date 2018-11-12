@@ -23,6 +23,8 @@ import {InputTextModule} from 'primeng/inputtext';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {CalendarModule} from 'primeng/calendar';
 import {MenuModule} from 'primeng/menu';
+import {MenuItem} from 'primeng/api';
+import {FieldsetModule} from 'primeng/fieldset';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -38,6 +40,8 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
 import { Campanha } from './interface/Campanha';
 import { CampanhaService } from './campanha/campanha.service';
+import {ContextMenuModule} from 'primeng/contextmenu';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,8 @@ import { CampanhaService } from './campanha/campanha.service';
     PessoaComponent,
     CategoriaComponent,
     EnderecoComponent,
-    CidadeComponent
+    CidadeComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +76,9 @@ import { CampanhaService } from './campanha/campanha.service';
     InputTextModule,
     RadioButtonModule,
     CalendarModule,
-    MenuModule
+    MenuModule,
+    ContextMenuModule,
+    FieldsetModule
   ],
   providers: [
     ConfirmationService,

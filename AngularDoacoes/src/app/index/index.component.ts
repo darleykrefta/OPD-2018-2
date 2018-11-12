@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataView } from 'primeng/dataview';
 import { CampanhaService } from '../campanha/campanha.service';
 import { Campanha } from '../interface/Campanha';
-import { LazyLoadEvent, Message, ConfirmationService} from 'primeng/api';
+import { LazyLoadEvent, Message} from 'primeng/api';
 
 @Component({
   selector: 'app-index',

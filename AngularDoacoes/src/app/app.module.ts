@@ -22,7 +22,8 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientInterceptor } from './http-client.interceptor';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaService } from './pessoa/pessoa.service';
 import { EnderecoComponent } from './endereco/endereco.component';
@@ -30,6 +31,8 @@ import { CidadeComponent } from './cidade/cidade.component';
 import { CidadeService } from './cidade/cidade.service';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './login/login.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { CategoriaService } from './categoria/categoria.service';
     PessoaComponent,
     CategoriaComponent,
     EnderecoComponent,
-    CidadeComponent
+    CidadeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -60,12 +64,18 @@ import { CategoriaService } from './categoria/categoria.service';
     TabViewModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpClientInterceptor,
+      multi: true
+    },
     ConfirmationService,
     PessoaService,
     EnderecoService,
     CidadeService,
     ConfirmationService,
-    CategoriaService
+    CategoriaService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

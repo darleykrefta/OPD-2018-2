@@ -5568,3 +5568,34 @@ Insert into cidade (id_cidade, nome, sigla) values (5222054,'Vicentinópolis', '
 Insert into cidade (id_cidade, nome, sigla) values (5222203,'Vila Boa', 'GO');
 Insert into cidade (id_cidade, nome, sigla) values (5222302,'Vila Propício', 'GO');
 Insert into cidade (id_cidade, nome, sigla) values (5300108,'Brasília', 'DF');
+
+INSERT INTO endereco(id_endereco, bairro, cep, complemento, numero, rua, id_cidade) VALUES (1, 'XYZ', '85560000', 'Ap 101', 272, 'ABC', 1100015);
+
+INSERT INTO categoria(id_categoria, nome) VALUES (1, 'Eletrônicos');
+
+INSERT INTO pessoa_institucao(id_pessoa, apelido, celular, cpf_cnpj, email, foto, nome, senha, status, telefone, id_endereco) VALUES (1, 'De', '46 999254210', '09341491940', 'debora.mendes@live.com', 'C:\Users\Public\Pictures\Sample Pictures\1.png', 'Debora Mendes', '123', 1, '46 3242 2101', 1);
+
+INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) 
+VALUES (1, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);
+INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) 
+VALUES (2, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);
+INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) 
+VALUES (3, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);
+INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) 
+VALUES (4, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);
+INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) 
+VALUES (5, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);
+INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) 
+VALUES (6, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);
+INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) 
+VALUES (7, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);
+INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) 
+VALUES (8, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);
+INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) 
+VALUES (9, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);
+INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) 
+VALUES (10, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);
+INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) 
+VALUES (11, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);
+INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) 
+VALUES (12, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);

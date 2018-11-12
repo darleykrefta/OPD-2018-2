@@ -30,6 +30,8 @@ import { CidadeComponent } from './cidade/cidade.component';
 import { CidadeService } from './cidade/cidade.service';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { CadastroService } from './cadastro/cadastro.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { CategoriaService } from './categoria/categoria.service';
     PessoaComponent,
     CategoriaComponent,
     EnderecoComponent,
-    CidadeComponent
+    CidadeComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,8 @@ import { CategoriaService } from './categoria/categoria.service';
     EnderecoService,
     CidadeService,
     ConfirmationService,
-    CategoriaService
+    CategoriaService,
+    CadastroService
   ],
   bootstrap: [AppComponent]
 })

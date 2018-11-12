@@ -1,3 +1,4 @@
+import { CadastroComponent } from './cadastro/cadastro.component';
 import { EnderecoComponent } from './endereco/endereco.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: 'pessoa', component: PessoaComponent},
   {path: 'cidade', component: CidadeComponent},
   {path: 'categoria', component: CategoriaComponent},
-  {path: 'endereco', component: EnderecoComponent}
+  {path: 'endereco', component: EnderecoComponent},
+  {path: 'cadastro', component: CadastroComponent}
 ];
 
 @NgModule({

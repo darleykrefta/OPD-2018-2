@@ -25,6 +25,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {MenuModule} from 'primeng/menu';
 import {MenuItem} from 'primeng/api';
 import {FieldsetModule} from 'primeng/fieldset';
+import {PasswordModule} from 'primeng/password';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -78,7 +79,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     CalendarModule,
     MenuModule,
     ContextMenuModule,
-    FieldsetModule
+    FieldsetModule,
+    PasswordModule
   ],
   providers: [
     ConfirmationService,

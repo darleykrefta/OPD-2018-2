@@ -11,12 +11,13 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
-    path: '', canActivate: [LoginService], children: [
+      path: '', canActivate: [LoginService], children: [
       {path: 'index', component: IndexComponent},
       {path: 'pessoa', component: PessoaComponent},
       {path: 'cidade', component: CidadeComponent},
       {path: 'categoria', component: CategoriaComponent},
       {path: 'endereco', component: EnderecoComponent},
+      {path: 'perfil', component: PerfilComponent}
     ]
   },
   {path: 'login', component: LoginComponent}

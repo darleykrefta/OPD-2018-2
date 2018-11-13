@@ -1,4 +1,3 @@
-import { EnderecoService } from './endereco/endereco.service';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -17,6 +16,15 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {DropdownModule} from 'primeng/dropdown';
 import {PanelModule} from 'primeng/panel';
 import {TabViewModule} from 'primeng/tabview';
+import {DataViewModule} from 'primeng/dataview';
+import {SidebarModule} from 'primeng/sidebar';
+import {InputTextModule} from 'primeng/inputtext';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {CalendarModule} from 'primeng/calendar';
+import {MenuModule} from 'primeng/menu';
+import {MenuItem} from 'primeng/api';
+import {FieldsetModule} from 'primeng/fieldset';
+import {ContextMenuModule} from 'primeng/contextmenu';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -33,6 +41,11 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
+import { Campanha } from './interface/Campanha';
+import { CampanhaService } from './campanha/campanha.service';
+import { EnderecoService } from './endereco/endereco.service';
+
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +56,8 @@ import { LoginService } from './login/login.service';
     CategoriaComponent,
     EnderecoComponent,
     CidadeComponent,
-    LoginComponent
+    LoginComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +75,15 @@ import { LoginService } from './login/login.service';
     AutoCompleteModule,
     DropdownModule,
     PanelModule,
-    TabViewModule
+    TabViewModule,
+    DataViewModule,
+    SidebarModule,
+    InputTextModule,
+    RadioButtonModule,
+    CalendarModule,
+    MenuModule,
+    ContextMenuModule,
+    FieldsetModule
   ],
   providers: [
     {
@@ -75,7 +97,8 @@ import { LoginService } from './login/login.service';
     CidadeService,
     ConfirmationService,
     CategoriaService,
-    LoginService
+    LoginService,
+    CampanhaService
   ],
   bootstrap: [AppComponent]
 })

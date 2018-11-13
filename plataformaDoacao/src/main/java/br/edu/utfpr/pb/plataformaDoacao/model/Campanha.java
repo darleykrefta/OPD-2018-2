@@ -37,7 +37,7 @@ public class Campanha implements Serializable {
 	@Column(name = "Titulo", length = 60, nullable = false)
 	private String titulo;
 
-	@Column(name = "TipoAnuncio", nullable = false)
+	@Column(name = "Tipo_anuncio", nullable = false)
 	private Integer tipoAnuncio;
 
 	@Column(name = "Descricao", length = 60, nullable = false)

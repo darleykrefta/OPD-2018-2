@@ -1,5 +1,7 @@
 package br.edu.utfpr.pb.plataformaDoacao.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,13 @@ public class CampanhaServiceImpl extends CrudServiceImpl <Campanha, Long> implem
 	protected JpaRepository<Campanha, Long> getRepository() {
 		// TODO Auto-generated method stub
 		return campanhaRepository;
+	}
+
+
+	@Override
+	public List<Campanha> findByPessoaId(Long id) {
+		// TODO Auto-generated method stub
+		return campanhaRepository.findByPessoaId(id);
 	}
 
 }

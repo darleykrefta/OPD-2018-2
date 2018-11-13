@@ -42,6 +42,8 @@ import { Campanha } from './interface/Campanha';
 import { CampanhaService } from './campanha/campanha.service';
 import {ContextMenuModule} from 'primeng/contextmenu';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AnuncioComponent } from './anuncio/anuncio.component';
+import { CampanhaComponent } from './campanha/campanha.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { PerfilComponent } from './perfil/perfil.component';
     CategoriaComponent,
     EnderecoComponent,
     CidadeComponent,
-    PerfilComponent
+    PerfilComponent,
+    AnuncioComponent,
+    CampanhaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,3 @@
-import { EnderecoService } from './endereco/endereco.service';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -26,22 +25,28 @@ import {MenuModule} from 'primeng/menu';
 import {MenuItem} from 'primeng/api';
 import {FieldsetModule} from 'primeng/fieldset';
 import {PasswordModule} from 'primeng/password';
+import {ContextMenuModule} from 'primeng/contextmenu';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientInterceptor } from './http-client.interceptor';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaService } from './pessoa/pessoa.service';
 import { EnderecoComponent } from './endereco/endereco.component';
+import { EnderecoService } from './endereco/endereco.service';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CidadeService } from './cidade/cidade.service';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { CadastroService } from './cadastro/cadastro.service';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './login/login.service';
 import { Campanha } from './interface/Campanha';
 import { CampanhaService } from './campanha/campanha.service';
-import {ContextMenuModule} from 'primeng/contextmenu';
 import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
@@ -53,6 +58,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     CategoriaComponent,
     EnderecoComponent,
     CidadeComponent,
+    CadastroComponent,
+    LoginComponent,
     PerfilComponent
   ],
   imports: [
@@ -83,12 +90,19 @@ import { PerfilComponent } from './perfil/perfil.component';
     PasswordModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpClientInterceptor,
+      multi: true
+    },
     ConfirmationService,
     PessoaService,
     EnderecoService,
     CidadeService,
     ConfirmationService,
     CategoriaService,
+    CadastroService,
+    LoginService,
     CampanhaService
   ],
   bootstrap: [AppComponent]

@@ -1,3 +1,5 @@
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { LoginService } from './login/login.service';
 import { EnderecoComponent } from './endereco/endereco.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -6,15 +8,21 @@ import { IndexComponent } from './index/index.component';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CategoriaComponent } from './categoria/categoria.component';
-import { PerfilComponent } from './perfil/perfil.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  {path: '', component: IndexComponent},
-  {path: 'pessoa', component: PessoaComponent},
-  {path: 'cidade', component: CidadeComponent},
-  {path: 'categoria', component: CategoriaComponent},
-  {path: 'endereco', component: EnderecoComponent},
-  {path: 'perfil', component: PerfilComponent}
+  {
+      path: '', canActivate: [LoginService], children: [
+      {path: 'index', component: IndexComponent},
+      {path: 'pessoa', component: PessoaComponent},
+      {path: 'cidade', component: CidadeComponent},
+      {path: 'categoria', component: CategoriaComponent},
+      {path: 'endereco', component: EnderecoComponent},
+      {path: 'perfil', component: PerfilComponent},
+      {path: 'cadastro', component: CadastroComponent}
+    ]
+  },
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

@@ -7,6 +7,7 @@ import { PessoaComponent } from './pessoa/pessoa.component';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { AnuncioComponent } from './anuncio/anuncio.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'cidade', component: CidadeComponent},
   {path: 'categoria', component: CategoriaComponent},
   {path: 'endereco', component: EnderecoComponent},
-  {path: 'cadastroAnuncio', component: AnuncioComponent}
+  {path: 'cadastroAnuncio', component: AnuncioComponent},
+  {path: 'perfil', component: PerfilComponent}
 ];
 
 @NgModule({

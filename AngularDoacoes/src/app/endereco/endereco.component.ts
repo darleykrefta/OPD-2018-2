@@ -2,10 +2,11 @@ import { CidadeService } from './../cidade/cidade.service';
 import { Cidade } from './../model/cidade';
 import { TableModule } from 'primeng/table';
 import { Endereco } from './../model/endereco';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output } from '@angular/core';
 import { EnderecoService } from './endereco.service';
 import { DataTable } from 'primeng/components/datatable/datatable';
 import { Message, ConfirmationService, LazyLoadEvent } from 'primeng/api';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-endereco',
@@ -27,9 +28,10 @@ export class EnderecoComponent implements OnInit {
   cidadesFiltred: Cidade[];
   cols: any[];
 
+  @Output() retornoEnderecos = new EventEmitter();
+
   constructor(private enderecoService: EnderecoService, private confirmationService: ConfirmationService,
     private cidadeService: CidadeService) { }
-
 
   search(event) {
     this.cidadesFiltred = this.cidades.filter(
@@ -67,24 +69,12 @@ export class EnderecoComponent implements OnInit {
   }
 
   save() {
-    this.enderecoService.save(this.enderecoEdit).
-      subscribe(e => {
-        this.enderecoEdit = new Endereco();
-        this.findAll();
-        this.showDialog = false;
-        this.msgs = [{
-          severity: 'success',
-          summary: 'Confirmado',
-          detail: 'Registro salvo com sucesso'
-        }];
-      }, error => {
-        this.msgs = [{
-          severity: 'error',
-          summary: 'Erro',
-          detail: 'Certifique-se de preencher todos dos campos.'
-        }];
-      }
-      );
+    this.enderecos.push(this.enderecoEdit);
+    this.msgs = [{
+      severity: 'success',
+      summary: 'Confirmado',
+      detail: 'Registro salvo com sucesso'
+    }];
   }
 
   edit(endereco: Endereco) {

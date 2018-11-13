@@ -38,7 +38,7 @@
                 Endereços
               </div>
               <div class="card-body">
-                <app-endereco></app-endereco>
+                <app-endereco [recebeAnuncioID]="anuncioID" (retornoEnderecos)="retornarEnderecos($event)"></app-endereco>
               </div>
             </div>
           </div>

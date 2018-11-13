@@ -16,6 +16,14 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {DropdownModule} from 'primeng/dropdown';
 import {PanelModule} from 'primeng/panel';
 import {TabViewModule} from 'primeng/tabview';
+import {DataViewModule} from 'primeng/dataview';
+import {SidebarModule} from 'primeng/sidebar';
+import {InputTextModule} from 'primeng/inputtext';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {CalendarModule} from 'primeng/calendar';
+import {MenuModule} from 'primeng/menu';
+import {MenuItem} from 'primeng/api';
+import {FieldsetModule} from 'primeng/fieldset';
 
 // Component-Service
 import { AppComponent } from './app.component';
@@ -33,6 +41,11 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
 import { AnuncioComponent } from './anuncio/anuncio.component';
 import { AnuncioService } from './anuncio/anuncio.service';
+import { Campanha } from './interface/Campanha';
+import { CampanhaService } from './campanha/campanha.service';
+import {ContextMenuModule} from 'primeng/contextmenu';
+import { PerfilComponent } from './perfil/perfil.component';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +56,8 @@ import { AnuncioService } from './anuncio/anuncio.service';
     CategoriaComponent,
     EnderecoComponent,
     CidadeComponent,
-    AnuncioComponent
+    AnuncioComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +75,15 @@ import { AnuncioService } from './anuncio/anuncio.service';
     AutoCompleteModule,
     DropdownModule,
     PanelModule,
-    TabViewModule
+    TabViewModule,
+    DataViewModule,
+    SidebarModule,
+    InputTextModule,
+    RadioButtonModule,
+    CalendarModule,
+    MenuModule,
+    ContextMenuModule,
+    FieldsetModule
   ],
   providers: [
     ConfirmationService,
@@ -70,7 +92,8 @@ import { AnuncioService } from './anuncio/anuncio.service';
     CidadeService,
     ConfirmationService,
     CategoriaService,
-    AnuncioService
+    AnuncioService,
+    CampanhaService
   ],
   bootstrap: [AppComponent]
 })

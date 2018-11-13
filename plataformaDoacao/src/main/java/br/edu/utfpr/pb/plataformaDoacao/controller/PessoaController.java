@@ -71,8 +71,8 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 		}
 	
 	@GetMapping("filter/email")
-	public List<Pessoa> findByEmail(@RequestParam String email){
-		return pessoaService.findByEmailLikeOrderById(email);
+	public boolean findByEmail(@RequestParam String email){
+		return pessoaService.findByEmailOrderById(email).size() > 0;
 	}
 		
 }

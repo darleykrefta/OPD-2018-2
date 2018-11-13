@@ -8,6 +8,6 @@ import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
 
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 	
-	List<Pessoa> findByEmailLikeOrderById(String email);
+	List<Pessoa> findByEmailOrderById(String email);
 
 }

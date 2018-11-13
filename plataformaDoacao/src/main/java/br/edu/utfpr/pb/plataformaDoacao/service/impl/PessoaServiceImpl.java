@@ -24,9 +24,9 @@ public class PessoaServiceImpl extends CrudServiceImpl <Pessoa, Long> implements
 
 
 	@Override
-	public List<Pessoa> findByEmailLikeOrderById(String email) {
+	public List<Pessoa> findByEmailOrderById(String email) {
 		// TODO Auto-generated method stub
-		return pessoaRepository.findByEmailLikeOrderById(email);
+		return pessoaRepository.findByEmailOrderById(email);
 	}
 
 }

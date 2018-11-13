@@ -1,3 +1,4 @@
+import { CadastroComponent } from './cadastro/cadastro.component';
 import { LoginService } from './login/login.service';
 import { EnderecoComponent } from './endereco/endereco.component';
 import { NgModule } from '@angular/core';
@@ -17,7 +18,8 @@ const routes: Routes = [
       {path: 'cidade', component: CidadeComponent},
       {path: 'categoria', component: CategoriaComponent},
       {path: 'endereco', component: EnderecoComponent},
-      {path: 'perfil', component: PerfilComponent}
+      {path: 'perfil', component: PerfilComponent},
+      {path: 'cadastro', component: CadastroComponent}
     ]
   },
   {path: 'login', component: LoginComponent}

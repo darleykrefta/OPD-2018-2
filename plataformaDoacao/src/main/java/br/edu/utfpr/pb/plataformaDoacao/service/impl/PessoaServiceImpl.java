@@ -1,5 +1,7 @@
 package br.edu.utfpr.pb.plataformaDoacao.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,5 +34,12 @@ public class PessoaServiceImpl extends CrudServiceImpl <Pessoa, Long> implements
     public Iterable<Pessoa> save(Iterable<Pessoa> iterable) {
     	return super.save(iterable);
     }
+
+
+	@Override
+	public List<Pessoa> findByEmailOrderById(String email) {
+		// TODO Auto-generated method stub
+		return pessoaRepository.findByEmailOrderById(email);
+	}
 
 }

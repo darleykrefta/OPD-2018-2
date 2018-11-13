@@ -35,16 +35,17 @@ import { HttpClientInterceptor } from './http-client.interceptor';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaService } from './pessoa/pessoa.service';
 import { EnderecoComponent } from './endereco/endereco.component';
+import { EnderecoService } from './endereco/endereco.service';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CidadeService } from './cidade/cidade.service';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { CadastroService } from './cadastro/cadastro.service';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 import { Campanha } from './interface/Campanha';
 import { CampanhaService } from './campanha/campanha.service';
-import { EnderecoService } from './endereco/endereco.service';
-
 import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
@@ -56,6 +57,7 @@ import { PerfilComponent } from './perfil/perfil.component';
     CategoriaComponent,
     EnderecoComponent,
     CidadeComponent,
+    CadastroComponent,
     LoginComponent,
     PerfilComponent
   ],
@@ -97,6 +99,7 @@ import { PerfilComponent } from './perfil/perfil.component';
     CidadeService,
     ConfirmationService,
     CategoriaService,
+    CadastroService,
     LoginService,
     CampanhaService
   ],

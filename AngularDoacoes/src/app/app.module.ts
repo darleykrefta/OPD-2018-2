@@ -24,13 +24,16 @@ import {CalendarModule} from 'primeng/calendar';
 import {MenuModule} from 'primeng/menu';
 import {MenuItem} from 'primeng/api';
 import {FieldsetModule} from 'primeng/fieldset';
+import {PasswordModule} from 'primeng/password';
+import {ContextMenuModule} from 'primeng/contextmenu';
 
 // Component-Service
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientInterceptor } from './http-client.interceptor';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaService } from './pessoa/pessoa.service';
 import { EnderecoComponent } from './endereco/endereco.component';
@@ -41,11 +44,13 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
 import { AnuncioComponent } from './anuncio/anuncio.component';
 import { AnuncioService } from './anuncio/anuncio.service';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { CadastroService } from './cadastro/cadastro.service';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './login/login.service';
 import { Campanha } from './interface/Campanha';
 import { CampanhaService } from './campanha/campanha.service';
-import {ContextMenuModule} from 'primeng/contextmenu';
 import { PerfilComponent } from './perfil/perfil.component';
-
 
 @NgModule({
   declarations: [
@@ -57,6 +62,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     EnderecoComponent,
     CidadeComponent,
     AnuncioComponent,
+    CadastroComponent,
+    LoginComponent,
     PerfilComponent
   ],
   imports: [
@@ -83,9 +90,15 @@ import { PerfilComponent } from './perfil/perfil.component';
     CalendarModule,
     MenuModule,
     ContextMenuModule,
-    FieldsetModule
+    FieldsetModule,
+    PasswordModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpClientInterceptor,
+      multi: true
+    },
     ConfirmationService,
     PessoaService,
     EnderecoService,
@@ -93,6 +106,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     ConfirmationService,
     CategoriaService,
     AnuncioService,
+    CadastroService,
+    LoginService,
     CampanhaService
   ],
   bootstrap: [AppComponent]

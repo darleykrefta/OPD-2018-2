@@ -57,7 +57,10 @@
                       <div class="campanha-detail">{{campanha.descricao}}</div>
                       <hr class="ui-widget-content" style="border-top:0">
                       <button pButton type="button" icon="pi pi-search" (click)="selectCampanha($event, campanha)"
-                          style="margin-top:0"></button>
+                          style="margin-top:0"data-toggle="tooltip"
+                          title="Visualizar Anúncio"></button>
+                      <button pButton type="button" icon="fa fa-check" style="margin-top:0" data-toggle="tooltip"
+                      title="Finalizar Anúncio"></button>
                   </p-panel>
               </div>
           </ng-template>

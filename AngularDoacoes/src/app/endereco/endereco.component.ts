@@ -28,6 +28,8 @@ export class EnderecoComponent implements OnInit {
   cidadesFiltred: Cidade[];
   cols: any[];
 
+  @Input() recebeAnuncioID;
+
   @Output() retornoEnderecos = new EventEmitter();
 
   constructor(private enderecoService: EnderecoService, private confirmationService: ConfirmationService,

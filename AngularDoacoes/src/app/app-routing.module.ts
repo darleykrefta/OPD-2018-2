@@ -10,7 +10,6 @@ import { PessoaComponent } from './pessoa/pessoa.component';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { AnuncioComponent } from './anuncio/anuncio.component';
-import { PerfilComponent } from './perfil/perfil.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [

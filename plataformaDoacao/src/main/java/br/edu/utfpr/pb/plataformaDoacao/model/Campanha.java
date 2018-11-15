@@ -44,14 +44,14 @@ public class Campanha implements Serializable {
 	private String descricao;
 
 	@Column(name = "Status", nullable = false)
-	private Integer status;
+	private boolean status;
 
 	@Column(name = "Data_Inicio", nullable = false)
 	private LocalDate data_Inicio;
 
 	@Column(name = "Data_Final", nullable = false)
 	private LocalDate data_Final;
-
+	
 	@Column(name = "Telefone", length = 12, nullable = false)
 	private String telefone;
 	

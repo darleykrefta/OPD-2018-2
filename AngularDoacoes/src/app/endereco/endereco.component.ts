@@ -30,7 +30,7 @@ export class EnderecoComponent implements OnInit {
 
   @Input() recebeAnuncioID;
 
-  @Output() retornoEnderecos = new EventEmitter();
+  // @Output() retornoEnderecos = new EventEmitter();
 
   constructor(private enderecoService: EnderecoService, private confirmationService: ConfirmationService,
     private cidadeService: CidadeService) { }

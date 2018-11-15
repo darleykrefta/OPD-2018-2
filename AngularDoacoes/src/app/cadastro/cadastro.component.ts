@@ -52,7 +52,6 @@ export class CadastroComponent implements OnInit {
           this.pessoaService.save(this.pessoaEdit).subscribe(
             e => {
               this.pessoaEdit = new Pessoa();
-              // this.findAll();
             }, error => {
               this.msgs = [{ severity: 'error', summary: 'Erro', detail: 'Erro! Verifique os dados!' }];
             }

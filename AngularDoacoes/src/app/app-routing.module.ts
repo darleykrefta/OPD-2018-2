@@ -1,3 +1,4 @@
+import { PerfilComponent } from './perfil/perfil.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { LoginService } from './login/login.service';
 import { EnderecoComponent } from './endereco/endereco.component';

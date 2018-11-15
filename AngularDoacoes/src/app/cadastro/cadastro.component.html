@@ -53,6 +53,11 @@
             <input class="form-control" type="text" name="celular" id="celular" [(ngModel)]="pessoaEdit.celular" />
           </div>
         </div>
+
+        <div>
+          <p-checkbox name="uso"></p-checkbox>
+          <span> Ao clicar em Cadastre-se, você concorda com nossos <i href="">termos de uso</i>  </span>
+        </div>
         <!-- <div class="row">
             <div class="ui-g-6 ui-fluid">
                 <label for="endereco">Endereco</label>
@@ -67,7 +72,7 @@
         <div class="row">
           <div class="col-sm-1" >
             <button type="submit" class="btn btn-success"  (click)="save()">
-              <i class="fa fa-save"></i> Salvar
+              <i class="fa fa-save"></i> Cadastre-se
             </button>
           </div>
           <div class="col-sm-1">

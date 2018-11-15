@@ -1,5 +1,6 @@
 package br.edu.utfpr.pb.plataformaDoacao.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CampanhaController  extends CrudController<Campanha, Long> {
 	}
 	
 	@GetMapping("filter/meusanuncios")
-	public List<Campanha> findByPessoaId(@RequestParam Long id){
+	public List<Campanha> findByPessoaId(@RequestParam Long id, Principal principal){
 		return campanhaService.findByPessoaId(id);
 	}
 	

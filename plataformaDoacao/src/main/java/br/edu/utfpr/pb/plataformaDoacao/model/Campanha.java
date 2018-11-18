@@ -47,10 +47,10 @@ public class Campanha implements Serializable {
 	private Integer status;
 
 	@Column(name = "Data_Inicio", nullable = false)
-	private LocalDate data_Inicio;
+	private LocalDate dataInicio;
 
 	@Column(name = "Data_Final", nullable = false)
-	private LocalDate data_Final;
+	private LocalDate dataFinal;
 
 	@Column(name = "Telefone", length = 12, nullable = false)
 	private String telefone;

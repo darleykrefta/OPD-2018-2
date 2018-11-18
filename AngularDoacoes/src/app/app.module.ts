@@ -1,7 +1,7 @@
 import { EnderecoService } from './endereco/endereco.service';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 // Imports PrimeNG
@@ -87,7 +87,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     CidadeService,
     ConfirmationService,
     CategoriaService,
-    CampanhaService
+    CampanhaService,
+    {provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]
 })

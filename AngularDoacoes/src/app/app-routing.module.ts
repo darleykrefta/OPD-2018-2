@@ -14,7 +14,8 @@ const routes: Routes = [
   {path: 'cidade', component: CidadeComponent},
   {path: 'categoria', component: CategoriaComponent},
   {path: 'endereco', component: EnderecoComponent},
-  {path: 'perfil', component: PerfilComponent}
+  {path: 'perfil', component: PerfilComponent},
+  {path: 'filter/:titulodescricao', component: IndexComponent}
 ];
 
 @NgModule({

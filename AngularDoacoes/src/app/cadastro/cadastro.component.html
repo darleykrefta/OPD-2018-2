@@ -53,26 +53,19 @@
             <input class="form-control" type="text" name="celular" id="celular" [(ngModel)]="pessoaEdit.celular" />
           </div>
         </div>
-
-        <div>
-          <p-checkbox name="uso"></p-checkbox>
-          <span> Ao clicar em Cadastre-se, você concorda com nossos <i href="">termos de uso</i>  </span>
+        <div class="form-group">
+          <p-checkbox name="termos" id="termos" [(ngModel)]="pessoaEdit.termos"></p-checkbox>
+          <span> Ao clicar em Cadastre-se, você concorda com nossos 
+              <a (click)="newEntity()" style="color: blue"  aria-hidden="true" title="Termos" 
+              data-toggle="modal" data-target="#Termos">Termos de Uso</a>
+            <!-- <a (click)="openModal('custom-modal-2')">termos de uso</a>  -->
+           </span>
         </div>
-        <!-- <div class="row">
-            <div class="ui-g-6 ui-fluid">
-                <label for="endereco">Endereco</label>
-                <input class="form-control" name="endereco" id="endereco" value="null" [(ngModel)]="pessoaEdit.endereco"/>
-                <p-autoComplete [(ngModel)]="pessoaEdit.endereco" id="endereco" [suggestions]="enderecosFiltred" (completeMethod)="search($event)"
-                  field="rua"></p-autoComplete>
-      
-              </div>            
-          </div> -->
-
-        
         <div class="row">
           <div class="col-sm-1" >
-            <button type="submit" class="btn btn-success"  (click)="save()">
-              <i class="fa fa-save"></i> Cadastre-se
+            <button id="salvar" type="submit" class="btn btn-success"  (click)="save()">
+              <i class="fa fa-save"></i> Salvar
+
             </button>
           </div>
           <div class="col-sm-1">
@@ -84,8 +77,33 @@
       </form>
     
     <p-confirmDialog></p-confirmDialog>
-  
     <p-growl [(value)]="msgs"></p-growl>
   
+    <p-dialog header="Termos de Uso" [(visible)]="showDialog" modal="modal" 
+    [responsive]="true" [width]="700" >
+      <div>
+          <div class="panel" align="center"  >  
+            <img  src="../../assets/images/logo.PNG">
+              <h2>Termos de Uso</h2>
+         
+          </div>
+          <div class="card">
+              <div class="card-body">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pulvinar ut mauris eget bibendum. Sed eget nulla eget massa auctor pellentesque. Cras lorem massa, pharetra a massa eget, eleifend fermentum tortor. Cras lacinia, elit sit amet euismod egestas, mauris mauris sagittis arcu, non blandit massa enim ut libero. Fusce convallis vulputate tellus ac blandit. In vel lacinia lorem. Nulla in egestas elit. Etiam aliquam eget nisl quis consequat. Vestibulum iaculis neque eget justo porttitor vestibulum. Pellentesque iaculis lacus porttitor mauris tincidunt fermentum. Morbi in dolor quis nunc mattis sollicitudin. Pellentesque ex turpis, ornare et semper eget, aliquam ut nisl. Vivamus viverra vehicula ex vitae gravida.
+
+                  Morbi feugiat neque ac ligula pharetra, et convallis sapien pharetra. Nunc non turpis malesuada augue scelerisque tempor. Cras pellentesque erat quis eleifend euismod. Nam egestas, metus a pharetra pulvinar, neque elit ultrices nulla, sed molestie nisl augue sit amet leo. Curabitur massa enim, scelerisque vel blandit vitae, suscipit ac nisi. Fusce rhoncus lacus ut lorem faucibus semper. Ut quis mollis magna. Quisque varius purus ante, quis sagittis lacus imperdiet et. Cras dictum sem eget gravida porttitor. Vivamus quis finibus tellus, eu imperdiet ex. Donec rutrum mauris non sem malesuada, sed rhoncus nulla vestibulum. Maecenas elit elit, tincidunt sed luctus eu, fringilla ut elit.
+              </div>
+          </div>
+      </div>
+      <br/>
+      <div style="margin-left: 85%">
+          <button type="button" class="btn btn-danger" (click)="fechar()">
+              <i class=""></i> Fechar
+      </button>
+        
+      </div>
+      
+    </p-dialog>
     
+     
   </div>

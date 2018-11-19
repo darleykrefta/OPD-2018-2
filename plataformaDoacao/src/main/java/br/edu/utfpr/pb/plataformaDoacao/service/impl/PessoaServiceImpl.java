@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
@@ -40,6 +41,20 @@ public class PessoaServiceImpl extends CrudServiceImpl <Pessoa, Long> implements
 	public List<Pessoa> findByEmailOrderById(String email) {
 		// TODO Auto-generated method stub
 		return pessoaRepository.findByEmailOrderById(email);
+	}
+
+	@Override
+	public void criptografarSenha(Pessoa usuario) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		if (usuario.getId() == null) {
+			usuario.setSenha(encoder.encode(usuario.getSenha()));
+		} else {
+			Pessoa antigo = pessoaRepository.findById(usuario.getId()).orElse(null);
+			if (antigo != null && 
+					!usuario.getSenha().equals(antigo.getSenha())) {
+				usuario.setSenha(encoder.encode(usuario.getSenha()));
+			}
+		}
 	}
 
 }

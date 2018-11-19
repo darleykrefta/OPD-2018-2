@@ -20,7 +20,7 @@ const routes: Routes = [
       {path: 'categoria', component: CategoriaComponent},
       {path: 'endereco', component: EnderecoComponent},
       {path: 'perfil', component: PerfilComponent},
-      {path: 'cadastro', component: CadastroComponent}
+      {path: 'cadastroUsuario', component: CadastroComponent}
     ]
   },
   {path: 'login', component: LoginComponent}

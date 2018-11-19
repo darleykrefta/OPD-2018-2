@@ -22,7 +22,6 @@ msgs: Message[] = [];
 constructor(private campanhaService: CampanhaService) { }
 
 ngOnInit() {
-  this.findAll();
 }
 
 findAllPaged(page: number, size: number) {
@@ -39,10 +38,13 @@ load(event: LazyLoadEvent) {
     this.findAllPaged(currentPage, maxRecords);
   }, 250);
 }
-
-findAll() {
-  this.campanhaService.findAll().subscribe(
+/*
+findByPessoa() {
+  this.campanhaService.findByPessoa( ).subscribe(
     e => this.campanhas = e);
 }
+
+*/
+
 
 }

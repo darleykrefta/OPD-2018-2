@@ -9,7 +9,6 @@ import { IndexComponent } from './index/index.component';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CategoriaComponent } from './categoria/categoria.component';
-import { PerfilComponent } from './perfil/perfil.component';
 import { CampanhaComponent} from './campanha/campanha.component';
 
 import { LoginComponent } from './login/login.component';

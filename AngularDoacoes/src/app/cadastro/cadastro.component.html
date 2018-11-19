@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="form-group">
-          <p-checkbox name="termos" id="termos" [(ngModel)]="pessoaEdit.termos"></p-checkbox>
+          <p-checkbox name="termos" id="termos" [(ngModel)]="pessoaEdit.termos" (onChange)="change($event)"></p-checkbox>
           <span> Ao clicar em Cadastre-se, você concorda com nossos 
               <a (click)="newEntity()" style="color: blue"  aria-hidden="true" title="Termos" 
               data-toggle="modal" data-target="#Termos">Termos de Uso</a>
@@ -62,13 +62,13 @@
            </span>
         </div>
         <div class="row">
-          <div class="col-sm-1" >
-            <button id="salvar" type="submit" class="btn btn-success"  (click)="save()">
-              <i class="fa fa-save"></i> Salvar
+          <div class="col-2 mr-1" >
+            <button id="salvar" [disabled]="disableSalvar" type="submit" class="btn btn-success"  (click)="save()">
+              <i class="fa fa-save"></i> Cadastre-se
 
             </button>
           </div>
-          <div class="col-sm-1">
+          <div class="col-2 mr-1">
             <button type="button" class="btn btn-danger" (click)="cancel()">
                 <i class="fa fa-ban"></i> Cancelar
             </button>

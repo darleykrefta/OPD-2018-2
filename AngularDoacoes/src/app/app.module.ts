@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 // Imports PrimeNG
@@ -24,6 +24,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {MenuModule} from 'primeng/menu';
 import {MenuItem} from 'primeng/api';
 import {FieldsetModule} from 'primeng/fieldset';
+import {PasswordModule} from 'primeng/password';
 import {ContextMenuModule} from 'primeng/contextmenu';
 
 import { AppComponent } from './app.component';
@@ -89,7 +90,8 @@ import { CampanhaComponent } from './campanha/campanha.component';
     CalendarModule,
     MenuModule,
     ContextMenuModule,
-    FieldsetModule
+    FieldsetModule,
+    PasswordModule
   ],
   providers: [
     {
@@ -103,9 +105,9 @@ import { CampanhaComponent } from './campanha/campanha.component';
     CidadeService,
     ConfirmationService,
     CategoriaService,
+    CampanhaService,
     CadastroService,
-    LoginService,
-    CampanhaService
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

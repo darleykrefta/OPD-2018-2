@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {Campanha} from '../interface/Campanha';
 import { CrudService } from '../generic/crud.service';
 import { environment } from '../../environments/environment';
+import { Page } from '../generic/page';
 import { Observable } from 'rxjs';
 
 
@@ -16,8 +17,17 @@ export class CampanhaService extends CrudService<Campanha, number> {
     super(environment.api + '/campanha', http);
   }
 
+
   findByPessoa(id: number): Observable<Campanha>  {
     const url = `${this.getUrl()}/${id}`;
     return this.http.get<Campanha>(url);
   }
+
+   findSearchPageable(dataIni: string, dataFinal: string, categoria: string):
+        Observable<Campanha []> {
+    const url = `${this.getUrl()}/search?dataIni=${dataIni}&dataFim=${dataFinal}&categoria=${categoria}`;
+    return this.http.get<Campanha[]>(url);
+  }
+
+
 }

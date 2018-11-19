@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { environment } from './../../environments/environment';
 import { Pessoa } from './../model/pessoa';
 import { PessoaService } from './../pessoa/pessoa.service';
@@ -28,44 +29,47 @@ export class CadastroComponent implements OnInit {
   emailExist = false;
 
   constructor(private pessoaService: PessoaService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService, private router: Router) { }
 
   ngOnInit() {
   }
 
   newEntity() {
     this.showDialog = true;
-    this.pessoaEdit = new Pessoa();
   }
 
-  cancel() {
+  fechar() {
     this.showDialog = false;
   }
 
+  cancel() {
+    this.router.navigate(['/login']);
+  }
+
   save() {
-    this.pessoaService.findByEmail(this.pessoaEdit.email).subscribe(existe =>  {
-      if (!existe) {
-        if (this.pessoaEdit.senha === this.pessoaEdit.senha2) {
-          this.pessoaEdit.endereco = null;
-          this.pessoaEdit.status = true;
-          this.showDialog = false;
-          this.pessoaService.save(this.pessoaEdit).subscribe(
-            e => {
-              this.pessoaEdit = new Pessoa();
-              // this.findAll();
-            }, error => {
-              this.msgs = [{ severity: 'error', summary: 'Erro', detail: 'Erro! Verifique os dados!' }];
-            }
-          );
-          this.msgs = [{ severity: 'success', summary: 'Confirmado', detail: 'Registro salvo com sucesso!' }];
-          // fim If senha
+      this.pessoaService.findByEmail(this.pessoaEdit.email).subscribe(existe =>  {
+        if (!existe) {
+          if (this.pessoaEdit.senha === this.pessoaEdit.senha2 && !(this.pessoaEdit.senha == null)) {
+            this.pessoaEdit.endereco = null;
+            this.pessoaEdit.status = true;
+            this.showDialog = false;
+            this.pessoaService.save(this.pessoaEdit).subscribe(
+              e => {
+                this.pessoaEdit = new Pessoa();
+              }, error => {
+                this.msgs = [{ severity: 'error', summary: 'Erro', detail: 'Erro! Verifique os dados!' }];
+              }
+            );
+            this.msgs = [{ severity: 'success', summary: 'Confirmado', detail: 'Registro salvo com sucesso!' }];
+            this.router.navigate(['/login']);
+            // fim If senha
+          } else {
+            this.msgs = [{ severity: 'error', summary: 'Erro', detail: 'Erro! Senhas devem ser iguais!' }];
+          }
         } else {
-          this.msgs = [{ severity: 'error', summary: 'Erro', detail: 'Erro! Senhas devem ser iguais!' }];
+          this.msgs = [{ severity: 'error', summary: 'Erro', detail: 'Erro! E-mail ja cadastrado!' }];
         }
-      } else {
-        this.msgs = [{ severity: 'error', summary: 'Erro', detail: 'Erro! E-mail invalido!' }];
-      }
-    });
+      });
   }
 }
 

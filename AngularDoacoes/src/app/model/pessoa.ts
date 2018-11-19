@@ -11,4 +11,5 @@ export class Pessoa {
     foto: string;
     status: boolean;
     endereco: string;
+    termos: boolean;
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 // Imports PrimeNG
@@ -101,9 +101,9 @@ import { PerfilComponent } from './perfil/perfil.component';
     CidadeService,
     ConfirmationService,
     CategoriaService,
+    CampanhaService,
     CadastroService,
-    LoginService,
-    CampanhaService
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

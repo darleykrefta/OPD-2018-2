@@ -11,7 +11,7 @@ import { Pessoa } from '../model/pessoa';
 export class CadastroService extends CrudService<Pessoa, number> {
 
   constructor(http: HttpClient) {
-    super(environment.api + '/cadastro', http);
+    super(environment.api + '/cadastroUsuario', http);
   }
 
   findByEmail(email: String): Observable<boolean> {

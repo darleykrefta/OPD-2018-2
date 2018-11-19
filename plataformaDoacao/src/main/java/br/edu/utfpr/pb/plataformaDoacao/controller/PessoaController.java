@@ -7,6 +7,10 @@ import java.io.FileOutputStream;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
 import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
 import br.edu.utfpr.pb.plataformaDoacao.service.PessoaService;
+
 
 
 @RestController
@@ -31,8 +36,38 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 		return pessoaService;
 	}
 	
+	@GetMapping("search")
+	public Page<Pessoa> findByNomeLike(
+			@RequestParam String filter,
+			@RequestParam int page,
+			@RequestParam int size,
+			@RequestParam(required = false) String order,
+			@RequestParam(required = false) Boolean asc){
+			PageRequest pageRequest = 
+					PageRequest.of(page, size);
+			if (order != null && asc != null) {
+				PageRequest.of(page, size, 
+						asc ? Sort.Direction.ASC :
+							Sort.Direction.DESC, 
+							order);
+			}
+		return pessoaService
+				.findByNomeLikeOrCpfCnpjLike("%" + filter + "%", "%" + filter + "%", pageRequest);
+	}
+	
+	@GetMapping("search/count")
+	public long findByNomeLike(
+			@RequestParam String filter) {
+		
+		return pessoaService
+				.countByNomeLikeOrCpfCnpjLike("%" + filter + "%", "%" + filter + "%");
+	}
+	
 	@PostMapping("upload/{id}")
-	public void upload(@PathVariable Long id, @RequestParam("foto") MultipartFile foto,	HttpServletRequest request) throws Exception {
+	public void upload(@PathVariable Long id, 
+			@RequestParam("foto") MultipartFile foto,	
+			HttpServletRequest request) throws Exception {
+		
 		if(foto != null) {
 			saveFile(id, foto, request);
 		}
@@ -40,7 +75,7 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 	
 
 	private void saveFile(Long id, MultipartFile foto, HttpServletRequest request) throws Exception {
-		File dir = new File(request.getServletContext().getRealPath("/images"));
+		File dir = new File(request.getServletContext().getRealPath("/images/"));
 		if(!dir.exists()) {
 			dir.mkdirs();
 				

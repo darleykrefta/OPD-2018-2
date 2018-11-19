@@ -5568,3 +5568,7 @@ Insert into cidade (id_cidade, nome, sigla) values (5222054,'Vicentinópolis', '
 Insert into cidade (id_cidade, nome, sigla) values (5222203,'Vila Boa', 'GO');
 Insert into cidade (id_cidade, nome, sigla) values (5222302,'Vila Propício', 'GO');
 Insert into cidade (id_cidade, nome, sigla) values (5300108,'Brasília', 'DF');
+
+
+INSERT INTO ENDERECO (rua, numero, bairro, cep, complemento, Id_Cidade) VALUES('rogerio da chaves', '1095', 'fraron', '85560408', 'casa' ,5222054);
+INSERT INTO ENDERECO (rua, numero, bairro, cep, complemento, Id_Cidade) VALUES('tupi', '1095', 'centro', '85560408', 'casa' ,5217203);

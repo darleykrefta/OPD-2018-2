@@ -27,6 +27,7 @@ export class CadastroComponent implements OnInit {
   urlApi: string = environment.api;
   today: number = Date.now();
   emailExist = false;
+  disableSalvar = true;
 
   constructor(private pessoaService: PessoaService,
     private confirmationService: ConfirmationService, private router: Router) { }
@@ -71,5 +72,10 @@ export class CadastroComponent implements OnInit {
         }
       });
   }
+
+  change(e) {
+    this.disableSalvar = !e;
+  }
+
 }
 

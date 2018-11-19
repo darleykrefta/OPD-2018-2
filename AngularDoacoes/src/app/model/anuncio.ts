@@ -1,5 +1,7 @@
 import { Categoria } from './categoria';
 import { Pessoa } from './pessoa';
+import { Endereco } from './endereco';
+
 export class Anuncio {
     id: number;
     titulo: string;
@@ -14,4 +16,5 @@ export class Anuncio {
     pessoa: Pessoa;
     recebedor: Pessoa;
     categoria: Categoria;
+    endereco: Endereco[];
 }

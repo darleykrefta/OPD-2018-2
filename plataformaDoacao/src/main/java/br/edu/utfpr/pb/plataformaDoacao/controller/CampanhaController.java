@@ -4,16 +4,16 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.utfpr.pb.plataformaDoacao.model.Campanha;
+import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
 import br.edu.utfpr.pb.plataformaDoacao.service.CampanhaService;
 import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
 
@@ -31,8 +31,10 @@ public class CampanhaController  extends CrudController<Campanha, Long> {
 	
 
 	@GetMapping("filter/meusanuncios")
-	public List<Campanha> findByPessoaId(@RequestParam Long id, Principal principal){
-		return campanhaService.findByPessoaId(id);
+	public List<Campanha> findByPessoaId(Principal principal){
+		Pessoa p = (Pessoa)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//System.out.println(p);
+		return campanhaService.findByPessoaId(p.getId());
 	}
 	
 	@GetMapping

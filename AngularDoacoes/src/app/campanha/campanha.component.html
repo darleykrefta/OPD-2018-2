@@ -59,7 +59,8 @@
                       <button pButton type="button" icon="pi pi-search" (click)="selectCampanha($event, campanha)"
                           style="margin-top:0"data-toggle="tooltip"
                           title="Visualizar Anúncio"></button>
-                      <button pButton type="button" icon="fa fa-check" style="margin-top:0" data-toggle="tooltip"
+                      <button pButton type="button" icon="fa fa-check" (click) ="setFinalizado($event, camapnha)"
+                       style="margin-top:0" data-toggle="tooltip"
                       title="Finalizar Anúncio"></button>
                   </p-panel>
               </div>

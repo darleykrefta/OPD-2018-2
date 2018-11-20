@@ -18,8 +18,8 @@ export class CampanhaService extends CrudService<Campanha, number> {
   }
 
 
-  findByPessoa(id: number): Observable<Campanha[]>  {
-    const url = `${this.getUrl()}/${id}`;
+  findByPessoa(): Observable<Campanha[]>  {
+    const url = `${this.getUrl()}/filter/meusanuncios`;
     return this.http.get<Campanha[]>(url);
   }
 

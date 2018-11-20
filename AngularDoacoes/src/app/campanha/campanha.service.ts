@@ -18,9 +18,9 @@ export class CampanhaService extends CrudService<Campanha, number> {
   }
 
 
-  findByPessoa(id: number): Observable<Campanha>  {
+  findByPessoa(id: number): Observable<Campanha[]>  {
     const url = `${this.getUrl()}/${id}`;
-    return this.http.get<Campanha>(url);
+    return this.http.get<Campanha[]>(url);
   }
 
    findSearchPageable(dataIni: string, dataFinal: string, categoria: string):

@@ -3,6 +3,10 @@ import { DataView } from 'primeng/dataview';
 import { CampanhaService } from '../campanha/campanha.service';
 import { Campanha } from '../interface/Campanha';
 import { LazyLoadEvent, Message} from 'primeng/api';
+import { CategoriaService } from '../categoria/categoria.service';
+import { CidadeService } from '../cidade/cidade.service';
+import { Cidade } from '../model/cidade';
+import { Categoria } from '../model/categoria';
 
 
 @Component({
@@ -19,9 +23,18 @@ totalRecords: number;
 showDialog = false;
 msgs: Message[] = [];
 
-constructor(private campanhaService: CampanhaService) { }
+cidades: Cidade[];
+categorias: Categoria[];
+
+constructor(private campanhaService: CampanhaService,
+  private cidadeService: CidadeService,
+  private categoriaService: CategoriaService) { }
 
 ngOnInit() {
+  this.cidadeService.findAll().subscribe( e => this.cidades = e);
+  this.categoriaService.findAll().subscribe( e => this.categorias = e);
+
+  this.findByPessoa();
 }
 
 findAllPaged(page: number, size: number) {
@@ -38,13 +51,23 @@ load(event: LazyLoadEvent) {
     this.findAllPaged(currentPage, maxRecords);
   }, 250);
 }
+
 /*
-findByPessoa() {
-  this.campanhaService.findByPessoa( ).subscribe(
-    e => this.campanhas = e);
+setFinalizado(){
+  this.campanhaService.
 }
 
 */
+findByPessoa() {
+  this.campanhaService.findByPessoa(1).subscribe(
+    e => this.campanhas = e);
+  }
 
+/*
+
+  findAll() {
+    this.campanhaService.findAll().subscribe( e => this.campanhas = e );
+  }
+*/
 
 }

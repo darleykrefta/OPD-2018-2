@@ -1,0 +1,23 @@
+<div *ngIf="mensagens">
+  <ul class="list-unstyled">
+    <li *ngFor="let mensagem of mensagens">
+        <a class="text-dark font-weight-bold mr-1">
+                {{ mensagem.pessoa.nome }}
+        </a>
+        <em>{{ mensagem.dataHora | date:'dd-MM-yyyy HH:mm' }}</em>
+        <p class="break-word mb-2">{{ mensagem.mensagem }}</p>
+    </li>
+  </ul>
+  <div class="mt-4"> 
+    <form (submit) = "save()">
+        <div class="input-group" >
+            <textarea class="form-control"></textarea>
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary pull-left ">
+                    Comentar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>

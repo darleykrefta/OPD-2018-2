@@ -1,3 +1,4 @@
+import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anuncio.component';
 import { EnderecoComponent } from './endereco/endereco.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'cidade', component: CidadeComponent},
   {path: 'categoria', component: CategoriaComponent},
   {path: 'endereco', component: EnderecoComponent},
-  {path: 'perfil', component: PerfilComponent}
+  {path: 'perfil', component: PerfilComponent},
+  {path: 'campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,66 @@
+<div class="bg-white border">
+    <div class="row">
+        <div class="col-lg-8">
+            <p-panel>
+              <div *ngIf="campanha" class="row">
+                  <div  class="col-lg-5">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8"
+                    width="130px" style="width: 100%" >
+                    <br>
+                    <div>
+                        <a>Categoria:</a> {{campanha.categoria.nome}}
+                    </div>
+                    <br>
+                    <div>
+                            <a>Data Final:</a> {{campanha.data_Final}}
+                    </div>
+                    <br>
+                    
+                  </div>
+                  <div class="col-lg-7">
+                    <div>
+                        <b>Descrisção</b>
+                            <br>
+                            {{campanha.descricao}}
+                        
+                    </div>
+             </div>
+            </div>
+            </p-panel>     
+            <p-panel header="Endereço">
+                 <br>
+                 <div class="row">
+                    <div class="col-lg-5">                   
+                    </div>
+                    <br>
+                    <div class="col-lg-7">                   
+                    </div>
+                    <br>
+                </div>
+                <div class="row">
+                        <div class="col-lg-4"> 
+                           
+                                           
+                        </div>
+                        <div class="col-lg-4">                   
+                        </div>
+                        <div class="col-lg-4"> 
+                                <label>UF:</label>                          
+                                                 
+                            </div>
+                    </div>
+                   
+                </p-panel>         
+        </div>
+       
+        
+        <div class="col-lg-4 p-4">
+            <small>
+               <h6>Comentários</h6>
+                <hr>
+            </small>
+
+           <app-mensagem [campanhaId]="idAtual"></app-mensagem>
+        </div><!-- col-md-4 -->
+    </div><!-- row end -->
+</div>

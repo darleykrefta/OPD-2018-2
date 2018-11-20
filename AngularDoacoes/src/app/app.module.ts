@@ -1,4 +1,5 @@
 import { EnderecoService } from './endereco/endereco.service';
+import { MensagemService } from './mensagem/mensagem.service';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -38,10 +39,14 @@ import { CidadeComponent } from './cidade/cidade.component';
 import { CidadeService } from './cidade/cidade.service';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
-import { Campanha } from './interface/Campanha';
+import { Campanha } from './interface/campanha';
 import { CampanhaService } from './campanha/campanha.service';
 import {ContextMenuModule} from 'primeng/contextmenu';
 import { PerfilComponent } from './perfil/perfil.component';
+import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anuncio.component';
+import { RouterModule } from '@angular/router';
+import { MensagemComponent } from './mensagem/mensagem.component';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +57,10 @@ import { PerfilComponent } from './perfil/perfil.component';
     CategoriaComponent,
     EnderecoComponent,
     CidadeComponent,
-    PerfilComponent
+    VisualizarAnuncioComponent,
+    PerfilComponent,
+    VisualizarAnuncioComponent,
+    MensagemComponent
   ],
   imports: [
     BrowserModule,
@@ -78,16 +86,18 @@ import { PerfilComponent } from './perfil/perfil.component';
     CalendarModule,
     MenuModule,
     ContextMenuModule,
-    FieldsetModule
+    FieldsetModule,
+    RouterModule
   ],
   providers: [
     ConfirmationService,
     PessoaService,
-    EnderecoService,
     CidadeService,
     ConfirmationService,
     CategoriaService,
-    CampanhaService
+    CampanhaService,
+    MensagemService,
+    EnderecoService
   ],
   bootstrap: [AppComponent]
 })

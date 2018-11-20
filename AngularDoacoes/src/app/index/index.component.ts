@@ -1,7 +1,7 @@
+import { Campanha } from '../interface/campanha';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataView } from 'primeng/dataview';
 import { CampanhaService } from '../campanha/campanha.service';
-import { Campanha } from '../interface/Campanha';
 import { LazyLoadEvent, Message} from 'primeng/api';
 
 @Component({
@@ -14,6 +14,7 @@ export class IndexComponent implements OnInit {
   @ViewChild('dv') DataView: DataView;
 
   campanhas: Campanha[];
+  campanha: Campanha;
   totalRecords: number;
   showDialog = false;
   msgs: Message[] = [];
@@ -44,4 +45,8 @@ export class IndexComponent implements OnInit {
       e => this.campanhas = e);
   }
 
+  findOne(id: number) {
+     this.campanhaService.findOne( id)
+      .subscribe(campanha => this.campanha = campanha);
+  }
 }

@@ -4,12 +4,10 @@ export class Pessoa {
     nome: string;
     email: string;
     senha: string;
-    senha2: string;
     apelido: string;
     telefone: string;
     celular: string;
     foto: string;
     status: boolean;
     endereco: string;
-    termos: boolean;
 }

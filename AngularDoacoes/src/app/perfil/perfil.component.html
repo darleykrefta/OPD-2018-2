@@ -1,6 +1,13 @@
 <div class="container">
+    <header class="ui-g-12 ui-fluid">
+        <div class="ui-g-12 ui-md-6 ui-lg-8"></div>
+        <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <img src="http://st.depositphotos.com/2926693/4774/v/950/depositphotos_47748285-stock-illustration-romantic-art-deco-woman-with.jpg"
+                width="300px" style="border-radius: 45%;">
+        </div>
+    </header>
     <p-tabView>
-        <p-tabPanel header="Meus Dados" leftIcon="pi pi-user">
+        <p-tabPanel header="Dados Cadastrais" leftIcon="pi pi-user">
             <div class="row">
                 <div class="ui-g-12 ui-fluid">
                     <p-fieldset legend="">
@@ -101,22 +108,27 @@
                 </button>
             </p-footer>
         </p-tabPanel>
-        <p-tabPanel header="Vizualizar Perfil" leftIcon="pi pi-user">
+        <p-tabPanel header="Dados do Login" leftIcon="pi pi-user">
             <div class="row">
                 <div class="ui-g-12 ui-fluid">
-                    Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather
-                    parallels
-                    the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's
-                    depiction
-                    of the dark side of the American dream. In the early 1900s, the child Vito flees his Sicilian
-                    village for
-                    America after the local Mafia kills his family. Vito struggles to make a living, legally or
-                    illegally, for
-                    his wife and growing brood in Little Italy, killing the local Black Hand Fanucci after he demands
-                    his
-                    customary cut of the tyro's business. With Fanucci gone, Vito's communal stature grows.
+                    <div class="ui-g-12 ui-fluid">
+                        <label for="email">E-mail</label>
+                        <input class="form-control" type="text" name="email" id="nemailome" disabled="false" />
+                    </div>
+                    <div class="ui-g-12 ui-fluid">
+                        <label for="senha">Senha</label>
+                        <input class="form-control" pPassword type="password" name="senha" id="senha" />
+                    </div>
                 </div>
             </div>
+            <p-footer>
+                <button type="button" class="btn btn-danger" (click)="cancel()">
+                    <i class="fa fa-ban"></i> Cancelar
+                </button>
+                <button type="button" class="btn btn-success" (click)="save()">
+                    <i class="fa fa-save"></i> Salvar
+                </button>
+            </p-footer>
         </p-tabPanel>
     </p-tabView>
 </div>

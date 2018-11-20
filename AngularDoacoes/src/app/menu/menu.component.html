@@ -1,13 +1,13 @@
-<div>
-    <div style="float: left;">
-        <nav class="navbar bg-dark navbar-dark navbar-expand-md col-md-12">
+<div class="p-grid">
+    <div class="p-col" style="width:95%; float: left;">
+        <nav class="navbar bg-primary navbar-dark navbar-expand-md ">
             <a href="" routerLink="" class="navbar-brand">
                 <i class="fa fa-bullhorn"></i> Anúncios
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#barraNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div id="barraNav" class="collapse navbar-collapse">
+            <div id="barraNav" class="collapse navbar-collapse ">
                 <div class="container-fluid">
                     <div class="row">
                         <ul class="navbar-nav">
@@ -21,9 +21,13 @@
             </div>
         </nav>
     </div>
-    <div style="float: right;">
-        <p-menu #menu [popup]="true" [model]="items"></p-menu>
-        <button type="button" class="navbar-toggler" pButton icon="pi pi-bars" (click)="menu.toggle($event)"></button>
-    </div>    
+    <div class="p-col" style="width:5%; float: right;">
+        <nav class="bg-primary">
+            <p-menu #menu [popup]="true" [model]="items"></p-menu>
+            <button type="button" class="navbar-toggler bg-primary" style="border: 0px" pButton icon="pi pi-bars" (click)="menu.toggle($event)">
+                <span class="navbar"></span>
+            </button>
+        </nav>
+    </div>
 </div>
 <div style="clear:both;"></div>

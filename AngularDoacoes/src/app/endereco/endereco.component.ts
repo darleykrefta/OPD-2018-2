@@ -61,6 +61,11 @@ export class EnderecoComponent implements OnInit {
       e => this.enderecos = e);
   }
 
+  findByCampanha() {//deve passar o id da campanha
+    this.enderecoService.findByCampanha(this.enderecoEdit.id).subscribe(
+      e => this.enderecos = e);
+  }
+
   newEntity() {
     this.enderecoEdit = new Endereco();
     this.showDialog = true;

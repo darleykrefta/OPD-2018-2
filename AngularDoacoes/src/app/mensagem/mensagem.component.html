@@ -9,11 +9,13 @@
     </li>
   </ul>
   <div class="mt-4"> 
-    <form (submit) = "save()">
-        <div class="input-group" >
-            <textarea class="form-control"></textarea>
+    <form>
+        <div class="input-group" >           
+            <input class="form-control"
+            type="text" name="mensagem" id="mensagem"
+            [(ngModel)]="mensagem.mensagem">
             <div class="input-group-append">
-                <button type="submit" class="btn btn-primary pull-left ">
+                <button type="button"(click)="addMensagem()" class="btn btn-primary pull-left ">
                     Comentar
                 </button>
             </div>

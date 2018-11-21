@@ -1,9 +1,9 @@
 <div class="bg-white border">
-    <div class="row">
+    <div class="row" *ngIf="campanha" >
         <div class="col-lg-8">
             <p-panel>
-              <div *ngIf="campanha" class="row">
-                  <div  class="col-lg-5">
+              <div class="row">
+                <div  class="col-lg-5">                   
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8"
                     width="130px" style="width: 100%" >
                     <br>
@@ -12,55 +12,50 @@
                     </div>
                     <br>
                     <div>
-                            <a>Data Final:</a> {{campanha.data_Final}}
+                        <a>Data Final:</a> {{campanha.dataFinal}}
                     </div>
-                    <br>
-                    
-                  </div>
-                  <div class="col-lg-7">
+                    <br>                    
+                </div>
+                <div class="col-lg-7">
                     <div>
-                        <b>Descrisção</b>
+                        <b>Descrição</b>
                             <br>
-                            {{campanha.descricao}}
-                        
+                            {{campanha.descricao}}                        
                     </div>
-             </div>
+                </div>
             </div>
             </p-panel>     
             <p-panel header="Endereço">
                  <br>
                  <div class="row">
-                    <div class="col-lg-5">                   
+                    <div class="col-lg-5">    
+                        <label>Rua: </label> {{campanha.pessoa.endereco.rua}}    
                     </div>
                     <br>
-                    <div class="col-lg-7">                   
+                    <div class="col-lg-7">   
+                            <label>Nº: </label> {{campanha.pessoa.endereco.numero}}            
                     </div>
                     <br>
                 </div>
                 <div class="row">
                         <div class="col-lg-4"> 
-                           
-                                           
+                                <label>Bairro: </label> {{campanha.pessoa.endereco.bairro}}
                         </div>
-                        <div class="col-lg-4">                   
+                        <div class="col-lg-4">      
+                                <label>Cidade: </label> {{campanha.pessoa.endereco.cidade.nome}}              
                         </div>
                         <div class="col-lg-4"> 
-                                <label>UF:</label>                          
-                                                 
-                            </div>
-                    </div>
-                   
-                </p-panel>         
-        </div>
-       
-        
+                                <label>UF:</label>  {{campanha.pessoa.endereco.cidade.uf}}                                        
+                        </div>
+                    </div>                   
+            </p-panel>         
+        </div>  
         <div class="col-lg-4 p-4">
             <small>
                <h6>Comentários</h6>
                 <hr>
             </small>
-
            <app-mensagem [campanhaId]="idAtual"></app-mensagem>
-        </div><!-- col-md-4 -->
-    </div><!-- row end -->
+        </div>
+    </div>
 </div>

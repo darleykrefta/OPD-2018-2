@@ -3,7 +3,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule, LOCALE_ID} from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Imports PrimeNG
 import {TableModule} from 'primeng/table';
@@ -100,8 +100,8 @@ import { MensagemService } from './mensagem/mensagem.service';
     ContextMenuModule,
     FieldsetModule,
     RouterModule,
-    PasswordModule
-
+    PasswordModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {

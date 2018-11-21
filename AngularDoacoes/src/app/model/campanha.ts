@@ -1,4 +1,5 @@
 import { Categoria } from './categoria';
+import { Pessoa } from './pessoa';
 export class Campanha {
     id: number;
     titulo;
@@ -10,7 +11,7 @@ export class Campanha {
     telefone;
     celular;
     foto;
-    pessoa;
+    pessoa: Pessoa;
     recebedor;
     categoria: Categoria;
 }

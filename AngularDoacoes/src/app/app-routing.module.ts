@@ -12,6 +12,7 @@ import { PessoaComponent } from './pessoa/pessoa.component';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { LoginComponent } from './login/login.component';
+import { MensagemComponent } from './mensagem/mensagem.component';
 
 const routes: Routes = [
 
@@ -22,8 +23,9 @@ const routes: Routes = [
       {path: 'categoria', component: CategoriaComponent},
       {path: 'endereco', component: EnderecoComponent},
       {path: 'perfil', component: PerfilComponent},
-      {path: 'campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent}
+      {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent},
       
+
     ]
   },
   {path: 'login', component: LoginComponent},

@@ -28,4 +28,6 @@ public class MensagemServiceImpl extends CrudServiceImpl <Mensagem, Long> implem
 		return mensagemRepository.findByCampanhaId(id);
 	}
 
+
+	
 }

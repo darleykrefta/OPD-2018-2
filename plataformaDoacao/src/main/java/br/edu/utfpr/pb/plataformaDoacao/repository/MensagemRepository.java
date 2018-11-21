@@ -11,4 +11,5 @@ public interface MensagemRepository extends JpaRepository<Mensagem, Long> {
 
 	List<Mensagem> findByCampanhaId(Long id);
 	
+
 }

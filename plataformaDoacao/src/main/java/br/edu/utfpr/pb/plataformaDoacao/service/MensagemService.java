@@ -9,4 +9,6 @@ public interface MensagemService extends CrudService<Mensagem, Long> {
 	
 	List<Mensagem> findByCampanhaId(Long id);
 	
+	
+	
 }

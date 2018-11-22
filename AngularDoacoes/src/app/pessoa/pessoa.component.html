@@ -21,7 +21,6 @@
         <th *ngFor="let col of columns">
           {{col.header}}
         </th>
-
         <th>Ações</th>
       </tr>
     </ng-template>
@@ -36,7 +35,6 @@
         <td>{{pessoa.celular}}</td>
         <td>{{pessoa.status}}</td>
         <td>{{"Rua " + pessoa.endereco.rua + " Nº: " +  pessoa.endereco.numero + " - " + "Bairro: " + pessoa.endereco.bairro+ ", " + pessoa.endereco.cidade.nome + "-" + pessoa.endereco.cidade.sigla}}</td>
-
         <td>
           <button type="button" class="btn btn-dark" (click)="edit(pessoa)">
               <i class="fa fa-edit"></i>
@@ -92,7 +90,6 @@
           <label for="celular">Celular</label>
           <input class="form-control" type="text" name="celular" id="celular" [(ngModel)]="pessoaEdit.celular"/>
         </div>
-
         <div class="ui-g-12 ui-fluid">
           <label for="endereco">Endereco</label>
           <p-autoComplete

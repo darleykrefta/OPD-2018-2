@@ -3,21 +3,27 @@ package br.edu.utfpr.pb.plataformaDoacao.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.edu.utfpr.pb.plataformaDoacao.model.Cidade;
 import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
 import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
 import br.edu.utfpr.pb.plataformaDoacao.service.PessoaService;
@@ -61,6 +67,12 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 		
 		return pessoaService
 				.countByNomeLikeOrCpfCnpjLike("%" + filter + "%", "%" + filter + "%");
+    	}
+  
+	@Override
+	public Pessoa save(@RequestBody @Valid Pessoa entity) {
+		pessoaService.criptografarSenha(entity);
+		return super.save(entity);
 	}
 	
 	@PostMapping("upload/{id}")
@@ -101,5 +113,10 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 						e.getMessage());
 			}		
 		}
-		
+	
+	@GetMapping("filter/email")
+	public boolean findByEmail(@RequestParam String email){
+		return pessoaService.findByEmailOrderById(email).size() > 0;
 	}
+		
+}

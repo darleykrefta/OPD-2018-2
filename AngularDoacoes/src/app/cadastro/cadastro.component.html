@@ -1,0 +1,109 @@
+<div class="container">
+    <h2>
+      <span class="badge badge-light">
+        Cadastro de Usuario
+      </span>
+    </h2>
+    
+    <form>
+        <!-- <div class="form-group" hidden>
+          <p-checkbox name="status" value="true" [(ngModel)]="pessoaEdit.status" label="Ativo" checked="true" ></p-checkbox>
+       </div> -->
+        <div class="form-group" hidden="true">
+          <label for="id">Código</label>
+          <input class="form-control" type="text" name="id" id="id" readonly [(ngModel)]="pessoaEdit.id" />
+        </div>
+        <div class="row">
+        <div class="form-group col">
+          <label for="nome">Nome</label>
+          <input class="form-control" type="text" name="nome" id="nome" [(ngModel)]="pessoaEdit.nome" />
+        </div>
+        <div class="form-group col">
+          <label for="email">Email</label>
+          <input class="form-control" type="email" name="email" id="email" [(ngModel)]="pessoaEdit.email" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col">
+          <label for="senha">Senha</label>
+          <input class="form-control" type="password" name="senha" id="senha" [(ngModel)]="pessoaEdit.senha" />
+        </div>
+        <div class="form-group col">
+          <label for="senha">Confirmar Senha</label>
+          <input class="form-control" type="password" name="senha2" id="senha2" [(ngModel)]="pessoaEdit.senha2" />
+        </div>
+      </div>
+      <div class="row">
+          <div class="form-group col">
+            <label for="cpf_cnpj">CPF/CNPJ</label>
+            <input class="form-control" type="text" name="cpf_cnpj" id="cpf_cnpj" [(ngModel)]="pessoaEdit.cpf_cnpj" />
+          </div>
+          <div class="form-group col">
+            <label for="apelido">Apelido</label>
+            <input class="form-control" type="text" name="apelido" id="apelido" [(ngModel)]="pessoaEdit.apelido" />
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col">
+            <label for="telefone">Telefone</label>
+            <input class="form-control" type="text" name="telefone" id="telefone" [(ngModel)]="pessoaEdit.telefone" />
+          </div>
+          <div class="form-group col">
+            <label for="celular">Celular</label>
+            <input class="form-control" type="text" name="celular" id="celular" [(ngModel)]="pessoaEdit.celular" />
+          </div>
+        </div>
+        <div class="form-group">
+          <p-checkbox name="termos" id="termos" [(ngModel)]="pessoaEdit.termos" (onChange)="change($event)"></p-checkbox>
+          <span> Ao clicar em Cadastre-se, você concorda com nossos 
+              <a (click)="newEntity()" style="color: blue"  aria-hidden="true" title="Termos" 
+              data-toggle="modal" data-target="#Termos">Termos de Uso</a>
+            <!-- <a (click)="openModal('custom-modal-2')">termos de uso</a>  -->
+           </span>
+        </div>
+        <div class="row">
+          <div class="col-2 mr-1" >
+            <button id="salvar" [disabled]="disableSalvar" type="submit" class="btn btn-success"  (click)="save()">
+              <i class="fa fa-save"></i> Cadastre-se
+
+            </button>
+          </div>
+          <div class="col-2 mr-1">
+            <button type="button" class="btn btn-danger" (click)="cancel()">
+                <i class="fa fa-ban"></i> Cancelar
+            </button>
+          </div>
+        </div>
+      </form>
+    
+    <p-confirmDialog></p-confirmDialog>
+    <p-growl [(value)]="msgs"></p-growl>
+  
+    <p-dialog header="Termos de Uso" [(visible)]="showDialog" modal="modal" 
+    [responsive]="true" [width]="700" >
+      <div>
+          <div class="panel" align="center"  >  
+            <img  src="../../assets/images/logo.PNG">
+              <h2>Termos de Uso</h2>
+         
+          </div>
+          <div class="card">
+              <div class="card-body">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pulvinar ut mauris eget bibendum. Sed eget nulla eget massa auctor pellentesque. Cras lorem massa, pharetra a massa eget, eleifend fermentum tortor. Cras lacinia, elit sit amet euismod egestas, mauris mauris sagittis arcu, non blandit massa enim ut libero. Fusce convallis vulputate tellus ac blandit. In vel lacinia lorem. Nulla in egestas elit. Etiam aliquam eget nisl quis consequat. Vestibulum iaculis neque eget justo porttitor vestibulum. Pellentesque iaculis lacus porttitor mauris tincidunt fermentum. Morbi in dolor quis nunc mattis sollicitudin. Pellentesque ex turpis, ornare et semper eget, aliquam ut nisl. Vivamus viverra vehicula ex vitae gravida.
+
+                  Morbi feugiat neque ac ligula pharetra, et convallis sapien pharetra. Nunc non turpis malesuada augue scelerisque tempor. Cras pellentesque erat quis eleifend euismod. Nam egestas, metus a pharetra pulvinar, neque elit ultrices nulla, sed molestie nisl augue sit amet leo. Curabitur massa enim, scelerisque vel blandit vitae, suscipit ac nisi. Fusce rhoncus lacus ut lorem faucibus semper. Ut quis mollis magna. Quisque varius purus ante, quis sagittis lacus imperdiet et. Cras dictum sem eget gravida porttitor. Vivamus quis finibus tellus, eu imperdiet ex. Donec rutrum mauris non sem malesuada, sed rhoncus nulla vestibulum. Maecenas elit elit, tincidunt sed luctus eu, fringilla ut elit.
+              </div>
+          </div>
+      </div>
+      <br/>
+      <div style="margin-left: 85%">
+          <button type="button" class="btn btn-danger" (click)="fechar()">
+              <i class=""></i> Fechar
+      </button>
+        
+      </div>
+      
+    </p-dialog>
+    
+     
+  </div>

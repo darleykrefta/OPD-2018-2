@@ -1,8 +1,79 @@
-<div class="jumbotron">
-  <h1 class="display-4 font-weight-bold text-center">
-    Controle de Seriados
-  </h1>
-  <p class="lead text-center">
-    Em breve uma lista das principais séries.
-  </p>
+<div class="ui-g">
+    <div class="ui-g-12 ui-md-3">
+        <h3 style="font-weight:normal">Buscar</h3>
+        <div>
+            <div>
+                <label for="filtro1">Título ou descrição do anúncio</label>
+            </div>
+            <div>
+                <input class="" id="filtro1" type="search" pInputTex (keyup)="dv.filter($event.target.value)" class="form-control">
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+        
+        <div>
+            <div>
+                <label for="filtro2">Categoria</label>
+            </div>
+            <div>
+                <p-dropdown class="" [options]="categorias" [(ngModel)]="selectedCategoria" 
+                    placeholder="Selecione uma categoria" optionLabel="nome" 
+                [showClear]="true" ng-required="selectedCategoria"></p-dropdown>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+
+        <div>
+            <div>
+                <label for="dataini">Data Inicial</label>
+            </div>
+            <div>
+                <p-calendar id="dataini" dateFormat="dd/mm/yy" dataType="string" [(ngModel)]="dataini"></p-calendar>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+
+        <div>
+            <div>
+                <label for="datafim">Data Final</label>
+            </div>
+            <div>
+                <p-calendar id="datafim" dateFormat="dd/mm/yy" dataType="string" [(ngModel)]="datafim"></p-calendar>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+
+        <div class="ui-g-12 ui-md-12">   
+            <button pButton type="button" (click)="findSearchPaged(dataini, datafim, selectedCategoria.id)" 
+                label="Pesquisar" class="ui-button-info"></button>
+            <button pButton type="button" (click)="this.findAll()" label="Limpar Busca" class="ui-button-info"></button>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <div class="ui-g-12 ui-md-8 ui-g-nopad">
+        <p-dataView #dv [value]="campanhas" [paginator]="true" [rows]="8" paginatorPosition="both" 
+            filterBy="titulo, descricao, dataInicio" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">            
+            <ng-template pTemplate="gridItem" let-campanha>
+                <div style="padding:.5em" class="ui-g-12 ui-md-3">
+                    <p-panel [header]="campanha.titulo" [style]="{'text-align':'center'}">
+                        <div class="campanha-detail">{{campanha.categoria.nome}}</div>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8"
+                            width="130px">                        
+                        <div class="campanha-detail">{{campanha.descricao}}</div>
+                        <div class="campanha-detail">Período: {{campanha.dataInicio}} - {{campanha.dataFinal}}</div>
+                        <hr class="ui-widget-content" style="border-top:0">
+                        <a [routerLink]= "['campanha/visualizaranuncio/', campanha.id]" > 
+                            <button pButton type="button" icon="pi pi-search" style="margin-top:0">
+                            
+                            </button>
+                        </a>
+                    </p-panel>
+                </div>
+            </ng-template>
+        </p-dataView>        
+    </div>
 </div>

@@ -1,8 +1,9 @@
-import { EnderecoService } from './endereco/endereco.service';
+
+
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgModule, LOCALE_ID} from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Imports PrimeNG
 import {TableModule} from 'primeng/table';
@@ -17,19 +18,43 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {DropdownModule} from 'primeng/dropdown';
 import {PanelModule} from 'primeng/panel';
 import {TabViewModule} from 'primeng/tabview';
+import {DataViewModule} from 'primeng/dataview';
+import {SidebarModule} from 'primeng/sidebar';
+import {InputTextModule} from 'primeng/inputtext';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {CalendarModule} from 'primeng/calendar';
+import {MenuModule} from 'primeng/menu';
+import {MenuItem} from 'primeng/api';
+import {FieldsetModule} from 'primeng/fieldset';
+import {PasswordModule} from 'primeng/password';
+import {ContextMenuModule} from 'primeng/contextmenu';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientInterceptor } from './http-client.interceptor';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaService } from './pessoa/pessoa.service';
 import { EnderecoComponent } from './endereco/endereco.component';
+import { EnderecoService } from './endereco/endereco.service';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CidadeService } from './cidade/cidade.service';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { CadastroService } from './cadastro/cadastro.service';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './login/login.service';
+import { Campanha } from './interface/Campanha';
+import { CampanhaService } from './campanha/campanha.service';
+import { PerfilComponent } from './perfil/perfil.component';
+import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anuncio.component';
+import { RouterModule } from '@angular/router';
+import { MensagemComponent } from './mensagem/mensagem.component';
+import { MensagemService } from './mensagem/mensagem.service';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +64,15 @@ import { CategoriaService } from './categoria/categoria.service';
     PessoaComponent,
     CategoriaComponent,
     EnderecoComponent,
-    CidadeComponent
+    CidadeComponent,
+    VisualizarAnuncioComponent,
+    PerfilComponent,
+    VisualizarAnuncioComponent,
+    MensagemComponent,
+    CadastroComponent,
+    LoginComponent,
+    PerfilComponent
+
   ],
   imports: [
     BrowserModule,
@@ -57,15 +90,36 @@ import { CategoriaService } from './categoria/categoria.service';
     AutoCompleteModule,
     DropdownModule,
     PanelModule,
-    TabViewModule
+    TabViewModule,
+    DataViewModule,
+    SidebarModule,
+    InputTextModule,
+    RadioButtonModule,
+    CalendarModule,
+    MenuModule,
+    ContextMenuModule,
+    FieldsetModule,
+    RouterModule,
+    PasswordModule,
+    ReactiveFormsModule,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpClientInterceptor,
+      multi: true
+    },
     ConfirmationService,
     PessoaService,
-    EnderecoService,
     CidadeService,
     ConfirmationService,
-    CategoriaService
+    CategoriaService,
+    CampanhaService,
+    MensagemService,
+    EnderecoService,
+    CadastroService,
+    LoginService
+
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,4 @@
+
 import { Endereco } from "./endereco";
 
 export class Pessoa {
@@ -6,6 +7,7 @@ export class Pessoa {
     nome: string;
     email: string;
     senha: string;
+    senha2: string;
     apelido: string;
     telefone: string;
     celular: string;

@@ -1,4 +1,4 @@
-package br.edu.utfpr.pb.plataformaDoacao.model;
+	package br.edu.utfpr.pb.plataformaDoacao.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -37,7 +37,7 @@ public class Campanha implements Serializable {
 	@Column(name = "Titulo", length = 60, nullable = false)
 	private String titulo;
 
-	@Column(name = "TipoAnuncio", nullable = false)
+	@Column(name = "Tipo_anuncio", nullable = false)
 	private Integer tipoAnuncio;
 
 	@Column(name = "Descricao", length = 60, nullable = false)
@@ -47,10 +47,10 @@ public class Campanha implements Serializable {
 	private Integer status;
 
 	@Column(name = "Data_Inicio", nullable = false)
-	private LocalDate data_Inicio;
+	private LocalDate dataInicio;
 
 	@Column(name = "Data_Final", nullable = false)
-	private LocalDate data_Final;
+	private LocalDate dataFinal;
 
 	@Column(name = "Telefone", length = 12, nullable = false)
 	private String telefone;

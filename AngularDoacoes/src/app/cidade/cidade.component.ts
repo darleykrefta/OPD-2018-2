@@ -13,6 +13,7 @@ export class CidadeComponent implements OnInit {
 
   @ViewChild('dt') dataTable: DataTable;
 
+  cols: any[];
   cidades: Cidade[];
   totalRecords: number;
   cidadeEdit = new Cidade();
@@ -23,7 +24,11 @@ export class CidadeComponent implements OnInit {
     private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
-    this.findAll();
+    this.cols = [
+      { field: 'id', header: 'Código' },
+      { field: 'nome', header: 'Nome' },
+      { field: 'sigla', header: 'Sigla' },
+    ];
   }
 
   findAllPaged(page: number, size: number) {
@@ -33,23 +38,33 @@ export class CidadeComponent implements OnInit {
       .subscribe(e => this.cidades = e.content);
   }
 
+
+  findSearchPaged(filter: string, page: number, size: number) {
+    this.cidadeService.searchCount(filter).subscribe(e => this.totalRecords = e);
+    this.cidadeService.findSearchPageable(filter, page, size).subscribe(e => this.cidades = e.content);
+  }
+
   load(event: LazyLoadEvent) {
     const currentPage = event.first / event.rows;
     const maxRecords = event.rows;
-    setTimeout(() => {
-      this.findAllPaged(currentPage, maxRecords);
-    }, 250);
+    if (event.globalFilter) {
+      setTimeout(() => {
+        this.findSearchPaged(event.globalFilter, currentPage, maxRecords);
+      }, 250);
+    } else {
+      setTimeout(() => {
+        this.findAllPaged(currentPage, maxRecords);
+      }, 250);
+    }
   }
 
-  findAll() {
-    this.cidadeService.findAll().subscribe(
-      e => this.cidades = e);
-  }
 
   newEntity() {
     this.cidadeEdit = new Cidade();
     this.showDialog = true;
   }
+
+
 
   cancel() {
     this.showDialog = false;
@@ -57,23 +72,23 @@ export class CidadeComponent implements OnInit {
 
   save() {
     this.cidadeService.save(this.cidadeEdit).
-      subscribe(e => {
-        this.cidadeEdit = new Cidade();
-        this.findAll();
-        this.showDialog = false;
-        this.msgs = [{
-          severity: 'success',
-          summary: 'Confirmado',
-          detail: 'Registro salvo com sucesso'
-        }];
-      }, error => {
-        this.msgs = [{
-          severity: 'error',
-          summary: 'Erro',
-          detail: 'Certifique-se de preencher todos dos campos.'
-        }];
-      }
-      );
+    subscribe(e => {
+      this.cidadeEdit = new Cidade();
+      this.dataTable.reset();
+      this.showDialog = false;
+      this.msgs = [{
+        severity: 'success',
+        summary: 'Confirmado',
+        detail: 'Registro salvo com sucesso'
+      }];
+    }, error => {
+      this.msgs = [{
+        severity: 'error',
+        summary: 'Erro',
+        detail: 'Certifique-se de preencher todos dos campos.'
+      }];
+    }
+    );
   }
 
   edit(cidade: Cidade) {
@@ -91,7 +106,7 @@ export class CidadeComponent implements OnInit {
       accept: () => {
         this.cidadeService.delete(cidade.id)
           .subscribe(() => {
-            this.findAll();
+            this.dataTable.reset();
             this.msgs = [{
               severity: 'success',
               summary: 'Removido',

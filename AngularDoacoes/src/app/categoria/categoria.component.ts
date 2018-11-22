@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CategoriaService } from './categoria.service';
 import { Categoria } from '../model/categoria';
-import { Message, ConfirmationService } from 'primeng/api';
+import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
+import {DataTable} from 'primeng/components/datatable/datatable';
 
 @Component({
   selector: 'app-categoria',
@@ -10,8 +11,10 @@ import { Message, ConfirmationService } from 'primeng/api';
 })
 export class CategoriaComponent implements OnInit {
 
+  @ViewChild('dt') dataTable: DataTable;
   categorias: Categoria[];
   categoriaEdit = new Categoria();
+  totalRecords: number;
   showDialog = false;
   msgs: Message[] = [];
 
@@ -20,6 +23,32 @@ export class CategoriaComponent implements OnInit {
 
   ngOnInit() {
     this.findAll();
+  }
+
+  findAllPaged(page: number, size: number) {
+    this.categoriaService.count().subscribe(e =>
+      this.totalRecords = e);
+    this.categoriaService.findPageable(page, size)
+      .subscribe(e => this.categorias = e.content);
+  }
+
+  findSearchPaged(filter: string, page: number, size: number) {
+    this.categoriaService.searchCount(filter).subscribe(e => this.totalRecords = e);
+    this.categoriaService.findSearchPageable(filter, page, size).subscribe(e => this.categorias = e.content);
+  }
+
+  load(event: LazyLoadEvent) {
+    const currentPage = event.first / event.rows;
+    const maxRecords = event.rows;
+    if (event.globalFilter) {
+      setTimeout(() => {
+        this.findSearchPaged(event.globalFilter, currentPage, maxRecords);
+      }, 250);
+    } else {
+      setTimeout(() => {
+        this.findAllPaged(currentPage, maxRecords);
+      }, 250);
+    }
   }
 
   findAll() {

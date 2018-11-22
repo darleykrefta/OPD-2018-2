@@ -2,6 +2,7 @@ package br.edu.utfpr.pb.plataformaDoacao.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,9 +21,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "campanha_doacao")
-@Data
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(of = { "id" })
 @ToString
 public class Campanha implements Serializable {
@@ -37,7 +36,7 @@ public class Campanha implements Serializable {
 	@Column(name = "Titulo", length = 60, nullable = false)
 	private String titulo;
 
-	@Column(name = "Tipo_anuncio", nullable = false)
+	@Column(name = "tipo_anuncio", nullable = false)
 	private Integer tipoAnuncio;
 
 	@Column(name = "Descricao", length = 60, nullable = false)
@@ -46,12 +45,11 @@ public class Campanha implements Serializable {
 	@Column(name = "Status", nullable = false)
 	private boolean status;
 
-	@Column(name = "Data_Inicio", nullable = false)
+	@Column(name = "data_inicio", nullable = false)
 	private LocalDate dataInicio;
 
-	@Column(name = "Data_Final", nullable = false)
-
-	private LocalDate data_Final;
+	@Column(name = "data_final", nullable = false)
+	private LocalDate dataFinal;
 	
 	@Column(name = "Telefone", length = 12, nullable = false)
 	private String telefone;
@@ -73,5 +71,5 @@ public class Campanha implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "Id_Categoria", referencedColumnName = "Id_Categoria")
 	private Categoria categoria;
-
+	
 }

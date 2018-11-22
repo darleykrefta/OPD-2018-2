@@ -42,7 +42,7 @@ export class EnderecoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.findAll();
+    this.findByCampanha(this.recebeAnuncioID);
     this.cidadeService.findAll().subscribe(e => this.cidades = e);
 
     this.cols = [
@@ -54,15 +54,11 @@ export class EnderecoComponent implements OnInit {
       { field: 'complemento', header: 'Complemento' },
       { field: 'cidade.nome', header: 'Cidade' }
     ];
+    this.newEntity();
   }
 
-  findAll() {
-    this.enderecoService.findAll().subscribe(
-      e => this.enderecos = e);
-  }
-
-  findByCampanha() {//deve passar o id da campanha
-    this.enderecoService.findByCampanha(this.enderecoEdit.id).subscribe(
+  findByCampanha(anuncioID) {
+    this.enderecoService.findByCampanha(anuncioID).subscribe(
       e => this.enderecos = e);
   }
 

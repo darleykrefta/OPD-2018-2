@@ -6,15 +6,9 @@
             <h3 class="card-title mt-1 mb-4">Cadastro de Anúncios</h3>
           <form>
             <h3 class="mt-2"></h3>
-            <div class="form-group row" style="margin-left: 0px;">
-              <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="rbTipoCampanha" name="tipoAnuncio" value="0" [(ngModel)]="anuncioEdit.tipoAnuncio" [checked]="true">
-                <label class="custom-control-label" for="rbTipoCampanha">Campanha</label>
-              </div>
-              <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="rbTipoDoacao" name="tipoAnuncio" value="1" [(ngModel)]="anuncioEdit.tipoAnuncio">
-                <label class="custom-control-label" for="rbTipoDoacao">Doação</label>
-              </div>
+            <div class="form-group row">
+                <p-radioButton class="mr-3" label="Campanha" name="tipoAnuncio" value="0" [(ngModel)]="anuncioEdit.tipoAnuncio"></p-radioButton>
+                <p-radioButton label="Doação" name="tipoAnuncio" value="1" [(ngModel)]="anuncioEdit.tipoAnuncio"></p-radioButton>
             </div>
             <div class="form-group row">
               <label for="titulo" class="col-sm-2 col-form-label">Título</label>
@@ -29,21 +23,21 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="data_Inicio" class="col-2 col-form-label">Data Início</label>
+              <label for="dataInicio" class="col-2 col-form-label">Data Início</label>
               <div class="col-4">
-                  <p-calendar
+                  <p-calendar id="dataInicio"
                   dateFormat="dd/mm/yy"
                   dataType="string"
-                  name="data_Inicio" id="data_Inicio" 
-                  [(ngModel)]="anuncioEdit.data_Inicio"></p-calendar>
+                  name="dataInicio"
+                  [(ngModel)]="anuncioEdit.dataInicio"></p-calendar>
               </div>
-              <label for="data_Final" class="col-2 col-form-label">Data Início</label>
+              <label for="dataFinal" class="col-2 col-form-label">Data Início</label>
               <div class="col-4">
-                  <p-calendar id="data_Final"
+                  <p-calendar id="dataFinal" 
                   dateFormat="dd/mm/yy"
                   dataType="string"
-                  name="data_Final" 
-                  [(ngModel)]="anuncioEdit.data_Final"></p-calendar>
+                  name="dataFinal"
+                  [(ngModel)]="anuncioEdit.dataFinal"></p-calendar>
               </div>
             </div>
             <div class="form-group row">

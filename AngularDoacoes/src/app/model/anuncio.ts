@@ -8,8 +8,8 @@ export class Anuncio {
     tipoAnuncio: number;
     descricao: string;
     status: number;
-    data_Inicio: Date;
-    data_Final: Date;
+    dataInicio: Date;
+    dataFinal: Date;
     telefone: string;
     celular: string;
     foto: string;

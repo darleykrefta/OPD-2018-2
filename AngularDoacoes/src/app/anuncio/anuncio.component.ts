@@ -25,9 +25,9 @@ export class AnuncioComponent implements OnInit {
     private enderecoService: EnderecoService) { }
 
   ngOnInit() {
-    // load categorias
     this.categoriaService.findAll().subscribe(
       e => this.categorias = e);
+      this.newEntity();
   }
 
   newEntity() {

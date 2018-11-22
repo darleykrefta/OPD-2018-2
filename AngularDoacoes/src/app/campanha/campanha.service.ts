@@ -30,4 +30,9 @@ export class CampanhaService extends CrudService<Campanha, number> {
   }
 
 
+  finalizarAnuncio(anuncio: Anuncio): Observable<boolean> {
+    const url = `${this.getUrl()}/finalizarAnuncio/${anuncio.id}`;
+    return this.http.get<boolean>(url);
+}
+
 }

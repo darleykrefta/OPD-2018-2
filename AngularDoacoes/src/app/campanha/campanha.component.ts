@@ -53,21 +53,17 @@ export class CampanhaComponent implements OnInit {
     }, 250);
   }
 
-  /*
-  setFinalizado(){
-    this.campanhaService.
-  }
-  */
   findByPessoa() {
-    this.campanhaService.findByPessoa(1).subscribe(
+    this.campanhaService.findByPessoa().subscribe(
       e => this.campanhas = e);
   }
-
-
 
   findAll() {
     this.campanhaService.findAll().subscribe(e => this.campanhas = e);
   }
 
-
+  setFinalizado(e, campanha) {
+    console.log('id' + campanha.id);
+    console.log('id' + campanha.descricao);
+  }
 }

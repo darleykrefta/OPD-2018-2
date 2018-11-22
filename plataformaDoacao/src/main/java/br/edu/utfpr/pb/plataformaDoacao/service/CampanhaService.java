@@ -22,4 +22,6 @@ public interface CampanhaService extends CrudService<Campanha, Long> {
 	List<Campanha> findByDataInicioBetween(LocalDate dataIni, LocalDate dataFim);
 
 	List<Campanha> findByPessoaId(Long id);
+	
+	
 }

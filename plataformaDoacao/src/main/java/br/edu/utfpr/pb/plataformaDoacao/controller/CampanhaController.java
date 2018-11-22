@@ -28,6 +28,7 @@ public class CampanhaController  extends CrudController<Campanha, Long> {
 	protected CrudService<Campanha, Long> getService() {
 		return campanhaService;
 	}
+
 	
 
 	@GetMapping("filter/meusanuncios")
@@ -35,6 +36,13 @@ public class CampanhaController  extends CrudController<Campanha, Long> {
 		Pessoa p = (Pessoa)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		//System.out.println(p);
 		return campanhaService.findByPessoaId(p.getId());
+	}
+	
+	@GetMapping("/finalizarAnuncio")
+	public findByIdCampanha(Campanha campanha) {
+		Campanha c = new Campanha();
+		c.setStatus(0);
+		return c;
 	}
 	
 	@GetMapping

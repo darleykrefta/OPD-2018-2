@@ -4,6 +4,7 @@ import { PessoaService } from './pessoa.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {DataTable} from 'primeng/components/datatable/datatable';
 import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
+import { LoginService } from '../login/login.service';
 //import { Produtora } from '../model/endereco';
 //import { ProdutoraService } from '../endereco/endereo.service';
 
@@ -30,9 +31,11 @@ export class PessoaComponent implements OnInit {
 
   constructor(private pessoaService: PessoaService,
     /*private enderecoService: EnderecoService,*/
-     private confirmationService: ConfirmationService) { }
+     private confirmationService: ConfirmationService,
+     private loginService: LoginService) { }
 
   ngOnInit() {
+    this.loginService.verificaAdmin();
     //this.enderecoService.findAll().subscribe(
       //e => this.enderecos = e);
   }

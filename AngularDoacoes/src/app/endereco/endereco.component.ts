@@ -1,3 +1,4 @@
+import { LoginService } from './../login/login.service';
 import { CidadeService } from './../cidade/cidade.service';
 import { Cidade } from './../model/cidade';
 import { TableModule } from 'primeng/table';
@@ -28,7 +29,8 @@ export class EnderecoComponent implements OnInit {
   cols: any[];
 
   constructor(private enderecoService: EnderecoService, private confirmationService: ConfirmationService,
-    private cidadeService: CidadeService) { }
+    private cidadeService: CidadeService,
+    private loginService: LoginService) { }
 
 
   search(event) {
@@ -38,6 +40,7 @@ export class EnderecoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loginService.verificaAdmin();
     this.findAll();
     this.cidadeService.findAll().subscribe(e => this.cidades = e);
 

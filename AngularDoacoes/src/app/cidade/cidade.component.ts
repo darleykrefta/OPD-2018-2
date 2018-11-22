@@ -1,3 +1,4 @@
+import { LoginService } from './../login/login.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {DataTable} from 'primeng/components/datatable/datatable';
 import { CidadeService } from './cidade.service';
@@ -20,9 +21,11 @@ export class CidadeComponent implements OnInit {
   msgs: Message[] = [];
 
   constructor(private cidadeService: CidadeService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService,
+    private loginService: LoginService) { }
 
   ngOnInit() {
+    this.loginService.verificaAdmin();
     this.findAll();
   }
 

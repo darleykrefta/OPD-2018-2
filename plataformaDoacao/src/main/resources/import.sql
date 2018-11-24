@@ -1,4 +1,3 @@
-﻿
 INSERT INTO permissao (nome) values('ROLE_ADMIN');
 INSERT INTO permissao (nome) values('ROLE_USER');
 Insert into pessoa_institucao(apelido, cpf_cnpj, email, nome, senha, status, telefone) values ('admin','999.999.999-99', 'admin', 'admin', '$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem',true, '99999-9999');
@@ -5574,6 +5573,8 @@ Insert into cidade (id_cidade, nome, sigla) values (5222054,'Vicentinópolis', '
 Insert into cidade (id_cidade, nome, sigla) values (5222203,'Vila Boa', 'GO');
 Insert into cidade (id_cidade, nome, sigla) values (5222302,'Vila Propício', 'GO');
 Insert into cidade (id_cidade, nome, sigla) values (5300108,'Brasília', 'DF');
+INSERT INTO ENDERECO (rua, numero, bairro, cep, complemento, Id_Cidade) VALUES('rogerio da chaves', '1095', 'fraron', '85560408', 'casa' ,5222054);
+INSERT INTO ENDERECO (rua, numero, bairro, cep, complemento, Id_Cidade) VALUES('tupi', '1095', 'centro', '85560408', 'casa' ,5217203);
 INSERT INTO endereco(id_endereco, bairro, cep, complemento, numero, rua, id_cidade) VALUES (1, 'XYZ', '85560000', 'Ap 101', 272, 'ABC', 1100015);
 INSERT INTO categoria(id_categoria, nome) VALUES (1, 'Eletrônicos');
 INSERT INTO pessoa_institucao(id_pessoa, apelido, celular, cpf_cnpj, email, foto, nome, senha, status, telefone, id_endereco) VALUES (1, 'De', '46 999254210', '09341491940', 'debora.mendes@live.com', 'C:\Users\Public\Pictures\Sample Pictures\1.png', 'Debora Mendes', '123', 1, '46 3242 2101', 1);

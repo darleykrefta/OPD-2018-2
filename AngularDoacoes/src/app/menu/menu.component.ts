@@ -19,6 +19,7 @@ export class MenuComponent implements OnInit {
         { label: 'Perfil', icon: 'pi pi-fw pi-user', routerLink: 'perfil' },
         { label: 'Meus Anúncios', icon: 'fa fa-bullhorn', routerLink: '/' },
         { label: 'Sair', icon: 'pi pi-fw pi-download', command: (onclick) => { this.loginService.loggout(); } }
+
       ]
     }];
   }

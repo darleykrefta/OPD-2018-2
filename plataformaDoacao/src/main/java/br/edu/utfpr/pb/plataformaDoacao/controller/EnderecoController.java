@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.edu.utfpr.pb.plataformaDoacao.model.Cidade;
 import br.edu.utfpr.pb.plataformaDoacao.model.Endereco;
 import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
 import br.edu.utfpr.pb.plataformaDoacao.service.EnderecoService;
@@ -29,9 +30,9 @@ public class EnderecoController extends CrudController<Endereco, Long> {
 		return enderecoService;
 	}
 	
-	@GetMapping("search")
-	public Page<Endereco> findByRuaLike(
-			@RequestParam String filter,
+	@GetMapping("filter/nome")
+	public Page<Endereco> findByRuaLikeOrBairroLike(
+			@RequestParam String filter,			
 			@RequestParam int page,
 			@RequestParam int size,
 			@RequestParam(required = false) String order,
@@ -44,14 +45,18 @@ public class EnderecoController extends CrudController<Endereco, Long> {
 							Sort.Direction.DESC, 
 							order);
 			}
-		return enderecoService.findByRuaLikeOrBairroLike("%" + filter + "%", "%" + filter + "%", pageRequest);
+		return enderecoService
+				.findByRuaLikeOrBairroLike("%" + filter + "%" , "%" + filter + "%", pageRequest);
 	}
+	
+	
+	
 	@GetMapping("search/count")
-	public long findByRuaLike(
+	public long findByRuaLikeOrBairroLike(
 			@RequestParam String filter) {
 		
 		return enderecoService
-				.countByRuaLikeOrBairroLike("%" + filter + "%", "%" + filter + "%");
+				.countByRuaLikeOrBairroLike("%" + filter + "%" , "%" + filter + "%");
 	}
 	
 }

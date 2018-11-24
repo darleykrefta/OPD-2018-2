@@ -60,6 +60,30 @@ export class EnderecoComponent implements OnInit {
       e => this.enderecos = e);
   }
 
+  findAllPaged(page: number, size: number) {
+    this.enderecoService.count().subscribe(e => this.totalRecords = e);
+    this.enderecoService.findPageable(page, size).subscribe(e => this.enderecos = e.content);
+  }
+
+  findSearchPaged(filter: string, page: number, size: number) {
+    this.enderecoService.searchCount(filter).subscribe(e => this.totalRecords = e);
+    this.enderecoService.findSearchPageable(filter, page, size).subscribe(e => this.enderecos = e.content);
+  }
+
+  load(event: LazyLoadEvent) {
+    const currentPage = event.first / event.rows;
+    const maxRecords = event.rows;
+    if (event.globalFilter) {
+      setTimeout(() => {
+        this.findSearchPaged(event.globalFilter, currentPage, maxRecords);
+      }, 250);
+    } else {
+      setTimeout(() => {
+        this.findAllPaged(currentPage, maxRecords);
+      }, 250);
+    }
+  }
+
   newEntity() {
     this.enderecoEdit = new Endereco();
     this.showDialog = true;
@@ -122,25 +146,9 @@ export class EnderecoComponent implements OnInit {
     });
   }
 
-  loadLazy(event: LazyLoadEvent) {
-    this.currentPage = event.first / event.rows;
-    this.maxRecords = event.rows;
-    console.log(event.globalFilter);
-    if (event.globalFilter == null) {
-      setTimeout(() => {
-        this.findAllPaged(this.currentPage, this.maxRecords);
-      }, 250);
-    } else {
-      setTimeout(() => {
-        this.enderecoService.findEndereco(event.globalFilter);
-      }, 250);
-    }
-  }
 
-  findAllPaged(page: number, size: number) {
-    this.enderecoService.count().subscribe(e => this.totalRecords = e);
-    this.enderecoService.findPageable(page, size).subscribe(e => this.enderecos = e.content);
-  }
+
+
 
 
 }

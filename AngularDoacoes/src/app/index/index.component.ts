@@ -1,7 +1,7 @@
+import { Campanha } from '../interface/campanha';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataView } from 'primeng/dataview';
 import { CampanhaService } from '../campanha/campanha.service';
-import { Campanha } from '../interface/Campanha';
 import { LazyLoadEvent, Message} from 'primeng/api';
 import { Cidade } from '../model/cidade';
 import { Categoria } from '../model/categoria';
@@ -18,6 +18,8 @@ export class IndexComponent implements OnInit {
   @ViewChild('dv') DataView: DataView;
 
   campanhas: Campanha[];
+
+  campanha: Campanha;
   campanhasFiltered: Campanha[];
   totalRecords: number;
   showDialog = false;
@@ -78,10 +80,17 @@ export class IndexComponent implements OnInit {
     this.campanhaService.findAll().subscribe( e => this.campanhas = e );
   }
 
+
+  findOne(id: number) {
+     this.campanhaService.findOne( id)
+      .subscribe(campanha => this.campanha = campanha);
+  }
+
   search(event) {
     this.campanhasFiltered = this.campanhas
       .filter(
         p => p.titulo.toLocaleLowerCase().includes(event.query.toLocaleLowerCase())
       );
+
   }
 }

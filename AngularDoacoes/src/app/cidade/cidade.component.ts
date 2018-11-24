@@ -1,6 +1,6 @@
 import { LoginService } from './../login/login.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {DataTable} from 'primeng/components/datatable/datatable';
+import { DataTable } from 'primeng/components/datatable/datatable';
 import { CidadeService } from './cidade.service';
 import { Cidade } from '../model/cidade';
 import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
@@ -14,6 +14,7 @@ export class CidadeComponent implements OnInit {
 
   @ViewChild('dt') dataTable: DataTable;
 
+  cols: any[];
   cidades: Cidade[];
   totalRecords: number;
   cidadeEdit = new Cidade();
@@ -26,7 +27,12 @@ export class CidadeComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.verificaAdmin();
-    this.findAll();
+    this.cols = [
+      { field: 'id', header: 'Código' },
+      { field: 'nome', header: 'Nome' },
+      { field: 'sigla', header: 'Sigla' },
+    ];
+
   }
 
   findAllPaged(page: number, size: number) {
@@ -36,23 +42,33 @@ export class CidadeComponent implements OnInit {
       .subscribe(e => this.cidades = e.content);
   }
 
+
+  findSearchPaged(filter: string, page: number, size: number) {
+    this.cidadeService.searchCount(filter).subscribe(e => this.totalRecords = e);
+    this.cidadeService.findSearchPageable(filter, page, size).subscribe(e => this.cidades = e.content);
+  }
+
   load(event: LazyLoadEvent) {
     const currentPage = event.first / event.rows;
     const maxRecords = event.rows;
-    setTimeout(() => {
-      this.findAllPaged(currentPage, maxRecords);
-    }, 250);
+    if (event.globalFilter) {
+      setTimeout(() => {
+        this.findSearchPaged(event.globalFilter, currentPage, maxRecords);
+      }, 250);
+    } else {
+      setTimeout(() => {
+        this.findAllPaged(currentPage, maxRecords);
+      }, 250);
+    }
   }
 
-  findAll() {
-    this.cidadeService.findAll().subscribe(
-      e => this.cidades = e);
-  }
 
   newEntity() {
     this.cidadeEdit = new Cidade();
     this.showDialog = true;
   }
+
+
 
   cancel() {
     this.showDialog = false;
@@ -62,7 +78,7 @@ export class CidadeComponent implements OnInit {
     this.cidadeService.save(this.cidadeEdit).
       subscribe(e => {
         this.cidadeEdit = new Cidade();
-        this.findAll();
+        this.dataTable.reset();
         this.showDialog = false;
         this.msgs = [{
           severity: 'success',
@@ -94,7 +110,7 @@ export class CidadeComponent implements OnInit {
       accept: () => {
         this.cidadeService.delete(cidade.id)
           .subscribe(() => {
-            this.findAll();
+            this.dataTable.reset();
             this.msgs = [{
               severity: 'success',
               summary: 'Removido',

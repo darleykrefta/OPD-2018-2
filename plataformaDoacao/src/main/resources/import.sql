@@ -1,6 +1,6 @@
 INSERT INTO permissao (nome) values('ROLE_ADMIN');
 INSERT INTO permissao (nome) values('ROLE_USER');
-Insert into pessoa_institucao(apelido, cpf_cnpj, email, nome, senha, status, telefone) values ('admin','999.999.999-99', 'admin', 'admin', '$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem',true, '99999-9999');
+Insert into pessoa_institucao(id_pessoa,apelido, cpf_cnpj, email, nome, senha, status, telefone, celular) values (1,'admin','999.999.999-99', 'admin', 'admin', '$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem',true, '99999-9999', '99999999');
 INSERT INTO pessoa_institucao_permissoes (pessoa_id_pessoa, permissoes_id) VALUES (1, 1);
 INSERT INTO pessoa_institucao_permissoes (pessoa_id_pessoa, permissoes_id) VALUES (1, 2);
 Insert into cidade (id_cidade, nome, sigla) values (1100015,'Alta Floresta DOeste', 'RO');
@@ -5575,9 +5575,9 @@ Insert into cidade (id_cidade, nome, sigla) values (5222302,'Vila Propício', 'G
 Insert into cidade (id_cidade, nome, sigla) values (5300108,'Brasília', 'DF');
 INSERT INTO ENDERECO (rua, numero, bairro, cep, complemento, Id_Cidade) VALUES('rogerio da chaves', '1095', 'fraron', '85560408', 'casa' ,5222054);
 INSERT INTO ENDERECO (rua, numero, bairro, cep, complemento, Id_Cidade) VALUES('tupi', '1095', 'centro', '85560408', 'casa' ,5217203);
-INSERT INTO endereco(id_endereco, bairro, cep, complemento, numero, rua, id_cidade) VALUES (1, 'XYZ', '85560000', 'Ap 101', 272, 'ABC', 1100015);
+INSERT INTO endereco(id_endereco, bairro, cep, complemento, numero, rua, id_cidade) VALUES (3, 'XYZ', '85560000', 'Ap 101', 272, 'ABC', 1100015);
 INSERT INTO categoria(id_categoria, nome) VALUES (1, 'Eletrônicos');
-INSERT INTO pessoa_institucao(id_pessoa, apelido, celular, cpf_cnpj, email, foto, nome, senha, status, telefone, id_endereco) VALUES (1, 'De', '46 999254210', '09341491940', 'debora.mendes@live.com', 'C:\Users\Public\Pictures\Sample Pictures\1.png', 'Debora Mendes', '123', 1, '46 3242 2101', 1);
+INSERT INTO pessoa_institucao(id_pessoa, apelido, celular, cpf_cnpj, email, foto, nome, senha, telefone, id_endereco) VALUES (2, 'De', '46 999254210', '09341491940', 'debora.mendes@live.com', 'C:\Users\Public\Pictures\Sample Pictures\1.png', 'Debora Mendes', '123', '46 3242 2101', 1);
 INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) VALUES (1, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);
 INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) VALUES (2, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);
 INSERT INTO campanha_doacao(id_doacao, celular, data_final, data_inicio, descricao, foto, status, telefone, tipo_anuncio, titulo, id_categoria, id_pessoa, id_recebedor) VALUES (3, '46 999274210', '31/12/2018', '01/01/2018', 'Samsung Galaxy S9', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8', 1, '46 999346787', 1, 'Doa-se Celular', 1, 1, 1);

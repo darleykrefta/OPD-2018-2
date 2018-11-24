@@ -40,7 +40,7 @@ export class MensagemComponent implements OnInit {
         alert('Comentario Adicionado com Sucesso!!');
       });
 
-      this.mensagemService.getComments(this.campanhaId).subscribe(e => this.mensagens = e);
+      //this.mensagemService.getComments(this.campanhaId).subscribe(e => this.mensagens = e);
   }
 
 }

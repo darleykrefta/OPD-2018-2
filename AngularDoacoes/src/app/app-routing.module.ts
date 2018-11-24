@@ -22,16 +22,15 @@ const routes: Routes = [
       {path: 'cidade', component: CidadeComponent},
       {path: 'categoria', component: CategoriaComponent},
       {path: 'endereco', component: EnderecoComponent},
-      {path: 'perfil', component: PerfilComponent},
-      {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent},
-      
-
+      {path: 'perfil', component: PerfilComponent}
+     
     ]
   },
   {path: 'login', component: LoginComponent},
   {path: 'cadastroUsuario', component: CadastroComponent},
   {path: 'index', component: IndexComponent},
-  {path: 'filter/:titulodescricao', component: IndexComponent}
+  {path: 'filter/:titulodescricao', component: IndexComponent},
+  {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent}
 
 ];
 

@@ -23,7 +23,6 @@ public class CampanhaServiceImpl extends CrudServiceImpl <Campanha, Long> implem
 	
 	@Override
 	protected JpaRepository<Campanha, Long> getRepository() {
-		// TODO Auto-generated method stub
 		return campanhaRepository;
 	}
 

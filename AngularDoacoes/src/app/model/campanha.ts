@@ -2,7 +2,7 @@ import { Categoria } from './categoria';
 import { Pessoa } from './pessoa';
 import { Endereco } from './endereco';
 
-export class Anuncio {
+export class Campanha {
     id: number;
     titulo: string;
     tipoAnuncio: number;

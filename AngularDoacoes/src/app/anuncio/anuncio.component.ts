@@ -1,7 +1,7 @@
 import { EnderecoService } from './../endereco/endereco.service';
 import { Endereco } from './../model/endereco';
 import { Message, ConfirmationService } from 'primeng/api';
-import { Anuncio } from './../model/anuncio';
+import { Campanha } from '../model/campanha';
 import { AnuncioService } from './anuncio.service';
 import { CategoriaService } from './../categoria/categoria.service';
 import { Categoria } from './../model/categoria';
@@ -14,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnuncioComponent implements OnInit {
 
-  anuncioEdit: Anuncio = new Anuncio();
+  anuncioEdit: Campanha = new Campanha();
   categorias: Categoria[];
   msgs: Message[] = [];
   enderecos: Endereco[];
@@ -31,7 +31,7 @@ export class AnuncioComponent implements OnInit {
   }
 
   newEntity() {
-    this.anuncioEdit = new Anuncio();
+    this.anuncioEdit = new Campanha();
     this.anuncioEdit.tipoAnuncio = 0;
     this.anuncioEdit.categoria = this.categorias[0];
   }
@@ -40,7 +40,7 @@ export class AnuncioComponent implements OnInit {
     this.anuncioEdit.status = 1;
     this.anuncioService.save(this.anuncioEdit).
       subscribe(e => {
-        this.anuncioEdit = new Anuncio();
+        this.anuncioEdit = new Campanha();
         this.msgs = [{
           severity: 'success',
           summary: 'Confirmado',

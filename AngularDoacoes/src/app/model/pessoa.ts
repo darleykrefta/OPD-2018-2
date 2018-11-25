@@ -1,3 +1,5 @@
+import { Endereco } from './endereco';
+
 export class Pessoa {
     id: number;
     cpf_cnpj: string;
@@ -10,6 +12,6 @@ export class Pessoa {
     celular: string;
     foto: string;
     status: boolean;
-    endereco: string;
     termos: boolean;
+    endereco: Endereco;
 }

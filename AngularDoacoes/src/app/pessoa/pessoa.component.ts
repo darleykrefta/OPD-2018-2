@@ -4,9 +4,6 @@ import { PessoaService } from './pessoa.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {DataTable} from 'primeng/components/datatable/datatable';
 import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
-//import { Produtora } from '../model/endereco';
-//import { ProdutoraService } from '../endereco/endereo.service';
-
 
 @Component({
   selector: 'app-pessoa',
@@ -33,8 +30,7 @@ export class PessoaComponent implements OnInit {
      private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
-    //this.enderecoService.findAll().subscribe(
-      //e => this.enderecos = e);
+    this.findAll();
   }
 
   findAllPaged(page: number, size: number) {

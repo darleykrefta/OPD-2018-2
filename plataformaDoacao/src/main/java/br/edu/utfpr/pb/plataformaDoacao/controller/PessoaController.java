@@ -5,10 +5,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +39,7 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 	protected CrudService<Pessoa, Long> getService() {
 		return pessoaService;
 	}
-	
+
 	@Override
 	public Pessoa save(@RequestBody @Valid Pessoa entity) {
 		pessoaService.criptografarSenha(entity);
@@ -43,7 +47,10 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 	}
 	
 	@PostMapping("upload/{id}")
-	public void upload(@PathVariable Long id, @RequestParam("foto") MultipartFile foto,	HttpServletRequest request) throws Exception {
+	public void upload(@PathVariable Long id, 
+			@RequestParam("foto") MultipartFile foto,	
+			HttpServletRequest request) throws Exception {
+		
 		if(foto != null) {
 			saveFile(id, foto, request);
 		}
@@ -51,7 +58,7 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 	
 
 	private void saveFile(Long id, MultipartFile foto, HttpServletRequest request) throws Exception {
-		File dir = new File(request.getServletContext().getRealPath("/images"));
+		File dir = new File(request.getServletContext().getRealPath("/images/"));
 		if(!dir.exists()) {
 			dir.mkdirs();
 				

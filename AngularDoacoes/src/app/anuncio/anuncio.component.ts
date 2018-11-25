@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { EnderecoService } from './../endereco/endereco.service';
 import { Endereco } from './../model/endereco';
 import { Message, ConfirmationService } from 'primeng/api';
@@ -14,10 +15,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnuncioComponent implements OnInit {
 
-  anuncioEdit: Campanha = new Campanha();
+  campanhaEdit: Campanha = new Campanha();
   categorias: Categoria[];
   msgs: Message[] = [];
   enderecos: Endereco[];
+  uploadFiles: any[] = [];
+  urlApi: string = environment.api;
+  today: number = Date.now();
 
   constructor(private anuncioService: AnuncioService,
     private confirmationService: ConfirmationService,
@@ -31,16 +35,16 @@ export class AnuncioComponent implements OnInit {
   }
 
   newEntity() {
-    this.anuncioEdit = new Campanha();
-    this.anuncioEdit.tipoAnuncio = 0;
-    this.anuncioEdit.categoria = this.categorias[0];
+    this.campanhaEdit = new Campanha();
+    this.campanhaEdit.tipoAnuncio = 0;
+    this.campanhaEdit.categoria = this.categorias[0];
   }
 
   save() {
-    this.anuncioEdit.status = 1;
-    this.anuncioService.save(this.anuncioEdit).
+    this.campanhaEdit.status = 1;
+    this.anuncioService.save(this.campanhaEdit).
       subscribe(e => {
-        this.anuncioEdit = new Campanha();
+        this.campanhaEdit = new Campanha();
         this.msgs = [{
           severity: 'success',
           summary: 'Confirmado',
@@ -56,7 +60,25 @@ export class AnuncioComponent implements OnInit {
   }
 
   reciverEndereco(enderecoList) {
-    this.anuncioEdit.endereco = enderecoList;
+    this.campanhaEdit.endereco = enderecoList;
+  }
+
+  onUpload(event) {
+    for (const file of event.files) {
+      this.uploadFiles.push(file);
+    }
+    this.msgs = [{severity : 'info',
+                  summary: 'Arquivo salvo!',
+         detail: 'Arquivo salvo com sucesso' }];
+    this.uploadFiles = [];
+  }
+
+  onSelect(foto) {
+    this.uploadFiles.push(foto);
+  }
+
+  showConsole() {
+    console.log(this.uploadFiles);
   }
 
 }

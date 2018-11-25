@@ -12,7 +12,7 @@ export class Campanha {
     dataFinal: Date;
     telefone: string;
     celular: string;
-    foto: string;
+    fotos: string[];
     pessoa: Pessoa;
     recebedor: Pessoa;
     categoria: Categoria;

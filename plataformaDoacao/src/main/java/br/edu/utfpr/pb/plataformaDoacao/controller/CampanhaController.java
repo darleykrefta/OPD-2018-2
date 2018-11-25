@@ -1,60 +1,119 @@
 package br.edu.utfpr.pb.plataformaDoacao.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.security.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.edu.utfpr.pb.plataformaDoacao.model.Campanha;
+import br.edu.utfpr.pb.plataformaDoacao.model.Foto;
+import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
 import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
+import br.edu.utfpr.pb.plataformaDoacao.service.FotoService;
 import br.edu.utfpr.pb.plataformaDoacao.service.CampanhaService;
 
 @RestController
 @RequestMapping("campanha")
-public class CampanhaController  extends CrudController<Campanha, Long> {
+public class CampanhaController extends CrudController<Campanha, Long> {
 
 	@Autowired
 	private CampanhaService campanhaService;
+	
+	@Autowired
+	private FotoService fotoService;
 
 	@Override
 	protected CrudService<Campanha, Long> getService() {
 		return campanhaService;
 	}
-	
+
 	@GetMapping
-	public List<Campanha> findAll(){
+	public List<Campanha> findAll() {
 		return campanhaService.findAll();
 	}
 
-	
 	@SuppressWarnings("unused")
 	@GetMapping("search")
-	public List<Campanha> findByDataInicioBetweenOrCategoriaId (
-			@RequestParam(required = false) String dataIni,
-			@RequestParam(required = false) String dataFim,
-			@RequestParam(required = false) String categoria){
-		
-			if (dataIni != null && dataFim != null && categoria != null 
-						&& dataIni != "" && dataFim != "" && categoria != ""){
-			   return campanhaService.findByDataInicioBetweenOrCategoriaId(LocalDate.parse(dataIni, 
-			          DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.parse(dataFim,
-			        		  DateTimeFormatter.ofPattern("dd/MM/yyyy")), Long.valueOf(categoria));
-		    } else if (dataIni != null && dataFim != null && dataIni != "" && dataFim != "" && 
-		    				categoria == "" && categoria == null ) {
-				return campanhaService.findByDataInicioBetween(LocalDate.parse(dataIni, 
-						DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.parse(dataFim, 
-									DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-			} else if (categoria != null && categoria != "" && dataIni == "" && dataFim == "" 
-					         && dataIni != null && dataFim != null ) {
-		    	return campanhaService.findByCategoriaId(Long.parseLong(categoria));
-		    }
-			
-			return null;
+	public List<Campanha> findByDataInicioBetweenOrCategoriaId(@RequestParam(required = false) String dataIni,
+			@RequestParam(required = false) String dataFim, @RequestParam(required = false) String categoria) {
+
+		if (dataIni != null && dataFim != null && categoria != null && dataIni != "" && dataFim != ""
+				&& categoria != "") {
+			return campanhaService.findByDataInicioBetweenOrCategoriaId(
+					LocalDate.parse(dataIni, DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+					LocalDate.parse(dataFim, DateTimeFormatter.ofPattern("dd/MM/yyyy")), Long.valueOf(categoria));
+		} else if (dataIni != null && dataFim != null && dataIni != "" && dataFim != "" && categoria == ""
+				&& categoria == null) {
+			return campanhaService.findByDataInicioBetween(
+					LocalDate.parse(dataIni, DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+					LocalDate.parse(dataFim, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		} else if (categoria != null && categoria != "" && dataIni == "" && dataFim == "" && dataIni != null
+				&& dataFim != null) {
+			return campanhaService.findByCategoriaId(Long.parseLong(categoria));
+		}
+
+		return null;
 	}
 	
+	@PostMapping("upload/{id}")
+	public void upload(@PathVariable Long id, @RequestParam("foto") MultipartFile[] listFoto, HttpServletRequest request)
+			throws Exception {
+		
+		saveFile(id, listFoto, request);
+	}
+
+	private void saveFile(Long id, MultipartFile[] listFoto, HttpServletRequest request) throws Exception {
+		File dir = new File(request.getServletContext().getRealPath("/images"));
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+		
+		List<Foto> listFotos = fotoService.findByCampanhaId(id);
+		
+		if (listFotos.size() > 0) {
+			for (Foto item : listFotos) {
+				fotoService.delete(item.getId());
+			}
+		}
+		
+		for (MultipartFile foto : listFoto) {
+			String caminhoAnexo = request.getServletContext().getRealPath("images/");
+			String extensao = foto.getOriginalFilename().substring(foto.getOriginalFilename().lastIndexOf("."),
+					foto.getOriginalFilename().length());
+			String nomeArquivo = id + Math.random() + extensao;
+			try {
+				FileOutputStream fileOut = new FileOutputStream(new File(caminhoAnexo + nomeArquivo));
+				BufferedOutputStream stream = new BufferedOutputStream(fileOut);
+				stream.write(foto.getBytes());
+				stream.close();
+				
+				Foto ft = new Foto();
+				ft.setCaminhoFoto(nomeArquivo);
+				Campanha campanha = new Campanha();
+				campanha = getService().findOne(id);
+				ft.setCampanha(campanha);
+				fotoService.save(ft);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new Exception("Erro ao fazer" + "upload da imagem. " + e.getMessage());
+			}
+		}
+	}
+
 }

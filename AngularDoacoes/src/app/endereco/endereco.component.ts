@@ -33,7 +33,9 @@ export class EnderecoComponent implements OnInit {
   @Output() respostaEndereco = new EventEmitter();
 
   constructor(private enderecoService: EnderecoService, private confirmationService: ConfirmationService,
-    private cidadeService: CidadeService) { }
+    private cidadeService: CidadeService) {
+      this.showDialog = false;
+     }
 
   search(event) {
     this.cidadesFiltred = this.cidades.filter(

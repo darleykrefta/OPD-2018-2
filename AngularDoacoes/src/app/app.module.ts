@@ -26,6 +26,7 @@ import {MenuItem} from 'primeng/api';
 import {FieldsetModule} from 'primeng/fieldset';
 import {PasswordModule} from 'primeng/password';
 import {ContextMenuModule} from 'primeng/contextmenu';
+import {CarouselModule} from 'primeng/carousel';
 
 // Component-Service
 import { AppComponent } from './app.component';
@@ -91,7 +92,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     MenuModule,
     ContextMenuModule,
     FieldsetModule,
-    PasswordModule
+    PasswordModule,
+    CarouselModule
   ],
   providers: [
     {

@@ -34,7 +34,7 @@ public class Foto implements Serializable {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "Id_Doacao", referencedColumnName = "Id_Doacao")
+	@JoinColumn(name = "IdCampanha", referencedColumnName = "Id_Doacao")
 	private Campanha campanha;
 
 	@Column(name="CaminhoFoto", length = 666, nullable = false)

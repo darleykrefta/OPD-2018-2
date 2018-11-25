@@ -12,6 +12,4 @@ public interface EnderecoService extends CrudService<Endereco, Long> {
 	
 	long countByRuaLikeOrBairroLike(String rua, String bairro);
 	
-	
-
 }

@@ -3,9 +3,10 @@
         <div class="col-lg-8">
             <p-panel>
               <div class="row">
-                <div  class="col-lg-5">                   
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8"
-                    width="130px" style="width: 100%" >
+                <div  class="col-lg-8">   
+                                  
+                    <p-galleria [images]="images" panelWidth="500" panelHeight="313" [showCaption]="true"></p-galleria>
+
                     <br>
                     <div>
                         <a>Categoria:</a> {{campanha.categoria.nome}}
@@ -14,9 +15,13 @@
                     <div>
                         <a>Data Final:</a> {{campanha.dataFinal}}
                     </div>
+                    <br> 
+                    <div>
+                        <a>Contato: </a> {{campanha.telefone}} || {{campanha.celular}}
+                    </div>
                     <br>                    
                 </div>
-                <div class="col-lg-7">
+                <div class="col-lg-4">
                     <div>
                         <b>Descrição</b>
                             <br>

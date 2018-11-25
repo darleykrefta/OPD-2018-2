@@ -54,6 +54,7 @@ import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anun
 import { RouterModule } from '@angular/router';
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { MensagemService } from './mensagem/mensagem.service';
+import {GalleriaModule} from 'primeng/galleria';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { MensagemService } from './mensagem/mensagem.service';
     CadastroComponent,
     LoginComponent,
     PerfilComponent
+    
 
   ],
   imports: [
@@ -102,6 +104,7 @@ import { MensagemService } from './mensagem/mensagem.service';
     RouterModule,
     PasswordModule,
     ReactiveFormsModule,
+    GalleriaModule
   ],
   providers: [
     {

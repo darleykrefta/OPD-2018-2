@@ -15,6 +15,7 @@ export class VisualizarAnuncioComponent implements OnInit {
 
   campanha: Campanha;
   //enderecoCampanha: EnderecoCampanha;
+  images: any[];
 
   idAtual: number;
   mensagens: Mensagem[];
@@ -27,6 +28,7 @@ export class VisualizarAnuncioComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((objeto: any) => { this.idAtual = objeto['campanhaId']; });
     this.campanhaService.findOne(this.idAtual).subscribe(e => this.campanha = e);
+
     //this.enderecoCampanhaService.findOne(this.idAtual).subscribe(e => this.enderecoCampanha = e);
   }
 

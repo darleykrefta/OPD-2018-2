@@ -18,8 +18,4 @@ export class MensagemService extends CrudService<Mensagem, number> {
     return this.http.get<Mensagem[]>(url);
   }
 
-  addMensagem(campanhaId: number, mensagem: Text) {
-    const url = `${this.getUrl()}?campanhaId=${campanhaId}`;
-    return this.http.post(url, {mensagem});
-  }
 }

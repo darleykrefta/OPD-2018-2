@@ -35,8 +35,8 @@
       </div>
       <div class="row">
           <div class="form-group col">
-            <label for="cpf_cnpj">CPF/CNPJ</label>
-            <input class="form-control" type="text" name="cpf_cnpj" id="cpf_cnpj" [(ngModel)]="pessoaEdit.cpf_cnpj" />
+            <label for="cpfCnpj">CPF/CNPJ</label>
+            <input class="form-control" type="text" name="cpfCnpj" id="cpfCnpj" [(ngModel)]="pessoaEdit.cpfCnpj" />
           </div>
           <div class="form-group col">
             <label for="apelido">Apelido</label>
@@ -56,7 +56,7 @@
         <div class="form-group">
           <p-checkbox name="termos" id="termos" [(ngModel)]="pessoaEdit.termos" (onChange)="change($event)"></p-checkbox>
           <span> Ao clicar em Cadastre-se, você concorda com nossos 
-              <a (click)="newEntity()" style="color: blue"  aria-hidden="true" title="Termos" 
+              <a (click)="newEntity()" style="color: blue; text-decoration: underline"  aria-hidden="true" title="Termos" 
               data-toggle="modal" data-target="#Termos">Termos de Uso</a>
             <!-- <a (click)="openModal('custom-modal-2')">termos de uso</a>  -->
            </span>

@@ -29,10 +29,15 @@ export class CampanhaService extends CrudService<Campanha, number> {
     return this.http.get<Campanha[]>(url);
   }
 
-
+/*
   finalizarAnuncio(anuncio: Anuncio): Observable<boolean> {
     const url = `${this.getUrl()}/finalizarAnuncio/${anuncio.id}`;
     return this.http.get<boolean>(url);
 }
+ */
 
+finalizarAnuncio(): Observable<boolean> {
+  const url = `${this.getUrl()}/finalizarAnuncio/1`;
+  return this.http.get<boolean>(url);
+}
 }

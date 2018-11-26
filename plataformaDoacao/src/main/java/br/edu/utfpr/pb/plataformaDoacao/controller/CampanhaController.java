@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,11 +39,11 @@ public class CampanhaController  extends CrudController<Campanha, Long> {
 		return campanhaService.findByPessoaId(p.getId());
 	}
 	
-	@GetMapping("/finalizarAnuncio")
-	public findByIdCampanha(Campanha campanha) {
-		Campanha c = new Campanha();
-		c.setStatus(0);
-		return c;
+	@PostMapping("/finalizarAnuncio")
+	public String findByIdCampanha(Campanha campanha) {
+		campanha.setStatus(0);
+		return "redirect:/meusanuncios"; 
+		
 	}
 	
 	@GetMapping

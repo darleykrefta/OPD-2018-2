@@ -105,6 +105,7 @@ import {GalleriaModule} from 'primeng/galleria';
     PasswordModule,
     ReactiveFormsModule,
     GalleriaModule
+
   ],
   providers: [
     {

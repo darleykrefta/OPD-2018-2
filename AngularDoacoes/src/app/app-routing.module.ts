@@ -11,6 +11,7 @@ import { IndexComponent } from './index/index.component';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CategoriaComponent } from './categoria/categoria.component';
+import { AnuncioComponent } from './anuncio/anuncio.component';
 import { LoginComponent } from './login/login.component';
 import { MensagemComponent } from './mensagem/mensagem.component';
 
@@ -25,7 +26,9 @@ const routes: Routes = [
       {path: 'categoria', component: CategoriaComponent},
       {path: 'endereco', component: EnderecoComponent},
       {path: 'perfil', component: PerfilComponent},
-      {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent},
+      {path: 'cadastro', component: CadastroComponent},
+      {path: 'cadastroAnuncio', component: AnuncioComponent},
+      {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent}
     ]
   },
   {path: 'login', component: LoginComponent},

@@ -6,5 +6,6 @@ export class Endereco {
     numero: string;
     bairro: string;
     complemento: string;
+    index: number;
     cidade: Cidade;
 }

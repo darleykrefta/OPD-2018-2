@@ -35,5 +35,10 @@ export class EnderecoService extends CrudService<Endereco, number> {
     const url = `${this.getUrl()}/search/count?filter=${filter}`;
     return this.http.get<number>(url);
   }
+
+  findByCampanha(id: Number): Observable<Endereco[]> {
+    const url = `${this.getUrl()}/filter/enderecoCampanha?id=${id}`;
+    return this.http.get<Endereco[]>(url);
+  }
 }
 

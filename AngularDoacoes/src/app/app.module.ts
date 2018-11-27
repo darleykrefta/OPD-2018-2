@@ -28,7 +28,9 @@ import {MenuItem} from 'primeng/api';
 import {FieldsetModule} from 'primeng/fieldset';
 import {PasswordModule} from 'primeng/password';
 import {ContextMenuModule} from 'primeng/contextmenu';
+import {CarouselModule} from 'primeng/carousel';
 
+// Component-Service
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
@@ -43,6 +45,8 @@ import { CidadeComponent } from './cidade/cidade.component';
 import { CidadeService } from './cidade/cidade.service';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
+import { AnuncioComponent } from './anuncio/anuncio.component';
+import { AnuncioService } from './anuncio/anuncio.service';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { CadastroService } from './cadastro/cadastro.service';
 import { LoginComponent } from './login/login.component';
@@ -65,7 +69,7 @@ import { MensagemService } from './mensagem/mensagem.service';
     CategoriaComponent,
     EnderecoComponent,
     CidadeComponent,
-    VisualizarAnuncioComponent,
+    AnuncioComponent,
     PerfilComponent,
     VisualizarAnuncioComponent,
     MensagemComponent,
@@ -99,9 +103,11 @@ import { MensagemService } from './mensagem/mensagem.service';
     MenuModule,
     ContextMenuModule,
     FieldsetModule,
+    PasswordModule,
+    CarouselModule,
     RouterModule,
     PasswordModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
@@ -114,6 +120,7 @@ import { MensagemService } from './mensagem/mensagem.service';
     CidadeService,
     ConfirmationService,
     CategoriaService,
+    AnuncioService,
     CampanhaService,
     MensagemService,
     EnderecoService,

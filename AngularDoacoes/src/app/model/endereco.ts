@@ -1,3 +1,5 @@
+import { Cidade } from './cidade';
+
 export class Endereco {
     id: number;
     rua: string;
@@ -5,4 +7,5 @@ export class Endereco {
     bairro: string;
     complemento: string;
     index: number;
+    cidade: Cidade;
 }

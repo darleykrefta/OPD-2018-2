@@ -24,10 +24,10 @@ const routes: Routes = [
       {path: 'categoria', component: CategoriaComponent},
       {path: 'endereco', component: EnderecoComponent},
       {path: 'perfil', component: PerfilComponent},
+      {path: 'index', component: IndexComponent},
       {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent}
     ]
   },
-  {path: 'index', component: IndexComponent},
   {path: 'login', component: LoginComponent},
   {path: 'cadastroUsuario', component: CadastroComponent},
   {path: 'filter/:titulodescricao', component: IndexComponent},

@@ -13,11 +13,12 @@ import { CidadeComponent } from './cidade/cidade.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { LoginComponent } from './login/login.component';
 import { MensagemComponent } from './mensagem/mensagem.component';
+import { PermissaoComponent } from './permissao/permissao.component';
 
 const routes: Routes = [
 
   {
-      path: '', component: IndexComponent , canActivate: [LoginService], children: [
+      path: '', canActivate: [LoginService], children: [
       {path: 'pessoa', component: PessoaComponent},
       {path: 'cidade', component: CidadeComponent},
       {path: 'categoria', component: CategoriaComponent},
@@ -28,8 +29,9 @@ const routes: Routes = [
   },
   {path: 'login', component: LoginComponent},
   {path: 'cadastroUsuario', component: CadastroComponent},
-  {path: 'filter/:titulodescricao', component: IndexComponent}
-
+  {path: 'filter/:titulodescricao', component: IndexComponent},
+  {path: 'index', component: IndexComponent},
+  {path: 'permissao', component: PermissaoComponent}
 ];
 
 @NgModule({

@@ -54,6 +54,7 @@ import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anun
 import { RouterModule } from '@angular/router';
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { MensagemService } from './mensagem/mensagem.service';
+import { PermissaoComponent } from './permissao/permissao.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { MensagemService } from './mensagem/mensagem.service';
     MensagemComponent,
     CadastroComponent,
     LoginComponent,
-    PerfilComponent
+    PerfilComponent,
+    PermissaoComponent
 
   ],
   imports: [

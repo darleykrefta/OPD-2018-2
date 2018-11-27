@@ -3,6 +3,8 @@ package br.edu.utfpr.pb.plataformaDoacao.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import br.edu.utfpr.pb.plataformaDoacao.model.Cidade;
 import br.edu.utfpr.pb.plataformaDoacao.repository.CidadeRepository;
 import br.edu.utfpr.pb.plataformaDoacao.service.CidadeService;
+
 
 @Service
 public class CidadeServiceImpl extends CrudServiceImpl<Cidade, Long> implements CidadeService {
@@ -23,10 +26,21 @@ public class CidadeServiceImpl extends CrudServiceImpl<Cidade, Long> implements 
 		return cidadeRepository;
 	}
 
+//	@Override
+//	public List<Cidade> findByNomeLikeOrderByNomeDesc(String nome) {
+//		// TODO Auto-generated method stub
+//		return cidadeRepository.findByNomeLikeOrderByNomeDesc(nome);
+//	}
+	
 	@Override
-	public List<Cidade> findByNomeLikeOrderByNomeDesc(String nome) {
-		// TODO Auto-generated method stub
-		return cidadeRepository.findByNomeLikeOrderByNomeDesc(nome);
+	public Page<Cidade> findByNomeLike(String nome, Pageable pageable) {
+		
+		return cidadeRepository.findByNomeLike(nome, pageable);
+	}
+	
+	@Override
+	public long countByNomeLike(String nome) {
+		return cidadeRepository.countByNomeLike(nome);
 	}
 
 }

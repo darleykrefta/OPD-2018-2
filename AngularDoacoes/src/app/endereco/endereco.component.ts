@@ -1,3 +1,4 @@
+import { LoginService } from './../login/login.service';
 import { CidadeService } from './../cidade/cidade.service';
 import { Cidade } from './../model/cidade';
 import { TableModule } from 'primeng/table';
@@ -33,9 +34,8 @@ export class EnderecoComponent implements OnInit {
   @Output() respostaEndereco = new EventEmitter();
 
   constructor(private enderecoService: EnderecoService, private confirmationService: ConfirmationService,
-    private cidadeService: CidadeService) {
-      this.showDialog = false;
-     }
+    private cidadeService: CidadeService,
+    private loginService: LoginService) { }
 
   search(event) {
     this.cidadesFiltred = this.cidades.filter(
@@ -45,6 +45,8 @@ export class EnderecoComponent implements OnInit {
 
   ngOnInit() {
     this.findByCampanha(this.recebeAnuncioID);
+    this.loginService.verificaAdmin();
+    this.findAll();
     this.cidadeService.findAll().subscribe(e => this.cidades = e);
 
     this.cols = [
@@ -56,12 +58,36 @@ export class EnderecoComponent implements OnInit {
       { field: 'complemento', header: 'Complemento' },
       { field: 'cidade.nome', header: 'Cidade' }
     ];
-    this.newEntity();
+    this.enderecoEdit = new Endereco();
   }
 
   findByCampanha(anuncioID) {
     this.enderecoService.findByCampanha(anuncioID).subscribe(
       e => this.enderecos = e);
+  }
+
+  findAllPaged(page: number, size: number) {
+    this.enderecoService.count().subscribe(e => this.totalRecords = e);
+    this.enderecoService.findPageable(page, size).subscribe(e => this.enderecos = e.content);
+  }
+
+  findSearchPaged(filter: string, page: number, size: number) {
+    this.enderecoService.searchCount(filter).subscribe(e => this.totalRecords = e);
+    this.enderecoService.findSearchPageable(filter, page, size).subscribe(e => this.enderecos = e.content);
+  }
+
+  load(event: LazyLoadEvent) {
+    const currentPage = event.first / event.rows;
+    const maxRecords = event.rows;
+    if (event.globalFilter) {
+      setTimeout(() => {
+        this.findSearchPaged(event.globalFilter, currentPage, maxRecords);
+      }, 250);
+    } else {
+      setTimeout(() => {
+        this.findAllPaged(currentPage, maxRecords);
+      }, 250);
+    }
   }
 
   newEntity() {
@@ -130,25 +156,9 @@ export class EnderecoComponent implements OnInit {
     });
   }
 
-  loadLazy(event: LazyLoadEvent) {
-    this.currentPage = event.first / event.rows;
-    this.maxRecords = event.rows;
-    console.log(event.globalFilter);
-    if (event.globalFilter == null) {
-      setTimeout(() => {
-        this.findAllPaged(this.currentPage, this.maxRecords);
-      }, 250);
-    } else {
-      setTimeout(() => {
-        this.enderecoService.findEndereco(event.globalFilter);
-      }, 250);
-    }
-  }
 
-  findAllPaged(page: number, size: number) {
-    this.enderecoService.count().subscribe(e => this.totalRecords = e);
-    this.enderecoService.findPageable(page, size).subscribe(e => this.enderecos = e.content);
-  }
+
+
 
   getRandomInt(min, max) {
     min = Math.ceil(min);

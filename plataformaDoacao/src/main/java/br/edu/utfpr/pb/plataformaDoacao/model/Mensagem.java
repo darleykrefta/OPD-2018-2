@@ -45,10 +45,9 @@ public class Mensagem implements Serializable {
 	@Column(name = "Mensagem", length=666, nullable = false)
 	private String mensagem;
 	
-	@Column(name = "DataHora", nullable = false)
+	@Column(name = "DataHora")
 	private LocalDateTime dataHora;
 	
-	@Column(name = "Anonimo", nullable = false)
-	private Integer anonimo;
+
 
 }

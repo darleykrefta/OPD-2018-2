@@ -1,7 +1,9 @@
+
+
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule, LOCALE_ID} from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Imports PrimeNG
 import {TableModule} from 'primeng/table';
@@ -52,6 +54,11 @@ import { LoginService } from './login/login.service';
 import { Campanha } from './interface/Campanha';
 import { CampanhaService } from './campanha/campanha.service';
 import { PerfilComponent } from './perfil/perfil.component';
+import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anuncio.component';
+import { RouterModule } from '@angular/router';
+import { MensagemComponent } from './mensagem/mensagem.component';
+import { MensagemService } from './mensagem/mensagem.service';
+
 
 @NgModule({
   declarations: [
@@ -63,9 +70,13 @@ import { PerfilComponent } from './perfil/perfil.component';
     EnderecoComponent,
     CidadeComponent,
     AnuncioComponent,
+    PerfilComponent,
+    VisualizarAnuncioComponent,
+    MensagemComponent,
     CadastroComponent,
     LoginComponent,
     PerfilComponent
+
   ],
   imports: [
     BrowserModule,
@@ -93,7 +104,10 @@ import { PerfilComponent } from './perfil/perfil.component';
     ContextMenuModule,
     FieldsetModule,
     PasswordModule,
-    CarouselModule
+    CarouselModule,
+    RouterModule,
+    PasswordModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
@@ -103,14 +117,16 @@ import { PerfilComponent } from './perfil/perfil.component';
     },
     ConfirmationService,
     PessoaService,
-    EnderecoService,
     CidadeService,
     ConfirmationService,
     CategoriaService,
     AnuncioService,
     CampanhaService,
+    MensagemService,
+    EnderecoService,
     CadastroService,
     LoginService
+
   ],
   bootstrap: [AppComponent]
 })

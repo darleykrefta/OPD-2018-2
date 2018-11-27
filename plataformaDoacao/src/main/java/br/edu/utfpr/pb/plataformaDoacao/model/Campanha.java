@@ -12,10 +12,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -25,6 +27,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @EqualsAndHashCode(of = { "id" })
 @ToString
+@Data
 public class Campanha implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -73,11 +76,7 @@ public class Campanha implements Serializable {
 	@JoinColumn(name = "Id_Categoria", referencedColumnName = "Id_Categoria")
 	private Categoria categoria;
 	
-	@OneToMany(
-			targetEntity = Endereco.class,
-            fetch = FetchType.EAGER,
-			cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "Id_Endereco") 
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Endereco> endereco; 
 	
 }

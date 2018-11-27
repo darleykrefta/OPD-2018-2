@@ -1,3 +1,6 @@
+<p-confirmDialog></p-confirmDialog>
+  <p-growl [(value)]="msgs"></p-growl>
+  
 <div class="ui-g">
   <div class="ui-g-12 ui-md-3">
       <h3 style="font-weight:normal">Buscar</h3>
@@ -59,7 +62,7 @@
                       <button pButton type="button" icon="pi pi-search" (click)="selectCampanha($event, campanha)"
                           style="margin-top:0"data-toggle="tooltip"
                           title="Visualizar Anúncio"></button>
-                      <button pButton type="button" icon="fa fa-check" (click) ="setFinalizado($event, campanha)"
+                      <button pButton type="button" icon="fa fa-check" class="btn btn-danger" (click) ="setFinalizado($event, campanha)"
                        style="margin-top:0" data-toggle="tooltip"
                       title="Finalizar Anúncio"></button>
                   </p-panel>

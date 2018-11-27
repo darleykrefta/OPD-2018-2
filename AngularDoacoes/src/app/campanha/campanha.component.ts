@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataView } from 'primeng/dataview';
 import { CampanhaService } from '../campanha/campanha.service';
 import { Campanha } from '../interface/Campanha';
-import { LazyLoadEvent, Message } from 'primeng/api';
+import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
 import { CategoriaService } from '../categoria/categoria.service';
 import { CidadeService } from '../cidade/cidade.service';
 import { Cidade } from '../model/cidade';
@@ -28,7 +28,8 @@ export class CampanhaComponent implements OnInit {
 
   constructor(private campanhaService: CampanhaService,
     private cidadeService: CidadeService,
-    private categoriaService: CategoriaService) { }
+    private categoriaService: CategoriaService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
     this.cidadeService.findAll().subscribe(e => this.cidades = e);
@@ -61,9 +62,35 @@ export class CampanhaComponent implements OnInit {
   findAll() {
     this.campanhaService.findAll().subscribe(e => this.campanhas = e);
   }
-
+/*
   setFinalizado(e, campanha) {
+    this.campanhaService.finalizarAnuncio(campanha.id).subscribe(e);
     console.log('id' + campanha.id);
     console.log('id' + campanha.descricao);
+  }
+*/
+  setFinalizado(e, campanha) {
+    console.log(campanha.id);
+    this.confirmationService.confirm({
+      message: 'Essa ação não pode ser desfeita.',
+      header: 'Deseja finalizar esse Anúncio?',
+      acceptLabel: 'Confirmar',
+      rejectLabel: 'Cancelar',
+      accept: () => {
+        this.campanhaService.finalizarAnuncio(campanha.id).subscribe(() => {
+          this.msgs = [{
+            severity: 'sucess',
+            summary: 'Finalizado',
+            detail: 'Anúncio finalizado com sucesso.'
+          }];
+        }, error => {
+          this.msgs = [{
+            severity: 'error',
+            summary: 'Erro',
+            detail: 'Falha ao finalizar Anúncio.'
+          }];
+        });
+      }
+    });
   }
 }

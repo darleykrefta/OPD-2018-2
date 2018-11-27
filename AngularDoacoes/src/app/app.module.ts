@@ -1,7 +1,9 @@
+
+
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule, LOCALE_ID} from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Imports PrimeNG
 import {TableModule} from 'primeng/table';
@@ -26,7 +28,9 @@ import {MenuItem} from 'primeng/api';
 import {FieldsetModule} from 'primeng/fieldset';
 import {PasswordModule} from 'primeng/password';
 import {ContextMenuModule} from 'primeng/contextmenu';
+import {CarouselModule} from 'primeng/carousel';
 
+// Component-Service
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
@@ -41,6 +45,8 @@ import { CidadeComponent } from './cidade/cidade.component';
 import { CidadeService } from './cidade/cidade.service';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
+import { AnuncioComponent } from './anuncio/anuncio.component';
+import { AnuncioService } from './anuncio/anuncio.service';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { CadastroService } from './cadastro/cadastro.service';
 import { LoginComponent } from './login/login.component';
@@ -50,6 +56,10 @@ import { CampanhaService } from './campanha/campanha.service';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AnuncioComponent } from './anuncio/anuncio.component';
 import { CampanhaComponent } from './campanha/campanha.component';
+import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anuncio.component';
+import { RouterModule } from '@angular/router';
+import { MensagemComponent } from './mensagem/mensagem.component';
+import { MensagemService } from './mensagem/mensagem.service';
 
 @NgModule({
   declarations: [
@@ -60,11 +70,13 @@ import { CampanhaComponent } from './campanha/campanha.component';
     CategoriaComponent,
     EnderecoComponent,
     CidadeComponent,
+    VisualizarAnuncioComponent,
+    MensagemComponent,
     CadastroComponent,
     LoginComponent,
-    PerfilComponent,
     AnuncioComponent,
-    CampanhaComponent
+    CampanhaComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +103,11 @@ import { CampanhaComponent } from './campanha/campanha.component';
     MenuModule,
     ContextMenuModule,
     FieldsetModule,
-    PasswordModule
+    PasswordModule,
+    CarouselModule,
+    RouterModule,
+    PasswordModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
@@ -101,13 +117,16 @@ import { CampanhaComponent } from './campanha/campanha.component';
     },
     ConfirmationService,
     PessoaService,
-    EnderecoService,
     CidadeService,
     ConfirmationService,
     CategoriaService,
+    AnuncioService,
     CampanhaService,
+    MensagemService,
+    EnderecoService,
     CadastroService,
     LoginService
+
   ],
   bootstrap: [AppComponent]
 })

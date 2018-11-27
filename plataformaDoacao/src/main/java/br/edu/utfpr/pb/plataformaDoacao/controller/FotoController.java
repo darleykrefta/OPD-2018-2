@@ -20,6 +20,4 @@ public class FotoController  extends CrudController<Foto, Long> {
 		return fotoService;
 	}
 	
-	
-	
 }

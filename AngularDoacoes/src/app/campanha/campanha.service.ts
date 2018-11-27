@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Campanha } from '../interface/Campanha';
+import { Campanha } from '../model/campanha';
 import { CrudService } from '../generic/crud.service';
 import { environment } from '../../environments/environment';
 import { Page } from '../generic/page';

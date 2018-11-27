@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { LoginService } from './../login/login.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +11,7 @@ export class MenuComponent implements OnInit {
 
   items: MenuItem[];
 
-  constructor() { }
+  constructor(private loginService: LoginService) {  }
 
   ngOnInit() {
     this.items = [{
@@ -20,7 +21,11 @@ export class MenuComponent implements OnInit {
           {label: 'Sugestões', icon: 'pi pi-fw pi-download'},
           {label: 'Sair', icon: 'pi pi-fw pi-download'}
       ]
-  }];
+    }];
   }
+
+
+
+
 
 }

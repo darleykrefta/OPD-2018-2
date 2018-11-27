@@ -4,9 +4,9 @@ import { PessoaService } from './pessoa.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {DataTable} from 'primeng/components/datatable/datatable';
 import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
+import { LoginService } from '../login/login.service';
 import { Endereco } from '../model/endereco';
 import { EnderecoService } from '../endereco/endereco.service';
-
 
 
 @Component({
@@ -35,10 +35,12 @@ export class PessoaComponent implements OnInit {
   today: number = Date.now();
 
   constructor(private pessoaService: PessoaService,
-     private confirmationService: ConfirmationService,
-     private enderecoService: EnderecoService) { }
+    private confirmationService: ConfirmationService,
+     private enderecoService: EnderecoService,
+     private loginService: LoginService) { }
 
   ngOnInit() {
+    this.loginService.verificaAdmin();
     this.enderecoService.findAll().subscribe(
       e => this.enderecos = e);
       this.cols = [
@@ -52,6 +54,7 @@ export class PessoaComponent implements OnInit {
         {field: 'status', header: 'Status'},
         {field: 'endereco.id', header: 'Endereço'},
       ];
+
   }
 
   findAllPaged(page: number, size: number) {

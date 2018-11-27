@@ -1,5 +1,6 @@
+import { LoginService } from './../login/login.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {DataTable} from 'primeng/components/datatable/datatable';
+import { DataTable } from 'primeng/components/datatable/datatable';
 import { CidadeService } from './cidade.service';
 import { Cidade } from '../model/cidade';
 import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
@@ -21,14 +22,17 @@ export class CidadeComponent implements OnInit {
   msgs: Message[] = [];
 
   constructor(private cidadeService: CidadeService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService,
+    private loginService: LoginService) { }
 
   ngOnInit() {
+    this.loginService.verificaAdmin();
     this.cols = [
       { field: 'id', header: 'Código' },
       { field: 'nome', header: 'Nome' },
       { field: 'sigla', header: 'Sigla' },
     ];
+
   }
 
   findAllPaged(page: number, size: number) {
@@ -72,23 +76,23 @@ export class CidadeComponent implements OnInit {
 
   save() {
     this.cidadeService.save(this.cidadeEdit).
-    subscribe(e => {
-      this.cidadeEdit = new Cidade();
-      this.dataTable.reset();
-      this.showDialog = false;
-      this.msgs = [{
-        severity: 'success',
-        summary: 'Confirmado',
-        detail: 'Registro salvo com sucesso'
-      }];
-    }, error => {
-      this.msgs = [{
-        severity: 'error',
-        summary: 'Erro',
-        detail: 'Certifique-se de preencher todos dos campos.'
-      }];
-    }
-    );
+      subscribe(e => {
+        this.cidadeEdit = new Cidade();
+        this.dataTable.reset();
+        this.showDialog = false;
+        this.msgs = [{
+          severity: 'success',
+          summary: 'Confirmado',
+          detail: 'Registro salvo com sucesso'
+        }];
+      }, error => {
+        this.msgs = [{
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Certifique-se de preencher todos dos campos.'
+        }];
+      }
+      );
   }
 
   edit(cidade: Cidade) {

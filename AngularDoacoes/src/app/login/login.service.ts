@@ -42,6 +42,11 @@ export class LoginService implements CanActivate {
     return false;
 
   }
+  verificaAdmin() {
+    if (!this.hasRole('ADMIN')) {
+      this.router.navigate(['/login']);
+    }
+  }
 
   loggout() {
     Object.keys(new AccessToken()).forEach(key => localStorage.removeItem(key));

@@ -18,7 +18,6 @@ export class IndexComponent implements OnInit {
   @ViewChild('dv') DataView: DataView;
 
   campanhas: Campanha[];
-
   campanha: Campanha;
   campanhasFiltered: Campanha[];
   totalRecords: number;

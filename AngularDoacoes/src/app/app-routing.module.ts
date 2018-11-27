@@ -17,20 +17,17 @@ import { MensagemComponent } from './mensagem/mensagem.component';
 const routes: Routes = [
 
   {
-      path: '', canActivate: [LoginService], children: [
+      path: '', component: IndexComponent , canActivate: [LoginService], children: [
       {path: 'pessoa', component: PessoaComponent},
       {path: 'cidade', component: CidadeComponent},
       {path: 'categoria', component: CategoriaComponent},
       {path: 'endereco', component: EnderecoComponent},
       {path: 'perfil', component: PerfilComponent},
-      {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent},
-      
-
+      {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent}
     ]
   },
   {path: 'login', component: LoginComponent},
   {path: 'cadastroUsuario', component: CadastroComponent},
-  {path: 'index', component: IndexComponent},
   {path: 'filter/:titulodescricao', component: IndexComponent}
 
 ];

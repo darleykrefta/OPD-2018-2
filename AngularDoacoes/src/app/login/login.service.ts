@@ -44,7 +44,7 @@ export class LoginService implements CanActivate {
   }
   verificaAdmin() {
     if (!this.hasRole('ADMIN')) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/permissao']);
     }
   }
 

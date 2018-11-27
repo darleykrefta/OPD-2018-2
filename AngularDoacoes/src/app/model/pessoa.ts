@@ -1,4 +1,3 @@
-
 import { Endereco } from "./endereco";
 
 export class Pessoa {

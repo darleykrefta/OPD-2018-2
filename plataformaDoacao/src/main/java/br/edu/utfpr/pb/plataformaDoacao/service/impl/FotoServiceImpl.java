@@ -1,5 +1,7 @@
 package br.edu.utfpr.pb.plataformaDoacao.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,11 @@ public class FotoServiceImpl extends CrudServiceImpl <Foto, Long> implements Fot
 	protected JpaRepository<Foto, Long> getRepository() {
 		// TODO Auto-generated method stub
 		return fotoRepository;
+	}
+
+	@Override
+	public List<Foto> findByCampanhaId(Long id) {
+		return fotoRepository.findByCampanhaId(id);
 	}
 
 }

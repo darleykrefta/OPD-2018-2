@@ -1,11 +1,13 @@
+import { LoginService } from './../login/login.service';
 import { CidadeService } from './../cidade/cidade.service';
 import { Cidade } from './../model/cidade';
 import { TableModule } from 'primeng/table';
 import { Endereco } from './../model/endereco';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output } from '@angular/core';
 import { EnderecoService } from './endereco.service';
 import { DataTable } from 'primeng/components/datatable/datatable';
 import { Message, ConfirmationService, LazyLoadEvent } from 'primeng/api';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-endereco',
@@ -27,9 +29,13 @@ export class EnderecoComponent implements OnInit {
   cidadesFiltred: Cidade[];
   cols: any[];
 
-  constructor(private enderecoService: EnderecoService, private confirmationService: ConfirmationService,
-    private cidadeService: CidadeService) { }
+  @Input() recebeAnuncioID;
 
+  @Output() respostaEndereco = new EventEmitter();
+
+  constructor(private enderecoService: EnderecoService, private confirmationService: ConfirmationService,
+    private cidadeService: CidadeService,
+    private loginService: LoginService) { }
 
   search(event) {
     this.cidadesFiltred = this.cidades.filter(
@@ -38,6 +44,8 @@ export class EnderecoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.findByCampanha(this.recebeAnuncioID);
+    this.loginService.verificaAdmin();
     this.findAll();
     this.cidadeService.findAll().subscribe(e => this.cidades = e);
 
@@ -50,10 +58,11 @@ export class EnderecoComponent implements OnInit {
       { field: 'complemento', header: 'Complemento' },
       { field: 'cidade.nome', header: 'Cidade' }
     ];
+    this.enderecoEdit = new Endereco();
   }
 
-  findAll() {
-    this.enderecoService.findAll().subscribe(
+  findByCampanha(anuncioID) {
+    this.enderecoService.findByCampanha(anuncioID).subscribe(
       e => this.enderecos = e);
   }
 
@@ -91,28 +100,41 @@ export class EnderecoComponent implements OnInit {
   }
 
   save() {
-    this.enderecoService.save(this.enderecoEdit).
-      subscribe(e => {
-        this.enderecoEdit = new Endereco();
-        this.findAll();
-        this.showDialog = false;
-        this.msgs = [{
-          severity: 'success',
-          summary: 'Confirmado',
-          detail: 'Registro salvo com sucesso'
-        }];
-      }, error => {
-        this.msgs = [{
-          severity: 'error',
-          summary: 'Erro',
-          detail: 'Certifique-se de preencher todos dos campos.'
-        }];
+    if (this.enderecoEdit.index > 0) {
+      const enderecoAux: Endereco = Object.assign({}, this.enderecoEdit);
+
+      let indexDelete = -1;
+
+      this.enderecos.forEach( (item, index) => {
+        if (this.enderecoEdit.index === item.index) {
+          indexDelete = index;
+        }
+      });
+
+      if (indexDelete !== -1) {
+        this.enderecos.splice(indexDelete, 1);
       }
-      );
+
+      this.enderecos.push(enderecoAux);
+      this.msgs = [{
+        severity: 'success',
+        summary: 'Confirmado',
+        detail: 'Registro alterado com sucesso'
+      }];
+    } else {
+      this.enderecoEdit.index = this.getRandomInt(1, 10000);
+      this.enderecos.push(this.enderecoEdit);
+      this.msgs = [{
+        severity: 'success',
+        summary: 'Confirmado',
+        detail: 'Registro salvo com sucesso'
+      }];
+    }
+    this.respostaEndereco.emit(this.enderecos);
+    this.showDialog = false;
   }
 
   edit(endereco: Endereco) {
-    // this.enderecoEdit = endereco;
     this.enderecoEdit = Object.assign({}, endereco);
     this.showDialog = true;
   }
@@ -124,21 +146,12 @@ export class EnderecoComponent implements OnInit {
       acceptLabel: 'Confirmar',
       rejectLabel: 'Cancelar',
       accept: () => {
-        this.enderecoService.delete(endereco.id).subscribe(() => {
-          this.findAll();
-          this.msgs = [{
-            severity: 'success',
-            summary: 'Confirmado',
-            detail: 'Registro removido com sucesso'
-          }];
-        }, error => {
-          this.msgs = [{
-            severity: 'error',
-            summary: 'Erro',
-            detail: 'Certifique-se de preencher todos dos campos.'
-          }];
-        });
-
+        this.enderecos.splice(this.enderecos.indexOf(endereco), 1);
+        this.msgs = [{
+          severity: 'success',
+          summary: 'Confirmado',
+          detail: 'Registro removido com sucesso'
+        }];
       }
     });
   }
@@ -147,5 +160,10 @@ export class EnderecoComponent implements OnInit {
 
 
 
+  getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
 
 }

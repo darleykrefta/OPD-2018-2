@@ -6,7 +6,8 @@ import { Campanha } from '../model/campanha';
 import { AnuncioService } from './anuncio.service';
 import { CategoriaService } from './../categoria/categoria.service';
 import { Categoria } from './../model/categoria';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { EnderecoComponent } from '../endereco/endereco.component';
 
 @Component({
   selector: 'app-anuncio',
@@ -14,6 +15,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./anuncio.component.css']
 })
 export class AnuncioComponent implements OnInit {
+
+  @ViewChild('dtEndereco') enderecoCp: EnderecoComponent;
 
   campanhaEdit: Campanha = new Campanha();
   categorias: Categoria[];
@@ -26,12 +29,13 @@ export class AnuncioComponent implements OnInit {
   constructor(private anuncioService: AnuncioService,
     private confirmationService: ConfirmationService,
     private categoriaService: CategoriaService,
-    private enderecoService: EnderecoService) { }
+    private enderecoService: EnderecoService) {}
 
   ngOnInit() {
+
     this.categoriaService.findAll().subscribe(
       e => this.categorias = e);
-      this.newEntity();
+    this.newEntity();
   }
 
   newEntity() {
@@ -44,6 +48,8 @@ export class AnuncioComponent implements OnInit {
     this.campanhaEdit.status = 1;
     this.anuncioService.save(this.campanhaEdit).
       subscribe(e => {
+        this.enderecos = [];
+        this.enderecoCp.enderecos = [];
         this.campanhaEdit = new Campanha();
         this.msgs = [{
           severity: 'success',
@@ -67,9 +73,11 @@ export class AnuncioComponent implements OnInit {
     for (const file of event.files) {
       this.uploadFiles.push(file);
     }
-    this.msgs = [{severity : 'info',
-                  summary: 'Arquivo salvo!',
-         detail: 'Arquivo salvo com sucesso' }];
+    this.msgs = [{
+      severity: 'info',
+      summary: 'Arquivo salvo!',
+      detail: 'Arquivo salvo com sucesso'
+    }];
     this.uploadFiles = [];
   }
 

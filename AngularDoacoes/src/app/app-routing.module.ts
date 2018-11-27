@@ -17,7 +17,7 @@ import { MensagemComponent } from './mensagem/mensagem.component';
 const routes: Routes = [
 
   {
-      path: '', component: IndexComponent , canActivate: [LoginService], children: [
+      path: '', canActivate: [LoginService], children: [
       {path: 'pessoa', component: PessoaComponent},
       {path: 'cidade', component: CidadeComponent},
       {path: 'categoria', component: CategoriaComponent},
@@ -26,6 +26,7 @@ const routes: Routes = [
       {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent}
     ]
   },
+  {path: 'index', component: IndexComponent},
   {path: 'login', component: LoginComponent},
   {path: 'cadastroUsuario', component: CadastroComponent},
   {path: 'filter/:titulodescricao', component: IndexComponent}

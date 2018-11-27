@@ -16,11 +16,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		http
 			.authorizeRequests()
 			.antMatchers("/pessoa/**").hasAnyRole("ADMIN")
-			.antMatchers("/cidade/**").hasAnyRole("ADMIN")
-			.antMatchers("/categoria/**").hasAnyRole("ADMIN")
 			.antMatchers("/endereco/**").hasAnyRole("ADMIN")
 			.antMatchers("/perfil/**").hasAnyRole("ADMIN,USER")
-			.antMatchers("/**").authenticated()
 			.anyRequest().permitAll();
 	}
 }

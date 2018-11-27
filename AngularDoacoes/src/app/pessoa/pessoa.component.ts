@@ -50,7 +50,7 @@ export class PessoaComponent implements OnInit {
         {field: 'telefone', header: 'Telefone'},
         {field: 'celular', header: 'Celular'},
         {field: 'status', header: 'Status'},
-        {field: 'endereco.id', header: 'Endereço'},
+        // {field: 'endereco.id', header: 'Endereço'},
       ];
   }
 

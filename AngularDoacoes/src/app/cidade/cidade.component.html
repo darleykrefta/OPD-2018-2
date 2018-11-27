@@ -6,17 +6,17 @@
   </button>
 
   <p-table #tbCidades [value]="cidades" [lazy]="true" [rows]="5" [paginator]="true" [rowsPerPageOptions]="[5,10,15,20,50]"
-    [totalRecords]="totalRecords" (onLazyLoad)="load($event)">
+    [totalRecords]="totalRecords" (onLazyLoad)="load($event)" [columns]="cols">
 
     <!--aqui seria o filtro global, mas não está funcionando ainda-->
     <ng-template pTemplate="caption">
-      <div style="text-align: right">        
+      <div style="text-align: right">
           <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
           <input type="text" pInputText size="50" placeholder="Filtrar" (input)="tbCidades.filterGlobal($event.target.value, 'contains')" style="width:auto">
       </div>
-      
+
   </ng-template>
-    <ng-template pTemplate="header" let-columns> 
+    <ng-template pTemplate="header" let-columns>
       <tr>
         <th>Código</th>
         <th>Nome</th>

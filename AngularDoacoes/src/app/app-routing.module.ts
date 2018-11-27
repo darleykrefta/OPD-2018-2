@@ -1,3 +1,5 @@
+
+import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anuncio.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { LoginService } from './login/login.service';
@@ -10,8 +12,10 @@ import { PessoaComponent } from './pessoa/pessoa.component';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { LoginComponent } from './login/login.component';
+import { MensagemComponent } from './mensagem/mensagem.component';
 
 const routes: Routes = [
+
   {
       path: '', canActivate: [LoginService], children: [
       {path: '', component: IndexComponent},
@@ -19,13 +23,16 @@ const routes: Routes = [
       {path: 'perfil', component: PerfilComponent},
       {path: 'cidade', component: CidadeComponent},
       {path: 'categoria', component: CategoriaComponent},
-      {path: 'endereco', component: EnderecoComponent}
+      {path: 'endereco', component: EnderecoComponent},
+      {path: 'perfil', component: PerfilComponent},
+      {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent},
     ]
   },
   {path: 'login', component: LoginComponent},
   {path: 'cadastroUsuario', component: CadastroComponent},
   {path: 'index', component: IndexComponent}, 
   {path: 'filter/:titulodescricao', component: IndexComponent}
+
 ];
 
 @NgModule({

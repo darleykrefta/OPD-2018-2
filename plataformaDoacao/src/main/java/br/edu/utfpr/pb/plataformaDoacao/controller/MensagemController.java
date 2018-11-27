@@ -13,12 +13,13 @@ import br.edu.utfpr.pb.plataformaDoacao.service.MensagemService;
 public class MensagemController  extends CrudController<Mensagem, Long> {
 
 	@Autowired
-	private MensagemService mensgaemService;
+	private MensagemService mensagemService;
 
 	@Override
 	protected CrudService<Mensagem, Long> getService() {
-		return mensgaemService;
+		return mensagemService;
 	}
+	
 	
 	
 	

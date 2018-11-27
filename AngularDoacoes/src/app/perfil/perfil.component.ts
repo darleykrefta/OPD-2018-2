@@ -22,6 +22,7 @@ export class PerfilComponent implements OnInit {
   constructor(private loginService: LoginService, private pessoaService: PessoaService) { }
 
   ngOnInit() {
+    this.loginService.verificaAdmin();
     const a = this.loginService.getUserInfo();
     this.pessoa = a.principal;
     console.log('Testando' + this.pessoa.nome);

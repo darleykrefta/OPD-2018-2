@@ -1,5 +1,4 @@
 export class Page<T>{
-
     totalElements;
     content: T[];
     totalPages: number;

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,9 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.edu.utfpr.pb.plataformaDoacao.model.Cidade;
+import br.edu.utfpr.pb.plataformaDoacao.model.Permissao;
 import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
+import br.edu.utfpr.pb.plataformaDoacao.repository.PermissaoRepository;
 import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
 import br.edu.utfpr.pb.plataformaDoacao.service.PessoaService;
+
 
 
 @RestController
@@ -34,15 +38,46 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 
 	@Autowired
 	private PessoaService pessoaService;
+	@Autowired
+	private PermissaoRepository permissaoRepository;
+	
 
 	@Override
 	protected CrudService<Pessoa, Long> getService() {
 		return pessoaService;
 	}
 
+	@GetMapping("search")
+	public Page<Pessoa> findByNomeLike(
+			@RequestParam String filter,
+			@RequestParam int page,
+			@RequestParam int size,
+			@RequestParam(required = false) String order,
+			@RequestParam(required = false) Boolean asc){
+			PageRequest pageRequest = 
+					PageRequest.of(page, size);
+			if (order != null && asc != null) {
+				PageRequest.of(page, size, 
+						asc ? Sort.Direction.ASC :
+							Sort.Direction.DESC, 
+							order);
+			}
+		return pessoaService
+				.findByNomeLikeOrCpfCnpjLike("%" + filter + "%", "%" + filter + "%", pageRequest);
+	}
+	
+	@GetMapping("search/count")
+	public long findByNomeLike(
+			@RequestParam String filter) {
+		
+		return pessoaService
+				.countByNomeLikeOrCpfCnpjLike("%" + filter + "%", "%" + filter + "%");
+    	}
+  
 	@Override
 	public Pessoa save(@RequestBody @Valid Pessoa entity) {
 		pessoaService.criptografarSenha(entity);
+		entity.addPermissao(permissaoRepository.findByNome("ROLE_USER"));
 		return super.save(entity);
 	}
 	

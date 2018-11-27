@@ -27,9 +27,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @Entity
@@ -49,8 +47,8 @@ public class Pessoa implements Serializable, UserDetails {
 	@Column(name = "Id_Pessoa")
 	private Long id;
 
-	@Column(name = "CPF_CNPJ", length = 14, nullable = false)
-	private String cpf_cnpj;
+	@Column(name = "CpfCnpj", length = 14, nullable = false)
+	private String cpfCnpj;
 
 	@Column(name = "Nome", length = 60, nullable = false)
 	private String nome;
@@ -60,20 +58,20 @@ public class Pessoa implements Serializable, UserDetails {
 
 	@Column(name = "Senha", length = 60, nullable = false)
 	private String senha;
-
+ 
 	@Column(name = "Apelido", length = 60, nullable = false)
 	private String apelido;
 
 	@Column(name = "Telefone", length = 12, nullable = false)
 	private String telefone;
 
-	@Column(name = "Celular", length = 12, nullable = true)
+	@Column(name = "Celular", length = 12, nullable = false)
 	private String celular;
 
-	@Column(name = "Foto", length = 666, nullable = true)
+	@Column()
 	private String foto;
 
-	@Column(name = "Status", length = 60, nullable = false)
+	@Column(name = "Status", length = 60, nullable = true)
 	private Boolean status;
 
 	@ManyToOne

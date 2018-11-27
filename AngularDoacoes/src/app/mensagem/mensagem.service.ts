@@ -14,7 +14,7 @@ export class MensagemService extends CrudService<Mensagem, number> {
   }
 
   getComments(campanhaId: number): Observable<Mensagem[]> {
-    const url = `${this.getUrl()}?campanhaId=${campanhaId}`;
+    const url = `${this.getUrl()}/visualizaranuncio/${campanhaId}`;
     return this.http.get<Mensagem[]>(url);
   }
 

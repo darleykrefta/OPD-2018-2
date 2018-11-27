@@ -40,10 +40,6 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 		return campanhaService;
 	}
 
-	@GetMapping("visualizaranuncio")
-	public List<Mensagem> procurarMensagens(@RequestParam Long campanhaId) {
-		return mensagemService.findByCampanhaId(campanhaId);
-	}
 	
 	@GetMapping
 	public List<Campanha> findAll(){

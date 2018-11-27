@@ -18,7 +18,6 @@ const routes: Routes = [
 
   {
       path: '', canActivate: [LoginService], children: [
-      {path: 'pessoa', component: PessoaComponent},
       {path: 'cidade', component: CidadeComponent},
       {path: 'categoria', component: CategoriaComponent},
       {path: 'endereco', component: EnderecoComponent},
@@ -30,6 +29,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'cadastroUsuario', component: CadastroComponent},
   {path: 'index', component: IndexComponent},
+  {path: 'pessoa', component: PessoaComponent},
   {path: 'filter/:titulodescricao', component: IndexComponent}
 ];
 

@@ -4,9 +4,9 @@
             <p-panel>
               <div class="row">
                 <div  class="col-lg-8">   
-                                  
-                    <p-galleria [images]="images" panelWidth="" panelHeight="313" [showCaption]="true"></p-galleria>
-
+                        <div *ngFor="let campanha of campanhas">
+                            <p-galleria [src]='campanha.foto' panelWidth="500" panelHeight="313" [showCaption]="true"></p-galleria>
+                        </div>                    
                     <br>
                     <div>
                         <a>Categoria:</a> {{campanha.categoria.nome}}

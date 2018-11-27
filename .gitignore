@@ -38,3 +38,9 @@ plataformaDoacao/.metadata/version.ini
 plataformaDoacao/.metadata/*
 plataformaDoacao/src/main/resources/application.properties
 plataformaDoacao/src/main/resources/application.properties
+AngularDoacoes/src/app/anuncio/anuncio.component.ts
+AngularDoacoes/src/app/app-routing.module.ts
+AngularDoacoes/src/app/index/index.component.html
+plataformaDoacao/src/main/java/br/edu/utfpr/pb/plataformaDoacao/controller/CrudController.java
+plataformaDoacao/src/main/java/br/edu/utfpr/pb/plataformaDoacao/model/Campanha.java
+plataformaDoacao/src/main/resources/application.properties

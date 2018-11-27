@@ -56,7 +56,7 @@ export class EnderecoComponent implements OnInit {
       { field: 'complemento', header: 'Complemento' },
       { field: 'cidade.nome', header: 'Cidade' }
     ];
-    this.newEntity();
+    this.enderecoEdit = new Endereco();
   }
 
   findByCampanha(anuncioID) {

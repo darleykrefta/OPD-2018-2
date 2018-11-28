@@ -50,7 +50,7 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 	protected CrudService<Campanha, Long> getService() {
 		return campanhaService;
 	}
-	
+
 	@GetMapping("filter/meusanuncios")
 	public List<Campanha> findByPessoaId(Principal principal){
 		Pessoa p = (Pessoa)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

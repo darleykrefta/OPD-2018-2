@@ -37,7 +37,6 @@ import { IndexComponent } from './index/index.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientInterceptor } from './http-client.interceptor';
-import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaService } from './pessoa/pessoa.service';
 import { EnderecoComponent } from './endereco/endereco.component';
 import { EnderecoService } from './endereco/endereco.service';
@@ -53,13 +52,17 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 import { Campanha } from './interface/Campanha';
 import { CampanhaService } from './campanha/campanha.service';
-import { PerfilComponent } from './perfil/perfil.component';
 import { AnuncioComponent } from './anuncio/anuncio.component';
 import { CampanhaComponent } from './campanha/campanha.component';
 import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anuncio.component';
 import { RouterModule } from '@angular/router';
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { MensagemService } from './mensagem/mensagem.service';
+import {GalleriaModule} from 'primeng/galleria';
+import { PessoaComponent } from './pessoa/pessoa.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { FotoComponent } from './foto/foto.component';
+import { FotoService } from './foto/foto.service';
 
 @NgModule({
   declarations: [
@@ -74,6 +77,7 @@ import { MensagemService } from './mensagem/mensagem.service';
     MensagemComponent,
     CadastroComponent,
     LoginComponent,
+    FotoComponent,
     AnuncioComponent,
     CampanhaComponent,
     PerfilComponent
@@ -107,7 +111,9 @@ import { MensagemService } from './mensagem/mensagem.service';
     CarouselModule,
     RouterModule,
     PasswordModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GalleriaModule
+
   ],
   providers: [
     {
@@ -125,7 +131,8 @@ import { MensagemService } from './mensagem/mensagem.service';
     MensagemService,
     EnderecoService,
     CadastroService,
-    LoginService
+    LoginService,
+    FotoService
 
   ],
   bootstrap: [AppComponent]

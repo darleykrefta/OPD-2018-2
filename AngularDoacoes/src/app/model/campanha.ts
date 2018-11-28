@@ -8,8 +8,6 @@ export class Campanha {
     tipoAnuncio: number;
     descricao: string;
     status: number;
-    dataInicio: Date;
-    dataFinal: Date;
     telefone: string;
     celular: string;
     fotos: string[];

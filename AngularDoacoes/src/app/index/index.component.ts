@@ -1,4 +1,4 @@
-import { Campanha } from '../interface/campanha';
+import { Campanha } from './../model/campanha';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataView } from 'primeng/dataview';
 import { CampanhaService } from '../campanha/campanha.service';

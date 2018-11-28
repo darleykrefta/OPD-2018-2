@@ -17,7 +17,6 @@ export class MenuComponent implements OnInit {
   constructor(private loginService: LoginService) {
     this.loginService.isAuthenticated.asObservable().subscribe(e => this.isAuthenticated = e);
   }
-master
 
   ngOnInit() {
     this.items = [{
@@ -29,9 +28,5 @@ master
       ]
     }];
   }
-
-
-
-
 
 }

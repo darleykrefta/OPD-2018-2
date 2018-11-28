@@ -35,7 +35,6 @@ import { IndexComponent } from './index/index.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientInterceptor } from './http-client.interceptor';
-import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaService } from './pessoa/pessoa.service';
 import { EnderecoComponent } from './endereco/endereco.component';
 import { EnderecoService } from './endereco/endereco.service';
@@ -49,7 +48,6 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 import { Campanha } from './interface/Campanha';
 import { CampanhaService } from './campanha/campanha.service';
-import { PerfilComponent } from './perfil/perfil.component';
 import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anuncio.component';
 import { RouterModule } from '@angular/router';
 import { MensagemComponent } from './mensagem/mensagem.component';
@@ -62,17 +60,14 @@ import {GalleriaModule} from 'primeng/galleria';
     AppComponent,
     MenuComponent,
     IndexComponent,
-    PessoaComponent,
     CategoriaComponent,
     EnderecoComponent,
     CidadeComponent,
     VisualizarAnuncioComponent,
-    PerfilComponent,
     VisualizarAnuncioComponent,
     MensagemComponent,
     CadastroComponent,
-    LoginComponent,
-    PerfilComponent
+    LoginComponent
     
 
   ],

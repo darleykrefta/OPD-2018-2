@@ -57,6 +57,10 @@ import { RouterModule } from '@angular/router';
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { MensagemService } from './mensagem/mensagem.service';
 import {GalleriaModule} from 'primeng/galleria';
+import { PessoaComponent } from './pessoa/pessoa.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { FotoComponent } from './foto/foto.component';
+import { FotoService } from './foto/foto.service';
 
 
 @NgModule({
@@ -73,8 +77,8 @@ import {GalleriaModule} from 'primeng/galleria';
     VisualizarAnuncioComponent,
     MensagemComponent,
     CadastroComponent,
-    LoginComponent
-    
+    LoginComponent,
+    FotoComponent
 
   ],
   imports: [
@@ -126,7 +130,8 @@ import {GalleriaModule} from 'primeng/galleria';
     MensagemService,
     EnderecoService,
     CadastroService,
-    LoginService
+    LoginService,
+    FotoService
 
   ],
   bootstrap: [AppComponent]

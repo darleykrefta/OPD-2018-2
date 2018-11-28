@@ -1,4 +1,4 @@
-import { Campanha } from '../interface/campanha';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataView } from 'primeng/dataview';
 import { CampanhaService } from '../campanha/campanha.service';
@@ -7,6 +7,7 @@ import { Cidade } from '../model/cidade';
 import { Categoria } from '../model/categoria';
 import { CidadeService } from '../cidade/cidade.service';
 import { CategoriaService } from '../categoria/categoria.service';
+import { Campanha } from '../model/campanha';
 
 @Component({
   selector: 'app-index',
@@ -83,7 +84,7 @@ export class IndexComponent implements OnInit {
 
   findOne(id: number) {
      this.campanhaService.findOne( id)
-      .subscribe(campanha => this.campanha = campanha);
+      .subscribe(campanha => campanha = campanha);
   }
 
   search(event) {

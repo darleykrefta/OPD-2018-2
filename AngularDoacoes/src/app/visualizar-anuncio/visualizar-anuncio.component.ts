@@ -29,6 +29,7 @@ export class VisualizarAnuncioComponent implements OnInit {
     this.route.params.subscribe((objeto: any) => { this.idAtual = objeto['campanhaId']; });
     this.campanhaService.findOne(this.idAtual).subscribe(e => this.campanha = e);
 
+    
 
     //this.enderecoCampanhaService.findOne(this.idAtual).subscribe(e => this.enderecoCampanha = e);
   }

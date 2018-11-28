@@ -8,7 +8,6 @@ import { LoginService } from '../login/login.service';
 import { Endereco } from '../model/endereco';
 import { EnderecoService } from '../endereco/endereco.service';
 
-
 @Component({
   selector: 'app-pessoa',
   templateUrl: './pessoa.component.html',
@@ -52,9 +51,8 @@ export class PessoaComponent implements OnInit {
         {field: 'telefone', header: 'Telefone'},
         {field: 'celular', header: 'Celular'},
         {field: 'status', header: 'Status'},
-        // {field: 'endereco.id', header: 'Endereço'},
+        {field: 'endereco.id', header: 'Endereço'},
       ];
-
   }
 
   findAllPaged(page: number, size: number) {

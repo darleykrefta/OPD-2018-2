@@ -28,11 +28,6 @@ public class CampanhaServiceImpl extends CrudServiceImpl <Campanha, Long> implem
 
 
 	@Override
-	public List<Campanha> findByPessoaId(Long id) {
-		// TODO Auto-generated method stub
-		return campanhaRepository.findByPessoaId(id);
-	}
-
 	@Transactional(readOnly = true)
 	public List<Campanha> findByTituloLikeOrDescricaoLike(String titulo, String descricao) {
 		return campanhaRepository.findByTituloLikeOrDescricaoLike(titulo, descricao);

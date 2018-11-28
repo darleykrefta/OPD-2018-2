@@ -51,9 +51,6 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 	}
 	
 
-
-	
-
 	@SuppressWarnings("unused")
 	@GetMapping("search")
 	public List<Campanha> findByDataInicioBetweenOrCategoriaId (

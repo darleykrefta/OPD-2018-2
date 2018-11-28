@@ -1,5 +1,8 @@
 package br.edu.utfpr.pb.plataformaDoacao.service;
 
+	
+
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,4 +20,8 @@ public interface CampanhaService extends CrudService<Campanha, Long> {
 	List<Campanha> findByCategoriaId(Long id);
 	
 	List<Campanha> findByDataInicioBetween(LocalDate dataIni, LocalDate dataFim);
+
+	List<Campanha> findByPessoaId(Long id);
+	
+	
 }

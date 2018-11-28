@@ -52,6 +52,8 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 import { Campanha } from './interface/Campanha';
 import { CampanhaService } from './campanha/campanha.service';
+import { AnuncioComponent } from './anuncio/anuncio.component';
+import { CampanhaComponent } from './campanha/campanha.component';
 import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anuncio.component';
 import { RouterModule } from '@angular/router';
 import { MensagemComponent } from './mensagem/mensagem.component';
@@ -62,7 +64,6 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { FotoComponent } from './foto/foto.component';
 import { FotoService } from './foto/foto.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,14 +73,14 @@ import { FotoService } from './foto/foto.service';
     CategoriaComponent,
     EnderecoComponent,
     CidadeComponent,
-    AnuncioComponent,
-    PerfilComponent,
     VisualizarAnuncioComponent,
     MensagemComponent,
     CadastroComponent,
     LoginComponent,
-    FotoComponent
-
+    FotoComponent,
+    AnuncioComponent,
+    CampanhaComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

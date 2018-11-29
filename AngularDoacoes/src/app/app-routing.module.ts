@@ -36,6 +36,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'cadastroUsuario', component: CadastroComponent},
   {path: 'filter/:titulodescricao', component: IndexComponent},
+  {path: 'meusanuncios', component: AnuncioComponent},
   {path: 'permissao', component: PermissaoComponent}
 ];
 

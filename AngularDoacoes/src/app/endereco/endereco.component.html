@@ -1,13 +1,12 @@
 <div class="container">
-  <h2><span class="badge badge-light">
-      Cadastro de Endereco
-    </span> </h2>
-  <button class="btn btn-primary" (click)="newEntity()">
-    <i class="fa fa-plus-square"></i>Novo
-  </button>
-
-  <p-table #dtEndereco [value]="enderecos" [lazy]="true" [rows]="5" [paginator]="true" [rowsPerPageOptions]="[5,10,15,20,50]"
-  [totalRecords]="totalRecords" (onLazyLoad)="load($event)" [columns]="cols">
+  <div class="row m-2">
+      <button class="btn btn-primary" (click)="newEntity()">
+        <i class="fa fa-plus-square"></i>Novo
+      </button>
+  </div>
+  <p-table #dt [value]="enderecos" [lazy]="true" [rows]="5" [paginator]="true" [rowsPerPageOptions]="[5,10,15,20,50]"
+    [totalRecords]="totalRecords" (onLazyLoad)="loadLazy($event)"
+    [columns]="cols">
 
   <!--aqui seria o filtro global, mas não está funcionando ainda-->
   <ng-template pTemplate="caption">

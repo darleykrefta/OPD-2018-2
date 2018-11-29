@@ -11,6 +11,7 @@ import { IndexComponent } from './index/index.component';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CategoriaComponent } from './categoria/categoria.component';
+import { AnuncioComponent } from './anuncio/anuncio.component';
 import { LoginComponent } from './login/login.component';
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { PermissaoComponent } from './permissao/permissao.component';
@@ -19,12 +20,16 @@ const routes: Routes = [
 
   {
       path: '', canActivate: [LoginService], children: [
+      {path: '', component: IndexComponent},
       {path: 'pessoa', component: PessoaComponent},
+      {path: 'perfil', component: PerfilComponent},
       {path: 'cidade', component: CidadeComponent},
       {path: 'categoria', component: CategoriaComponent},
       {path: 'endereco', component: EnderecoComponent},
       {path: 'perfil', component: PerfilComponent},
       {path: 'index', component: IndexComponent},
+      {path: 'cadastro', component: CadastroComponent},
+      {path: 'cadastroAnuncio', component: AnuncioComponent},
       {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent}
     ]
   },

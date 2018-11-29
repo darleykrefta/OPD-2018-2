@@ -47,6 +47,7 @@ public abstract class CrudController <T, ID extends Serializable> {
 	
 	@PostMapping
 	public T save(@RequestBody @Valid T entity) {
+		System.out.println("\n\nSAVE DO CRUD CONTROLLER: " + entity.toString() + "\n\n");
 		return getService().save(entity);
 	}
 	

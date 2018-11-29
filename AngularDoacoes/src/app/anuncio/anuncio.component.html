@@ -1,0 +1,130 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card m-3 shadow p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+            <h3 class="card-title mt-1 mb-4">Cadastro de Anúncios</h3>
+          <form>
+            <h3 class="mt-2"></h3>
+            <div class="form-group row">
+                <p-radioButton class="mr-3" label="Campanha" name="tipoAnuncio" value="0" [(ngModel)]="campanhaEdit.tipoAnuncio"></p-radioButton>
+                <p-radioButton label="Doação" name="tipoAnuncio" value="1" [(ngModel)]="campanhaEdit.tipoAnuncio"></p-radioButton>
+            </div>
+            <div class="form-group row">
+              <label for="titulo" class="col-sm-2 col-form-label">Título</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="titulo" id="titulo" [(ngModel)]="campanhaEdit.titulo">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="descricao" class="col-sm-2">Descrição:</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" rows="5" name="descricao" id="descricao" [(ngModel)]="campanhaEdit.descricao"></textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="datainicio" class="col-2 col-form-label">Data Início</label>
+              <div class="col-4">
+                  <p-calendar id="datainicio"
+                  dateFormat="dd/mm/yy"
+                  dataType="string"
+                  name="datainicio"
+                  [(ngModel)]="campanhaEdit.dataInicio"></p-calendar>
+              </div>
+              <label for="datafinal" class="col-2 col-form-label">Data Final</label>
+              <div class="col-4">
+                  <p-calendar id="datafinal" 
+                  dateFormat="dd/mm/yy"
+                  dataType="string"
+                  name="datafinal"
+                  [(ngModel)]="campanhaEdit.dataFinal"></p-calendar>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="categoria" class="col-sm-2">Categoria:</label>
+              <div class="col-sm-10">
+                <p-dropdown [style]="{'width':'100%'}" [ngModelOptions]="{standalone: true}" placeholder="Selecione uma Categoria" [options]="categorias" [(ngModel)]="campanhaEdit.categoria" optionLabel="nome" [name]="categoria"></p-dropdown>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="telefone" class="col-sm-2">Telefone:</label>
+              <div class="col-sm-10">
+                  <input type="text" class="form-control" name="telefone" id="telefone" [(ngModel)]="campanhaEdit.telefone">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="celular" class="col-sm-2">Celular:</label>
+              <div class="col-sm-10">
+                  <input type="text" class="form-control" name="celular" id="celular" [(ngModel)]="campanhaEdit.celular">
+              </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-header">
+                      Fotos
+                    </div>
+                    <div class="card-body">
+                        <div class="col-12">
+                          <p-fileUpload
+                            chooseLabel="Selecionar..."
+                            cancelLabel="Cancelar"
+                            name="foto"
+                              url="{{urlApi}}/campanha/upload/{{campanhaEdit.id}}"
+                                (onUpload)="onUpload($event)"
+                                accept=".jpg"
+                                multiple="multiple"
+                                maxFileSize="1000000">
+                                <ng-template pTemplate="content">
+                                    <ul *ngIf="uploadFiles.lenght">
+                                      <li *ngFor="let file of uploadFiles">
+                                        {{file.name}} - {{file.size}} bytes
+                                      </li>
+                                    </ul>
+                                </ng-template>
+                        </p-fileUpload>
+                        </div>
+                        <div class="col-12">
+                          <p-carousel [value]="uploadFiles">
+                            <ng-template let-item pTemplate="item">
+                                <div class="ui-grid-row">
+                                    <div class="ui-grid-col-12"><span>
+                                     ss:   {{item}}
+                                    </span>
+                                  </div>
+                                </div>
+                            </ng-template>
+                          </p-carousel>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    Endereços
+                  </div>
+                  <div class="card-body">
+                    <app-endereco #dtEndereco [recebeAnuncioID]="anuncioID" (respostaEndereco)="reciverEndereco($event)"></app-endereco>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="m-3" style="position: relative; bottom: 0;">
+            <div class="pull-right">
+                <button type="button" class="btn btn-outline-danger " (click)="cancel()">
+                    <i class="fa fa-times" aria-hidden="true"></i> Cancelar
+                  </button>
+                  <button type="button" class="btn btn-outline-success ml-3" (click)="save()">
+                      <i class="fa fa-check" aria-hidden="true"></i> Salvar
+                  </button>
+            </div><!-- /.pull-right -->
+          </div><!-- /.m-3 -->
+        </div><!-- /.card-body -->
+      </div><!-- /.card -->
+    </div><!-- /.col-md-8 .offset-md-2-->
+  </div><!-- /.row -->
+</div><!-- /.container -->

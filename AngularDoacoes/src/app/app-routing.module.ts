@@ -14,6 +14,7 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { AnuncioComponent } from './anuncio/anuncio.component';
 import { LoginComponent } from './login/login.component';
 import { MensagemComponent } from './mensagem/mensagem.component';
+import { PermissaoComponent } from './permissao/permissao.component';
 
 const routes: Routes = [
 
@@ -26,6 +27,7 @@ const routes: Routes = [
       {path: 'categoria', component: CategoriaComponent},
       {path: 'endereco', component: EnderecoComponent},
       {path: 'perfil', component: PerfilComponent},
+      {path: 'index', component: IndexComponent},
       {path: 'cadastro', component: CadastroComponent},
       {path: 'cadastroAnuncio', component: AnuncioComponent},
       {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent}
@@ -33,9 +35,8 @@ const routes: Routes = [
   },
   {path: 'login', component: LoginComponent},
   {path: 'cadastroUsuario', component: CadastroComponent},
-  {path: 'index', component: IndexComponent}, 
-  {path: 'filter/:titulodescricao', component: IndexComponent}
-
+  {path: 'filter/:titulodescricao', component: IndexComponent},
+  {path: 'permissao', component: PermissaoComponent}
 ];
 
 @NgModule({

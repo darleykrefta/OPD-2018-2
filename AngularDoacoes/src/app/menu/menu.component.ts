@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { LoginService } from './../login/login.service';
+import { LoginService } from '../login/login.service';
+
 
 @Component({
   selector: 'app-menu',
@@ -11,7 +12,11 @@ export class MenuComponent implements OnInit {
 
   items: MenuItem[];
 
-  constructor(private loginService: LoginService) {  }
+  isAuthenticated = false;
+
+  constructor(private loginService: LoginService) {
+    this.loginService.isAuthenticated.asObservable().subscribe(e => this.isAuthenticated = e);
+  }
 
   ngOnInit() {
     this.items = [{
@@ -23,9 +28,5 @@ export class MenuComponent implements OnInit {
       ]
     }];
   }
-
-
-
-
 
 }

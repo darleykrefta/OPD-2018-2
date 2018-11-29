@@ -61,9 +61,6 @@ public class Campanha implements Serializable {
 	@Column(name = "Celular", length = 12, nullable = true)
 	private String celular;
 
-	@Column(name = "Foto", length = 666, nullable = true)
-	private String foto;
-
 	@ManyToOne
 	@JoinColumn(name = "Id_Pessoa", referencedColumnName = "Id_Pessoa")
 	private Pessoa pessoa;

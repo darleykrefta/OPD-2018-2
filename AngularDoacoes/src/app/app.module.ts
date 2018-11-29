@@ -51,13 +51,13 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { CadastroService } from './cadastro/cadastro.service';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
-import { Campanha } from './interface/Campanha';
 import { CampanhaService } from './campanha/campanha.service';
 import { PerfilComponent } from './perfil/perfil.component';
 import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anuncio.component';
 import { RouterModule } from '@angular/router';
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { MensagemService } from './mensagem/mensagem.service';
+import { PermissaoComponent } from './permissao/permissao.component';
 
 
 @NgModule({
@@ -75,7 +75,8 @@ import { MensagemService } from './mensagem/mensagem.service';
     MensagemComponent,
     CadastroComponent,
     LoginComponent,
-    PerfilComponent
+    PerfilComponent,
+    PermissaoComponent
 
   ],
   imports: [

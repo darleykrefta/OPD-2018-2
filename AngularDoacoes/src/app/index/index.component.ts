@@ -7,6 +7,7 @@ import { Cidade } from '../model/cidade';
 import { Categoria } from '../model/categoria';
 import { CidadeService } from '../cidade/cidade.service';
 import { CategoriaService } from '../categoria/categoria.service';
+import { IndexService } from './index.service';
 
 @Component({
   selector: 'app-index',
@@ -30,7 +31,7 @@ export class IndexComponent implements OnInit {
   currentPage: number;
   maxRecords: number;
 
-  constructor(private campanhaService: AnuncioService,
+  constructor(private campanhaService: IndexService,
     private cidadeService: CidadeService,
     private categoriaService: CategoriaService,
     private confirmationService: ConfirmationService) { }

@@ -1,7 +1,7 @@
+import { AnuncioService } from './../anuncio/anuncio.service';
 import { Campanha } from './../model/campanha';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataView } from 'primeng/dataview';
-import { CampanhaService } from '../campanha/campanha.service';
 import { LazyLoadEvent, Message} from 'primeng/api';
 import { Cidade } from '../model/cidade';
 import { Categoria } from '../model/categoria';
@@ -30,7 +30,7 @@ export class IndexComponent implements OnInit {
   currentPage: number;
   maxRecords: number;
 
-  constructor(private campanhaService: CampanhaService,
+  constructor(private campanhaService: AnuncioService,
     private cidadeService: CidadeService,
     private categoriaService: CategoriaService) { }
 

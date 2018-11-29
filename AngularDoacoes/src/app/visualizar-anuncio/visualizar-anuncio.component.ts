@@ -1,8 +1,8 @@
+import { AnuncioService } from './../anuncio/anuncio.service';
 import { Mensagem } from './../model/mensagem';
 import { Campanha } from '../model/campanha';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { CampanhaService } from '../campanha/campanha.service';
 import { MensagemService } from '../mensagem/mensagem.service';
 
 
@@ -19,7 +19,7 @@ export class VisualizarAnuncioComponent implements OnInit {
   mensagens: Mensagem[];
   mensagem: Mensagem;
   constructor(private route: ActivatedRoute,
-    private campanhaService: CampanhaService,
+    private campanhaService: AnuncioService,
     private mensagemService: MensagemService) { }
 
   ngOnInit() {

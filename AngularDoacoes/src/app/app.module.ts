@@ -51,7 +51,6 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { CadastroService } from './cadastro/cadastro.service';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
-import { CampanhaService } from './campanha/campanha.service';
 import { PerfilComponent } from './perfil/perfil.component';
 import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anuncio.component';
 import { RouterModule } from '@angular/router';
@@ -122,7 +121,6 @@ import { PermissaoComponent } from './permissao/permissao.component';
     ConfirmationService,
     CategoriaService,
     AnuncioService,
-    CampanhaService,
     MensagemService,
     EnderecoService,
     CadastroService,

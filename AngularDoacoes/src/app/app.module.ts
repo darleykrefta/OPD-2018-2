@@ -1,3 +1,4 @@
+import { GalleriaModule } from 'primeng/galleria';
 
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -57,6 +58,8 @@ import { RouterModule } from '@angular/router';
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { MensagemService } from './mensagem/mensagem.service';
 import { PermissaoComponent } from './permissao/permissao.component';
+import { FotoComponent } from './foto/foto.component';
+import { FotoService } from './foto/foto.service';
 
 
 @NgModule({
@@ -75,7 +78,8 @@ import { PermissaoComponent } from './permissao/permissao.component';
     CadastroComponent,
     LoginComponent,
     PerfilComponent,
-    PermissaoComponent
+    PermissaoComponent,
+    FotoComponent
 
   ],
   imports: [
@@ -107,7 +111,8 @@ import { PermissaoComponent } from './permissao/permissao.component';
     CarouselModule,
     RouterModule,
     PasswordModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GalleriaModule
   ],
   providers: [
     {
@@ -124,7 +129,8 @@ import { PermissaoComponent } from './permissao/permissao.component';
     MensagemService,
     EnderecoService,
     CadastroService,
-    LoginService
+    LoginService,
+    FotoService
 
   ],
   bootstrap: [AppComponent]

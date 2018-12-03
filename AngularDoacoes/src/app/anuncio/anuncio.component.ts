@@ -70,9 +70,9 @@ export class AnuncioComponent implements OnInit {
         }];
       }, error => {
         this.msgs = [{
-          severity: 'success',
-          summary: 'Confirmado',
-          detail: 'Registro salvo com sucesso'
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro! Verifique os dados!'
         }];
       });
       this.router.navigate(['/meusanuncios']);

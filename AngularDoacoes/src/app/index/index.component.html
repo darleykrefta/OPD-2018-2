@@ -5,13 +5,13 @@
         <h3 style="font-weight:normal">Buscar</h3>
         <div class="row">
             <div class="col-12">
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-primary active">
-                        <input type="radio" name="options" id="option1" (click)="" autocomplete="off" checked> Todos
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Meus anúncios
-                    </label>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" (click)="findAll()" checked>
+                    <label class="custom-control-label" for="customRadio1">Todos</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" (click)="findByPessoa()">
+                    <label class="custom-control-label" for="customRadio2">Meus anúncios</label>
                 </div>
             </div>
         </div>

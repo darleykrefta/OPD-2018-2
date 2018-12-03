@@ -1,7 +1,7 @@
+import { Foto } from './../model/foto';
 import { FotoService } from './foto.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Campanha } from '../model/campanha';
-import { Foto } from '../model/foto';
 
 @Component({
   selector: 'app-foto',
@@ -15,7 +15,6 @@ export class FotoComponent implements OnInit {
   foto = new Foto();
   campanha = new Campanha();
   images: any[];
-  imagesSrc: any;
 
   constructor(private fotoService: FotoService ) { }
 
@@ -23,9 +22,9 @@ export class FotoComponent implements OnInit {
     this.fotoService.getFotos(this.campanhaId).subscribe(e => this.fotos = e);
 
     this.images = [];
-    this.fotos.forEach( (foto: any) => {
-      this.images.push({source: 'this.foto.caminhoFoto'});
-   });
-
+    this.fotos.forEach( function(foto) {
+        this.images.push({source: this.foto.caminhoFoto});
+    });
   }
+
 }

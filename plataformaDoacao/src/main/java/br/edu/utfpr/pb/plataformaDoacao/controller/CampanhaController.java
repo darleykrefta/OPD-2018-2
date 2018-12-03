@@ -3,21 +3,18 @@ package br.edu.utfpr.pb.plataformaDoacao.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.security.Timestamp;
-
+import java.security.Principal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,13 +22,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.edu.utfpr.pb.plataformaDoacao.model.Campanha;
 import br.edu.utfpr.pb.plataformaDoacao.model.Foto;
+import br.edu.utfpr.pb.plataformaDoacao.model.Mensagem;
 import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
+import br.edu.utfpr.pb.plataformaDoacao.service.CampanhaService;
 import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
 import br.edu.utfpr.pb.plataformaDoacao.service.FotoService;
-import br.edu.utfpr.pb.plataformaDoacao.model.Mensagem;
-import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
 import br.edu.utfpr.pb.plataformaDoacao.service.MensagemService;
-import br.edu.utfpr.pb.plataformaDoacao.service.CampanhaService;
 
 @RestController
 @RequestMapping("campanha")
@@ -129,6 +125,13 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 			}
 		}
 	}
+	
+	@GetMapping("filter/meusanuncios")
+	public List<Campanha> findByPessoaId(Principal principal){
+		Pessoa p  = (Pessoa)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return campanhaService.findByPessoaId(p.getId());
+	}
+	
 
 	@GetMapping("/finalizarAnuncio/{id}")
 	public void findByIdCampanha(@PathVariable Long id) {

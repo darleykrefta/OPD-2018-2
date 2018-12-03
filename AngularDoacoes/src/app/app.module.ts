@@ -54,6 +54,10 @@ import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anun
 import { RouterModule } from '@angular/router';
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { MensagemService } from './mensagem/mensagem.service';
+import { EsqueciSenhaComponent } from './esqueci-senha/esqueci-senha.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordService } from './reset-password/reset-password.service';
+import { EsqueciSenhaService } from './esqueci-senha/esqueci-senha.service';
 
 
 @NgModule({
@@ -71,7 +75,9 @@ import { MensagemService } from './mensagem/mensagem.service';
     MensagemComponent,
     CadastroComponent,
     LoginComponent,
-    PerfilComponent
+    PerfilComponent,
+    EsqueciSenhaComponent,
+    ResetPasswordComponent
 
   ],
   imports: [
@@ -118,8 +124,9 @@ import { MensagemService } from './mensagem/mensagem.service';
     MensagemService,
     EnderecoService,
     CadastroService,
-    LoginService
-
+    LoginService,
+    ResetPasswordService,
+    EsqueciSenhaService
   ],
   bootstrap: [AppComponent]
 })

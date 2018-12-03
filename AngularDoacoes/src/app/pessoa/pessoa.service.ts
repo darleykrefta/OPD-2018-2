@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CrudService } from '../generic/crud.service';
 import { Pessoa } from '../model/pessoa';
-import { Observable } from 'rxjs';
 import { Page } from '../generic/page';
 
 @Injectable({
@@ -30,10 +29,10 @@ export class PessoaService extends CrudService<Pessoa, number> {
   searchCount(filter: string): Observable<number> {
     const url = `${this.getUrl()}/search/count?filter=${filter}`;
     return this.http.get<number>(url);
+  }
 
   findByEmail(email: String): Observable<boolean> {
     const url = `${this.getUrl()}/filter/email?email=${email}`;
     return this.http.get<boolean>(url);
-
   }
 }

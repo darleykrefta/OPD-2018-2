@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
 import br.edu.utfpr.pb.plataformaDoacao.repository.PessoaRepository;
@@ -28,10 +29,7 @@ public class PessoaServiceImpl extends CrudServiceImpl <Pessoa, Long> implements
 		return pessoaRepository;
 	}
 	
-	@Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return pessoaRepository.findByEmail(s).orElseThrow(() -> new UsernameNotFoundException("Usuario não encontrado!"));
-    }
+
     
     @Override
     public Iterable<Pessoa> save(Iterable<Pessoa> iterable) {
@@ -71,12 +69,26 @@ public class PessoaServiceImpl extends CrudServiceImpl <Pessoa, Long> implements
 		return pessoaRepository.countByNomeLikeOrCpfCnpjLike(nome, cpf_cnpj);
 	}
 
+	@Override
+	@Transactional
+	public void atualizarSenha(String senha, Long id) {
+		pessoaRepository.atualizarSenha(senha, id);
+		
+	}
 
-	
-
-	
 
 
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		
+		return pessoaRepository.findByEmail(email);
+	}
 
+
+
+	@Override
+	public Pessoa findByEmail(String email) {
+		return pessoaRepository.findByEmail(email);
+	}
 
 }

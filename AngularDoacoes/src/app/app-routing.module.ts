@@ -12,6 +12,8 @@ import { PessoaComponent } from './pessoa/pessoa.component';
 import { CidadeComponent } from './cidade/cidade.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { LoginComponent } from './login/login.component';
+import { EsqueciSenhaComponent } from './esqueci-senha/esqueci-senha.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { MensagemComponent } from './mensagem/mensagem.component';
 
 const routes: Routes = [
@@ -23,15 +25,15 @@ const routes: Routes = [
       {path: 'categoria', component: CategoriaComponent},
       {path: 'endereco', component: EnderecoComponent},
       {path: 'perfil', component: PerfilComponent},
-      {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent},
-      
-
+      {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent}
     ]
   },
   {path: 'login', component: LoginComponent},
   {path: 'cadastroUsuario', component: CadastroComponent},
   {path: 'index', component: IndexComponent},
-  {path: 'filter/:titulodescricao', component: IndexComponent}
+  {path: 'filter/:titulodescricao', component: IndexComponent},
+  {path: 'esqueci-senha', component: EsqueciSenhaComponent },
+  {path: 'reset-password/:token', component: ResetPasswordComponent }
 
 ];
 

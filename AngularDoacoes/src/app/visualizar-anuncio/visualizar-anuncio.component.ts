@@ -1,9 +1,8 @@
 import { AnuncioService } from './../anuncio/anuncio.service';
-import { Mensagem } from './../model/mensagem';
+
 import { Campanha } from '../model/campanha';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { MensagemService } from '../mensagem/mensagem.service';
 
 
 @Component({
@@ -14,17 +13,14 @@ import { MensagemService } from '../mensagem/mensagem.service';
 export class VisualizarAnuncioComponent implements OnInit {
 
   campanha: Campanha;
-
   idAtual: number;
-  mensagens: Mensagem[];
-  mensagem: Mensagem;
   constructor(private route: ActivatedRoute,
-    private campanhaService: AnuncioService,
-    private mensagemService: MensagemService) { }
+    private anuncioService: AnuncioService) { }
 
   ngOnInit() {
     this.route.params.subscribe((objeto: any) => { this.idAtual = objeto['campanhaId']; });
-    this.campanhaService.findOne(this.idAtual).subscribe(e => this.campanha = e);
+    this.anuncioService.findOne(this.idAtual).subscribe(e => this.campanha = e);
+
   }
 
 }

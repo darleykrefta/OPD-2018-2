@@ -1,5 +1,4 @@
-
-
+import { GalleriaModule } from 'primeng/galleria';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule, LOCALE_ID} from '@angular/core';
@@ -58,7 +57,8 @@ import { MensagemComponent } from './mensagem/mensagem.component';
 import { MensagemService } from './mensagem/mensagem.service';
 import { PermissaoComponent } from './permissao/permissao.component';
 import { IndexService } from './index/index.service';
-
+import { FotoComponent } from './foto/foto.component';
+import { FotoService } from './foto/foto.service';
 
 @NgModule({
   declarations: [
@@ -76,8 +76,8 @@ import { IndexService } from './index/index.service';
     CadastroComponent,
     LoginComponent,
     PerfilComponent,
-    PermissaoComponent
-
+    PermissaoComponent,
+    FotoComponent
   ],
   imports: [
     BrowserModule,
@@ -108,7 +108,8 @@ import { IndexService } from './index/index.service';
     CarouselModule,
     RouterModule,
     PasswordModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GalleriaModule
   ],
   providers: [
     {
@@ -126,8 +127,8 @@ import { IndexService } from './index/index.service';
     EnderecoService,
     CadastroService,
     LoginService,
-    IndexService
-
+    IndexService,
+    FotoService
   ],
   bootstrap: [AppComponent]
 })

@@ -26,6 +26,7 @@ import br.edu.utfpr.pb.plataformaDoacao.model.Mensagem;
 import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
 import br.edu.utfpr.pb.plataformaDoacao.service.CampanhaService;
 import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
+import br.edu.utfpr.pb.plataformaDoacao.service.EnderecoService;
 import br.edu.utfpr.pb.plataformaDoacao.service.FotoService;
 import br.edu.utfpr.pb.plataformaDoacao.service.MensagemService;
 
@@ -41,6 +42,9 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 
 	@Autowired
 	private MensagemService mensagemService;
+	
+	@Autowired
+	private EnderecoService enderecoService;
 
 	@Override
 	protected CrudService<Campanha, Long> getService() {

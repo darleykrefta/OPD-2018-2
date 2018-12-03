@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { LoginService } from './../login/login.service';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { CategoriaService } from './categoria.service';
 import { Categoria } from '../model/categoria';
 import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
@@ -19,9 +20,11 @@ export class CategoriaComponent implements OnInit {
   msgs: Message[] = [];
 
   constructor(private categoriaService: CategoriaService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService,
+    private loginService: LoginService) { }
 
   ngOnInit() {
+    this.loginService.verificaAdmin();
     this.findAll();
   }
 

@@ -5,11 +5,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.edu.utfpr.pb.plataformaDoacao.model.Cidade;
+import br.edu.utfpr.pb.plataformaDoacao.model.Permissao;
 import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
+import br.edu.utfpr.pb.plataformaDoacao.repository.PermissaoRepository;
 import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
 import br.edu.utfpr.pb.plataformaDoacao.service.PessoaService;
 
@@ -36,12 +38,15 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 
 	@Autowired
 	private PessoaService pessoaService;
+	@Autowired
+	private PermissaoRepository permissaoRepository;
+	
 
 	@Override
 	protected CrudService<Pessoa, Long> getService() {
 		return pessoaService;
 	}
-	
+
 	@GetMapping("search")
 	public Page<Pessoa> findByNomeLike(
 			@RequestParam String filter,
@@ -72,6 +77,7 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 	@Override
 	public Pessoa save(@RequestBody @Valid Pessoa entity) {
 		pessoaService.criptografarSenha(entity);
+		entity.addPermissao(permissaoRepository.findByNome("ROLE_USER"));
 		return super.save(entity);
 	}
 	

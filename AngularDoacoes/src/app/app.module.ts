@@ -1,5 +1,4 @@
-
-
+import { GalleriaModule } from 'primeng/galleria';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule, LOCALE_ID} from '@angular/core';
@@ -28,7 +27,9 @@ import {MenuItem} from 'primeng/api';
 import {FieldsetModule} from 'primeng/fieldset';
 import {PasswordModule} from 'primeng/password';
 import {ContextMenuModule} from 'primeng/contextmenu';
+import {CarouselModule} from 'primeng/carousel';
 
+// Component-Service
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
@@ -43,12 +44,12 @@ import { CidadeComponent } from './cidade/cidade.component';
 import { CidadeService } from './cidade/cidade.service';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
+import { AnuncioComponent } from './anuncio/anuncio.component';
+import { AnuncioService } from './anuncio/anuncio.service';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { CadastroService } from './cadastro/cadastro.service';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
-import { Campanha } from './interface/Campanha';
-import { CampanhaService } from './campanha/campanha.service';
 import { PerfilComponent } from './perfil/perfil.component';
 import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anuncio.component';
 import { RouterModule } from '@angular/router';
@@ -58,7 +59,10 @@ import { EsqueciSenhaComponent } from './esqueci-senha/esqueci-senha.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ResetPasswordService } from './reset-password/reset-password.service';
 import { EsqueciSenhaService } from './esqueci-senha/esqueci-senha.service';
-
+import { PermissaoComponent } from './permissao/permissao.component';
+import { IndexService } from './index/index.service';
+import { FotoComponent } from './foto/foto.component';
+import { FotoService } from './foto/foto.service';
 
 @NgModule({
   declarations: [
@@ -69,7 +73,7 @@ import { EsqueciSenhaService } from './esqueci-senha/esqueci-senha.service';
     CategoriaComponent,
     EnderecoComponent,
     CidadeComponent,
-    VisualizarAnuncioComponent,
+    AnuncioComponent,
     PerfilComponent,
     VisualizarAnuncioComponent,
     MensagemComponent,
@@ -77,8 +81,9 @@ import { EsqueciSenhaService } from './esqueci-senha/esqueci-senha.service';
     LoginComponent,
     PerfilComponent,
     EsqueciSenhaComponent,
-    ResetPasswordComponent
-
+    ResetPasswordComponent,
+    PermissaoComponent,
+    FotoComponent
   ],
   imports: [
     BrowserModule,
@@ -105,9 +110,12 @@ import { EsqueciSenhaService } from './esqueci-senha/esqueci-senha.service';
     MenuModule,
     ContextMenuModule,
     FieldsetModule,
+    PasswordModule,
+    CarouselModule,
     RouterModule,
     PasswordModule,
     ReactiveFormsModule,
+    GalleriaModule
   ],
   providers: [
     {
@@ -120,13 +128,15 @@ import { EsqueciSenhaService } from './esqueci-senha/esqueci-senha.service';
     CidadeService,
     ConfirmationService,
     CategoriaService,
-    CampanhaService,
+    AnuncioService,
     MensagemService,
     EnderecoService,
     CadastroService,
     LoginService,
     ResetPasswordService,
-    EsqueciSenhaService
+    EsqueciSenhaService,
+    IndexService,
+    FotoService
   ],
   bootstrap: [AppComponent]
 })

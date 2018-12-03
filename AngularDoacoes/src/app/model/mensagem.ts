@@ -1,4 +1,4 @@
-import { Campanha } from '../interface/campanha';
+import { Campanha } from '../model/campanha';
 import { Pessoa } from './pessoa';
 
 export class Mensagem {

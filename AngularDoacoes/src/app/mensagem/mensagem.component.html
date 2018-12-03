@@ -1,17 +1,16 @@
 <div *ngIf="mensagens">
-  <ul class="list-unstyled">
+  <ul class="list-unstyled comentarios">
     <li *ngFor="let mensagem of mensagens">
         <a class="text-dark font-weight-bold mr-1">
                 {{ mensagem.pessoa.nome }}
         </a>
-        <em>{{ mensagem.dataHora | date:'dd-MM-yyyy HH:mm' }}</em>
         <p class="break-word mb-2">{{ mensagem.mensagem }}</p>
     </li>
   </ul>
   <div class="mt-4"> 
     <form>
         <div class="input-group" >           
-            <input class="form-control"
+        <input class="form-control"
             type="text" name="mensagem" id="mensagem"
             [(ngModel)]="mensagem.mensagem">
             <div class="input-group-append">

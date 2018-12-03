@@ -1,12 +1,13 @@
-import { Campanha } from '../interface/campanha';
+import { AnuncioService } from './../anuncio/anuncio.service';
+import { Campanha } from './../model/campanha';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataView } from 'primeng/dataview';
-import { CampanhaService } from '../campanha/campanha.service';
-import { LazyLoadEvent, Message} from 'primeng/api';
+import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
 import { Cidade } from '../model/cidade';
 import { Categoria } from '../model/categoria';
 import { CidadeService } from '../cidade/cidade.service';
 import { CategoriaService } from '../categoria/categoria.service';
+import { IndexService } from './index.service';
 
 @Component({
   selector: 'app-index',
@@ -18,7 +19,6 @@ export class IndexComponent implements OnInit {
   @ViewChild('dv') DataView: DataView;
 
   campanhas: Campanha[];
-
   campanha: Campanha;
   campanhasFiltered: Campanha[];
   totalRecords: number;
@@ -31,9 +31,10 @@ export class IndexComponent implements OnInit {
   currentPage: number;
   maxRecords: number;
 
-  constructor(private campanhaService: CampanhaService,
+  constructor(private campanhaService: IndexService,
     private cidadeService: CidadeService,
-    private categoriaService: CategoriaService) { }
+    private categoriaService: CategoriaService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
     this.cidadeService.findAll().subscribe( e => this.cidades = e);
@@ -92,5 +93,30 @@ export class IndexComponent implements OnInit {
         p => p.titulo.toLocaleLowerCase().includes(event.query.toLocaleLowerCase())
       );
 
+  }
+
+  setFinalizado(e, campanha) {
+    console.log(campanha.id);
+    this.confirmationService.confirm({
+      message: 'Essa ação não pode ser desfeita.',
+      header: 'Deseja finalizar esse Anúncio?',
+      acceptLabel: 'Confirmar',
+      rejectLabel: 'Cancelar',
+      accept: () => {
+        this.campanhaService.finalizarAnuncio(campanha.id).subscribe(() => {
+          this.msgs = [{
+            severity: 'sucess',
+            summary: 'Finalizado',
+            detail: 'Anúncio finalizado com sucesso.'
+          }];
+        }, error => {
+          this.msgs = [{
+            severity: 'error',
+            summary: 'Erro',
+            detail: 'Falha ao finalizar Anúncio.'
+          }];
+        });
+      }
+    });
   }
 }

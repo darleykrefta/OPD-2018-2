@@ -20,5 +20,4 @@ export class AnuncioService extends CrudService<Campanha, number> {
     return this.http.get<Campanha[]>(url);
   }
 
-  
 }

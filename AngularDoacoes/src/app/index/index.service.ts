@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Campanha } from '../model/campanha';
 import { CrudService } from '../generic/crud.service';
-import { HttpClient } from 'selenium-webdriver/http';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -11,10 +11,15 @@ import { Observable } from 'rxjs';
 })
 export class IndexService extends CrudService<Campanha, number> {
 
+
+  constructor(http: HttpClient) {
+    super(environment.api + '/campanha', http);
+  }
+  /*
   constructor(http: HttpClient) {
     super(environment.api + '/campanha', http);
    }
-
+*/
    findSearchPageable(dataIni: string, dataFinal: string, categoria: string):
         Observable<Campanha []> {
     const url = `${this.getUrl()}/search?dataIni=${dataIni}&dataFim=${dataFinal}&categoria=${categoria}`;

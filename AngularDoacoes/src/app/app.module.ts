@@ -57,6 +57,7 @@ import { RouterModule } from '@angular/router';
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { MensagemService } from './mensagem/mensagem.service';
 import { PermissaoComponent } from './permissao/permissao.component';
+import { IndexService } from './index/index.service';
 
 
 @NgModule({
@@ -124,7 +125,8 @@ import { PermissaoComponent } from './permissao/permissao.component';
     MensagemService,
     EnderecoService,
     CadastroService,
-    LoginService
+    LoginService,
+    IndexService
 
   ],
   bootstrap: [AppComponent]

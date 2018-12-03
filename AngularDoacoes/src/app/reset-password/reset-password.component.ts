@@ -18,7 +18,7 @@ export class ResetPasswordComponent implements OnInit {
   editSenha =  new ResetarSenhaToken();
   // senhas: ResetarSenhaToken[];
   constructor(private resetarPasswordService: ResetPasswordService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe((objeto: any) => { this.editSenha.token = objeto['token']; });
@@ -27,6 +27,7 @@ export class ResetPasswordComponent implements OnInit {
   save() {
     this.resetarPasswordService.save(this.editSenha).
       subscribe(e => {
+        this.router.navigate(['/login']);
         this.editSenha = new ResetarSenhaToken();
         this.msgs = [{
           severity: 'success',

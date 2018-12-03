@@ -14,7 +14,7 @@ public class ResetarSenhaToken {
     @Column(nullable = false, unique = true)
     private String token;
 
-    @OneToOne(targetEntity = Pessoa.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = Pessoa.class, fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "pessoa_id")
     private Pessoa pessoa;
 

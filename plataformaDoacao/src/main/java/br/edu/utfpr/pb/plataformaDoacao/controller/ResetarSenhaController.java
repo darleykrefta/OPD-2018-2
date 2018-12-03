@@ -29,8 +29,8 @@ public class ResetarSenhaController {
 	@PostMapping()
 	public boolean handlePasswordReset(@RequestBody @Valid ResetarSenhaDto resetarSenhaDto) {
 
-		System.out.println("S: " + resetarSenhaDto.getSenha());
-		System.out.println("T: " + resetarSenhaDto.getToken());
+		//System.out.println("S: " + resetarSenhaDto.getSenha());
+		//System.out.println("T: " + resetarSenhaDto.getToken());
 		
 		try {
 			ResetarSenhaToken token = tokenRepository.findByToken(resetarSenhaDto.getToken());
@@ -49,5 +49,4 @@ public class ResetarSenhaController {
 			return false;
 		}
 	}
-
 }

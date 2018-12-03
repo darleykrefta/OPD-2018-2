@@ -21,11 +21,11 @@ export class EsqueciSenhaComponent implements OnInit {
 
   esqueciSenha() {
     this.esqueciSenhaService.findByEmail(this.email).subscribe (e =>  {
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     }, error => {
       // alert(error.error.error_description);
       this.msgs = [{severity: 'error', summary: 'Erro',
-      detail: 'Usuário e/ou senha incorreto(s)!'}];
+      detail: 'E-mail não existe!'}];
     });
   }
 

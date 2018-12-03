@@ -10,7 +10,6 @@ import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
 @Component({
   selector: 'app-pessoa',
 
-  // selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
@@ -53,7 +52,6 @@ export class CadastroComponent implements OnInit {
           if (this.pessoaEdit.senha === this.pessoaEdit.senha2 && !(this.pessoaEdit.senha == null)) {
             this.pessoaEdit.endereco = null;
             this.pessoaEdit.status = true;
-            this.showDialog = false;
             this.pessoaService.save(this.pessoaEdit).subscribe(
               e => {
                 this.pessoaEdit = new Pessoa();
@@ -63,7 +61,6 @@ export class CadastroComponent implements OnInit {
             );
             this.msgs = [{ severity: 'success', summary: 'Confirmado', detail: 'Registro salvo com sucesso!' }];
             this.router.navigate(['/login']);
-            // fim If senha
           } else {
             this.msgs = [{ severity: 'error', summary: 'Erro', detail: 'Erro! Senhas devem ser iguais!' }];
           }

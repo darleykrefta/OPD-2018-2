@@ -1,6 +1,5 @@
 package br.edu.utfpr.pb.plataformaDoacao.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -23,6 +22,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,7 +37,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode(of = { "id" })
 @ToString
-public class Pessoa implements Serializable, UserDetails {
+public class Pessoa implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 	private static final BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder(10);
@@ -74,11 +74,12 @@ public class Pessoa implements Serializable, UserDetails {
 	@Column(name = "Status", length = 60, nullable = true)
 	private Boolean status;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "Id_Endereco", referencedColumnName = "Id_Endereco")
 	private Endereco endereco;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JsonIgnore
 	private Set<Permissao> permissoes;
 
 	public Pessoa(String email, String senha) {
@@ -87,6 +88,7 @@ public class Pessoa implements Serializable, UserDetails {
 	}
 	
 	@Override
+	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> auto = new ArrayList<>();
 		auto.addAll(getPermissoes());
@@ -103,6 +105,9 @@ public class Pessoa implements Serializable, UserDetails {
 	
 	public String getEncodedPassword(String pass) {
 		if (pass != null && ! pass.equals("")) {
+			if (bCrypt.matches(pass, getSenha()) == true) {
+				return pass;
+			}
 			return bCrypt.encode(pass);
 		}
 		return pass;
@@ -130,7 +135,7 @@ public class Pessoa implements Serializable, UserDetails {
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return true;
+		return true;		
 	}
 
 	@Override

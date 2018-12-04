@@ -3,9 +3,6 @@ package br.edu.utfpr.pb.plataformaDoacao.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.List;
-
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -13,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,14 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.edu.utfpr.pb.plataformaDoacao.model.Cidade;
-import br.edu.utfpr.pb.plataformaDoacao.model.Permissao;
 import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
 import br.edu.utfpr.pb.plataformaDoacao.repository.PermissaoRepository;
 import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
 import br.edu.utfpr.pb.plataformaDoacao.service.PessoaService;
-
-
 
 @RestController
 @RequestMapping("pessoa")
@@ -41,12 +33,11 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 	@Autowired
 	private PermissaoRepository permissaoRepository;
 	
-
 	@Override
 	protected CrudService<Pessoa, Long> getService() {
 		return pessoaService;
 	}
-
+	
 	@GetMapping("search")
 	public Page<Pessoa> findByNomeLike(
 			@RequestParam String filter,
@@ -67,17 +58,21 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 	}
 	
 	@GetMapping("search/count")
-	public long findByNomeLike(
-			@RequestParam String filter) {
-		
-		return pessoaService
-				.countByNomeLikeOrCpfCnpjLike("%" + filter + "%", "%" + filter + "%");
-    	}
+	public long findByNomeLike(@RequestParam String filter) {
+		return pessoaService.countByNomeLikeOrCpfCnpjLike("%" + filter + "%", "%" + filter + "%");
+	}
   
 	@Override
 	public Pessoa save(@RequestBody @Valid Pessoa entity) {
+		if (entity.getId() == null) {
+			pessoaService.criptografarSenha(entity);
+			entity.addPermissao(permissaoRepository.findByNome("ROLE_USER"));
+			return super.save(entity);
+		} 
 		pessoaService.criptografarSenha(entity);
-		entity.addPermissao(permissaoRepository.findByNome("ROLE_USER"));
+		Pessoa p = pessoaService.findOne(entity.getId());
+		entity.setPermissoes(p.getPermissoes());
+		
 		return super.save(entity);
 	}
 	
@@ -93,7 +88,7 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 	
 
 	private void saveFile(Long id, MultipartFile foto, HttpServletRequest request) throws Exception {
-		File dir = new File(request.getServletContext().getRealPath("/images/"));
+		File dir = new File(request.getServletContext().getRealPath("/images"));
 		if(!dir.exists()) {
 			dir.mkdirs();
 				
@@ -114,8 +109,7 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 				getService().save(pessoa);
 			} catch (Exception e) {
 				e.printStackTrace();
-				throw new Exception("Erro ao fazer"
-						+ "upload da imagem. " +
+				throw new Exception("Erro ao fazer upload da imagem. " +
 						e.getMessage());
 			}		
 		}

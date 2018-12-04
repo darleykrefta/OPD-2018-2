@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
 import br.edu.utfpr.pb.plataformaDoacao.repository.PessoaRepository;
@@ -38,8 +39,6 @@ public class PessoaServiceImpl extends CrudServiceImpl <Pessoa, Long> implements
     	return super.save(iterable);
     }
     
-
-
 	@Override
 	public List<Pessoa> findByEmailOrderById(String email) {
 		// TODO Auto-generated method stub
@@ -60,7 +59,6 @@ public class PessoaServiceImpl extends CrudServiceImpl <Pessoa, Long> implements
 		}
 	}
 
-
 	@Override
 	public Page<Pessoa> findByNomeLikeOrCpfCnpjLike(String nome, String cpf_cnpj, Pageable pageable) {
 		return pessoaRepository.findByNomeLikeOrCpfCnpjLike(nome, cpf_cnpj, pageable);
@@ -71,13 +69,4 @@ public class PessoaServiceImpl extends CrudServiceImpl <Pessoa, Long> implements
 	public long countByNomeLikeOrCpfCnpjLike(String nome, String cpf_cnpj) {
 		return pessoaRepository.countByNomeLikeOrCpfCnpjLike(nome, cpf_cnpj);
 	}
-
-
-	
-
-	
-
-
-
-
 }

@@ -119,7 +119,7 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 				stream.close();
 
 				Foto ft = new Foto();
-				ft.setCaminhoFoto(caminhoAnexo + "\\" + nomeArquivo);
+				ft.setCaminhoFoto("images" + "\\" + nomeArquivo);
 				Campanha campanha = new Campanha();
 				campanha = getService().findOne(id);
 				ft.setCampanha(campanha);

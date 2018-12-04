@@ -6,12 +6,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" (click)="findAll()" checked>
-                    <label class="custom-control-label" for="customRadio1">Todos</label>
+                    <input type="radio" id="todosRadio" name="Radio" class="custom-control-input" (click)="findAll()" checked>
+                    <label class="custom-control-label" for="todosRadio">Todos</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" (click)="findByPessoa()">
-                    <label class="custom-control-label" for="customRadio2">Meus anúncios</label>
+                    <input type="radio" id="meusRadio" name="Radio" class="custom-control-input" (click)="findByPessoa()">
+                    <label class="custom-control-label" for="meusRadio">Meus anúncios</label>
                 </div>
             </div>
         </div>
@@ -82,12 +82,10 @@
                         <hr class="ui-widget-content" style="border-top:0">
                         <a [routerLink]= "['campanha/visualizaranuncio/', campanha.id]" > 
                             <button pButton type="button" icon="pi pi-search" style="margin-top:0">
-                            
                             </button>
                         </a>
-                        <button pButton type="button" icon="fa fa-check" class="btn btn-danger" (click) ="setFinalizado($event, campanha)"
-                       style="margin-top:0" data-toggle="tooltip"
-                      title="Finalizar Anúncio"></button>
+                        <button pButton type="button" class="btn btn-danger" (click) ="setFinalizado($event, campanha)" data-toggle="tooltip"
+                      title="Finalizar Anúncio" [hidden]="escondeBtnFinalizar" [disabled]="(campanha.status == 0) || (desabilitaFinalizar == true)"><i class="fa fa-check"></i></button>
                     </p-panel>
                 </div>
             </ng-template>

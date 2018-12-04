@@ -30,6 +30,9 @@ export class IndexComponent implements OnInit {
   dataini: any[];
   currentPage: number;
   maxRecords: number;
+  escondeBtnFinalizar = true;
+
+  campteste: Campanha;
 
   constructor(private campanhaService: IndexService,
     private cidadeService: CidadeService,
@@ -47,9 +50,9 @@ export class IndexComponent implements OnInit {
     this.campanhaService.count().subscribe(e => this.totalRecords = e);
     this.campanhaService.findPageable(page, size).subscribe(e => this.campanhas = e.content);
   }
-
+  
   findSearchPaged(dataIni: string, dataFinal: string, categoria: Categoria) {
-    // tslint:disable-next-line:triple-equals
+  
     if (dataIni === (undefined)) {
       dataIni = '';
     } else {
@@ -83,16 +86,24 @@ export class IndexComponent implements OnInit {
 
   findAll() {
     this.campanhaService.findAll().subscribe( e => this.campanhas = e );
+    this.escondeBtnFinalizar = true;
   }
 
   findByPessoa() {
     this.campanhaService.findByPessoa().subscribe(e => this.campanhas = e);
+    this.escondeBtnFinalizar = false;
   }
 
 
   findOne(id: number) {
      this.campanhaService.findOne( id)
       .subscribe(campanha => this.campanha = campanha);
+  }
+
+  isFinalizado(e, campanha) {
+    this.campteste = new Campanha();
+    this.campanhaService.findOne(campanha.id).subscribe(campanha = this.campteste = campanha);
+    return (this.campteste.status);
   }
 
   search(event) {
@@ -104,7 +115,6 @@ export class IndexComponent implements OnInit {
   }
 
   setFinalizado(e, campanha) {
-    console.log(campanha.id);
     this.confirmationService.confirm({
       message: 'Essa ação não pode ser desfeita.',
       header: 'Deseja finalizar esse Anúncio?',
@@ -113,7 +123,7 @@ export class IndexComponent implements OnInit {
       accept: () => {
         this.campanhaService.finalizarAnuncio(campanha.id).subscribe(() => {
           this.msgs = [{
-            severity: 'sucess',
+            severity: 'success',
             summary: 'Finalizado',
             detail: 'Anúncio finalizado com sucesso.'
           }];

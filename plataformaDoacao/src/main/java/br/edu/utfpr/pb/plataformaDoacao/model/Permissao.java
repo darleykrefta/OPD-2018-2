@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-public class Permissao implements GrantedAuthority{
+public class Permissao implements GrantedAuthority {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,7 +23,7 @@ public class Permissao implements GrantedAuthority{
 	@Column(length = 50, nullable = false)
 	@Getter @Setter
 	private String nome;
-	
+		
 	@Override
 	public String getAuthority() {
 		return this.nome;

@@ -106,18 +106,20 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 		}
 
 		for (MultipartFile foto : listFoto) {
-			String caminhoAnexo = request.getServletContext().getRealPath("images/");
+			
+			File caminhoAnexo = new File("./src/main/webapps/images");
+			
 			String extensao = foto.getOriginalFilename().substring(foto.getOriginalFilename().lastIndexOf("."),
 					foto.getOriginalFilename().length());
 			String nomeArquivo = id + Math.random() + extensao;
 			try {
-				FileOutputStream fileOut = new FileOutputStream(new File(caminhoAnexo + nomeArquivo));
+				FileOutputStream fileOut = new FileOutputStream(new File(caminhoAnexo + "/" + nomeArquivo));
 				BufferedOutputStream stream = new BufferedOutputStream(fileOut);
 				stream.write(foto.getBytes());
 				stream.close();
 
 				Foto ft = new Foto();
-				ft.setCaminhoFoto(nomeArquivo);
+				ft.setCaminhoFoto(caminhoAnexo + "\\" + nomeArquivo);
 				Campanha campanha = new Campanha();
 				campanha = getService().findOne(id);
 				ft.setCampanha(campanha);

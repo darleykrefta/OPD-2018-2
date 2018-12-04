@@ -21,14 +21,16 @@ export class EsqueciSenhaComponent implements OnInit {
 
   esqueciSenha() {
     this.esqueciSenhaService.findByEmail(this.email).subscribe (e =>  {
-      this.router.navigate(['/login']);
       this.msgs = [{
           severity: 'success',
           summary: 'Confirmado',
           detail: 'Instruções de reset de senha enviadas no e-mail informado!'
         }];
+
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2500);  
     }, error => {
-      // alert(error.error.error_description);
       this.msgs = [{severity: 'error', summary: 'Erro',
       detail: 'E-mail não existe!'}];
     });

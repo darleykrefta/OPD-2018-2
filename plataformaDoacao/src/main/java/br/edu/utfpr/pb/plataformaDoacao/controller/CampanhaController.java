@@ -64,21 +64,23 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 	@SuppressWarnings("unused")
 	@GetMapping("search")
 	public List<Campanha> findByDataInicioBetweenOrCategoriaId(@RequestParam(required = false) String dataIni,
-			@RequestParam(required = false) String dataFim, @RequestParam(required = false) String categoria) {
+			@RequestParam(required = false) String dataFim, @RequestParam(required = false) Long categoria) {
 
 		if (dataIni != null && dataFim != null && categoria != null && dataIni != "" && dataFim != ""
-				&& categoria != "") {
+				&& categoria != 0 ) {
 			return campanhaService.findByDataInicioBetweenOrCategoriaId(
 					LocalDate.parse(dataIni, DateTimeFormatter.ofPattern("dd/MM/yyyy")),
 					LocalDate.parse(dataFim, DateTimeFormatter.ofPattern("dd/MM/yyyy")), Long.valueOf(categoria));
-		} else if (dataIni != null && dataFim != null && dataIni != "" && dataFim != "" && categoria == ""
+		} else if (dataIni != null && dataFim != null && dataIni != "" && dataFim != "" && categoria == 0
 				&& categoria == null) {
 			return campanhaService.findByDataInicioBetween(
 					LocalDate.parse(dataIni, DateTimeFormatter.ofPattern("dd/MM/yyyy")),
 					LocalDate.parse(dataFim, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-		} else if (categoria != null && categoria != "" && dataIni == "" && dataFim == "" && dataIni != null
+		} else if (categoria != null && categoria != 0 && dataIni == "" && dataFim == "" && dataIni != null
 				&& dataFim != null) {
-			return campanhaService.findByCategoriaId(Long.parseLong(categoria));
+			return campanhaService.findByCategoriaId(categoria);
+		} else if (categoria == 0 && dataIni == "" && dataFim == "" ) {
+			return campanhaService.findAll();
 		}
 
 		return null;

@@ -50,8 +50,9 @@ export class IndexComponent implements OnInit {
     this.campanhaService.count().subscribe(e => this.totalRecords = e);
     this.campanhaService.findPageable(page, size).subscribe(e => this.campanhas = e.content);
   }
-
-  findSearchPaged(dataIni: string, dataFinal: string, categoria: string) {
+  
+  findSearchPaged(dataIni: string, dataFinal: string, categoria: Categoria) {
+  
     if (dataIni === (undefined)) {
       dataIni = '';
     } else {
@@ -61,8 +62,12 @@ export class IndexComponent implements OnInit {
     } else {
       dataIni = dataIni;
     }
+    if (categoria === (undefined)) {
+      this.campanhaService.findSearchPageable(dataIni, dataFinal, 0).subscribe(e => this.campanhas = e);
+    } else {
+      this.campanhaService.findSearchPageable(dataIni, dataFinal, categoria.id).subscribe(e => this.campanhas = e);
+    }
 
-    this.campanhaService.findSearchPageable(dataIni, dataFinal, categoria).subscribe(e => this.campanhas = e);
   }
 
   load(event: LazyLoadEvent) {

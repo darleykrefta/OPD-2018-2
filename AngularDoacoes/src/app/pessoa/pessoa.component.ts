@@ -122,7 +122,6 @@ export class PessoaComponent implements OnInit {
         }];
       }
     );
-    this.findAllPaged();
   }
 
   cancel() {

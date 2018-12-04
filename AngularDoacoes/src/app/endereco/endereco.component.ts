@@ -155,10 +155,6 @@ export class EnderecoComponent implements OnInit {
     });
   }
 
-
-
-
-
   getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);

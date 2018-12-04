@@ -40,7 +40,7 @@ export class AnuncioComponent implements OnInit {
     private pessoaService: PessoaService) {}
 
   ngOnInit() {
-    this.loginService.verificaAdmin();
+    this.loginService.verificaPermissoes();
     this.categoriaService.findAll().subscribe(
       e => this.categorias = e);
     this.newEntity();

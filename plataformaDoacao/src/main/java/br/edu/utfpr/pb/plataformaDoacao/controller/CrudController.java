@@ -44,7 +44,7 @@ public abstract class CrudController <T, ID extends Serializable> {
 	public T findOne(@PathVariable ID id) {
 		return getService().findOne(id);
 	}
-	
+
 	@PostMapping
 	public T save(@RequestBody @Valid T entity) {
 		System.out.println("\n\nSAVE DO CRUD CONTROLLER: " + entity.toString() + "\n\n");

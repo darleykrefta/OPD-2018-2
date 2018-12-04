@@ -91,17 +91,42 @@
         </div>
         <div class="ui-g-12 ui-fluid">
           <label for="endereco">Endereco</label>
-          <p-autoComplete
-            [(ngModel)]="pessoaEdit.endereco"
-            [suggestions]="enderecosFiltered"
-            (completeMethod)="search($event)"
-            field="rua">
-          </p-autoComplete>
+          <div class="ui-g-12 ui-fluid">
+            <label for="rua">Rua</label>
+            <input class="form-control" type="text" name="rua" id="rua" [(ngModel)]="enderecoEdit.rua">
+          </div>
+  
+          <div class="ui-g-12 ui-fluid">
+            <label for="numero">Numero</label>
+            <input class="form-control" type="text" name="numero" id="numero" [(ngModel)]="enderecoEdit.numero">
+          </div>
+  
+          <div class="ui-g-12 ui-fluid">
+            <label for="bairro">Bairro</label>
+            <input class="form-control" type="text" name="bairro" id="bairro" [(ngModel)]="enderecoEdit.bairro">
+          </div>
+  
+          <div class="ui-g-12 ui-fluid">
+            <label for="cep">CEP</label>
+            <input class="form-control" type="text" name="cep" id="cep" [(ngModel)]="enderecoEdit.cep">
+          </div>
+  
+          <div class="ui-g-12 ui-fluid">
+            <label for="complemento">Complemento</label>
+            <input class="form-control" type="text" name="complemento" id="complemento" [(ngModel)]="enderecoEdit.complemento">
+          </div>
+  
+          <div class="ui-g-12 ui-fluid">
+            <label for="cidade">Cidade</label>
+  
+            <p-autoComplete [(ngModel)]="enderecoEdit.cidade" id="cidade" [suggestions]="cidadesFiltred" (completeMethod)="search($event)"
+              field="nome"></p-autoComplete>
+  
+          </div>
         </div>
-
         <div class="ui-g-12 ui-fluid">
           <label for="senha">Senha</label>
-          <input class="form-control" type="text" name="senha" id="senha" [(ngModel)]="pessoaEdit.senha"/>
+          <input class="form-control" type="password" name="senha" id="senha" [(ngModel)]="pessoaEdit.senha"/>
         </div>
       </div>
       </div>
@@ -133,7 +158,7 @@
                 <label for="fotoAtual">Foto atual</label>
                 <br />
                 <img alt="Nenhuma foto cadastrada!"
-                  src="{{urlApi}}/images/{{pessoaEdit.foto}}?{{today}}"
+                  src="{{urlApi}}/foto/{{pessoaEdit.foto}}?{{today}}"
                   width="100" height="150"/>
             </div>
 
@@ -147,6 +172,6 @@
       <button type="button" class="btn btn-success" (click)="save()">
         <i class="fa fa-save"></i> Salvar
       </button>
-    </p-footer>
+    </p-footer> 
   </p-dialog>
 </div>

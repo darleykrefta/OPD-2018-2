@@ -14,6 +14,7 @@ import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
 import br.edu.utfpr.pb.plataformaDoacao.model.ResetarSenhaToken;
 import br.edu.utfpr.pb.plataformaDoacao.repository.ResetarSenhaRepository;
 import br.edu.utfpr.pb.plataformaDoacao.service.PessoaService;
+import br.edu.utfpr.pb.plataformaDoacao.service.ResetarSenhaService;
 
 @RestController
 @RequestMapping("reset-password")
@@ -21,8 +22,13 @@ public class ResetarSenhaController {
 
 	@Autowired
 	private PessoaService pessoaService;
+	
+	//@Autowired
+	//private ResetarSenhaService resetarSenhaService;
+	
 	@Autowired
 	private ResetarSenhaRepository tokenRepository;
+	//seria Resetar senha Service
 	
 	private static final BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder(10);
 
@@ -37,11 +43,19 @@ public class ResetarSenhaController {
 			
 		
 			Pessoa pessoa = token.getPessoa();
+			
+			//ResetarSenhaToken resetarToken =  token.getPessoa();
+			
 			String updatedPassword = bCrypt.encode(resetarSenhaDto.getSenha());
 			
 			pessoa.setSenha(updatedPassword);
 			pessoaService.save(pessoa); //atualizarSenha(updatedPassword, pessoa.getId());
+			//token.setSenha(updatedPassword);
+			//resetarSenhaService.save(token);
+			
 			tokenRepository.deleteById(token.getId());
+			//tokenRepository.delete(token);
+			
 
 			return true;
 		} catch (Exception ex) {

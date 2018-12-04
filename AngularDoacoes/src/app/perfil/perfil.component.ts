@@ -40,7 +40,7 @@ export class PerfilComponent implements OnInit {
      private cidadeService: CidadeService) { }
 
   ngOnInit() {
-    this.loginService.verificaAdmin();
+    this.loginService.verificaUsuarioLogado();
     const a = this.loginService.getUserInfo();
     this.pessoaEdit = a.principal;
     this.today = Date.now();

@@ -46,18 +46,19 @@ export class PessoaComponent implements OnInit {
      private loginService: LoginService) { }
 
   ngOnInit() {
-    this.loginService.verificaAdmin();
-    this.cidadeService.findAll().subscribe(e => this.cidades = e);
-    this.cols = [
-      {field: 'id', header: 'Código'},
-      {field: 'nome', header: 'Nome'},
-      {field: 'apelido', header: 'Apelido'},
-      {field: 'email', header: 'E-mail'},
-      {field: 'cpfCnpj', header: 'CPF/CNPJ'},
-      {field: 'telefone', header: 'Telefone'},
-      {field: 'celular', header: 'Celular'},
-      {field: 'status', header: 'Status'},
-    ];
+    this.loginService.verificaPermissoes();
+    this.enderecoService.findAll().subscribe(
+      e => this.enderecos = e);
+      this.cols = [
+        {field: 'id', header: 'Código'},
+        {field: 'nome', header: 'Nome'},
+        {field: 'apelido', header: 'Apelido'},
+        {field: 'email', header: 'E-mail'},
+        {field: 'cpfCnpj', header: 'CPF/CNPJ'},
+        {field: 'telefone', header: 'Telefone'},
+        {field: 'celular', header: 'Celular'},
+        {field: 'status', header: 'Status'}
+      ];
   }
 
   findAllPaged(page: number, size: number) {

@@ -26,7 +26,7 @@ export class CidadeComponent implements OnInit {
     private loginService: LoginService) { }
 
   ngOnInit() {
-    this.loginService.verificaAdmin();
+    this.loginService.verificaPermissoes();
     this.cols = [
       { field: 'id', header: 'Código' },
       { field: 'nome', header: 'Nome' },

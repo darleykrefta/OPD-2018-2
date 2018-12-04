@@ -36,7 +36,6 @@ public class ResetarSenhaController {
 	public boolean handlePasswordReset(@RequestBody @Valid ResetarSenhaDto resetarSenhaDto) {
 
 		//System.out.println("S: " + resetarSenhaDto.getSenha());
-		//System.out.println("T: " + resetarSenhaDto.getToken());
 		
 		try {
 			ResetarSenhaToken token = tokenRepository.findByToken(resetarSenhaDto.getToken());

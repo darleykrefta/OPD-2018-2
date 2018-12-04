@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.context.Context;
-import org.thymeleaf.spring4.SpringTemplateEngine;
 
 import br.edu.utfpr.pb.plataformaDoacao.model.Mail;
 import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
@@ -29,8 +27,8 @@ public class EmailService {
                     MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
                     StandardCharsets.UTF_8.name());
 
-            Context context = new Context();
-            context.setVariables(mail.getModel());
+            //Context context = new Context();
+            //context.setVariables(mail.getModel());
            //String html = templateEngine.process("email/email-template", context);
 
             helper.setTo(mail.getTo());

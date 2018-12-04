@@ -4,63 +4,103 @@
             <div class="row">
                 <div class="ui-g-12 ui-fluid">
                     <p-fieldset legend="">
-                        <div class="row">
+                        <div class="ui-g-12 ui-fluid"
+                            *ngIf="pessoaEdit.foto">
+                            <label for="fotoAtual">Foto atual</label>
+                            <br />
+                            <img alt="Nenhuma foto cadastrada!"
+                            src="{{urlApi}}/images/{{pessoaEdit.foto}}?{{today}}"
+                            width="100" height="150"/>
+                        </div>
+
+                        
+                        <div class="ui-g-12 ui-fluid">
                             <div class="ui-g-12 ui-fluid">
-                                <label for="fotoAtual">Foto atual</label>
-                                <br />
-                                <img 
-                                    src="{{urlApi}}/images/{{pessoa.foto}}?{{today}}"
-                                    width="100" height="150"/>
+                              <p-checkbox name="status" binary="true"
+                              value="pessoaEdit.status" [(ngModel)]="pessoaEdit.status" label="Ativo"></p-checkbox>
                             </div>
-                        </div>
-                        <div class="ui-g-12 ui-fluid">
-                            <label for="nome">Nome</label>
-                            <input class="form-control" type="text" name="nome" id="nome" value={{pessoa.nome}} />
-                        </div>
-                        <div class="ui-g-12 ui-fluid">
-                            <label for="apelido">Apelido</label>
-                            <input class="form-control" type="text" name="apelido" id="apelido" value={{pessoa.apelido}} />
-                        </div>
-                        <div class="ui-g-12 ui-fluid">
-                            <label for="cpf_cnpj">CPF/CNPJ</label>
-                            <input class="form-control" type="text" name="cpf_cnpj" id="cpf_cnpj" value={{pessoa.cpf_cnpj}} />
+                            <div class="ui-g-12 ui-fluid">
+                              <label for="id">Código</label>
+                              <input class="form-control" type="text" name="id" id="id" readonly [(ngModel)]="pessoaEdit.id"/>
+                            </div>
+                            <div class="ui-g-12 ui-fluid">
+                              <label for="nome">Nome</label>
+                              <input class="form-control" type="text" name="nome" id="nome" [(ngModel)]="pessoaEdit.nome"/>
+                            </div>
+                            <div class="ui-g-12 ui-fluid">
+                              <label for="apelido">Apelido</label>
+                              <input class="form-control" type="text" name="apelido" id="apelido" [(ngModel)]="pessoaEdit.apelido"/>
+                            </div>
+                            <div class="ui-g-12 ui-fluid">
+                              <label for="cpf_cnpj">CPF/CNPJ</label>
+                              <input class="form-control" type="text" name="cpf_cnpj" id="cpf_cnpj" [(ngModel)]="pessoaEdit.cpfCnpj"/>
+                            </div>
+                            <div class="ui-g-12 ui-fluid">
+                              <label for="email">Email</label>
+                              <input class="form-control" type="text" name="email" id="email" [(ngModel)]="pessoaEdit.email"/>
+                            </div>
+                            <div class="ui-g-12 ui-fluid">
+                              <label for="telefone">Telefone</label>
+                              <input class="form-control" type="text" name="telefone" id="telefone" [(ngModel)]="pessoaEdit.telefone"/>
+                            </div>
+                            <div class="ui-g-12 ui-fluid">
+                              <label for="celular">Celular</label>
+                              <input class="form-control" type="text" name="celular" id="celular" [(ngModel)]="pessoaEdit.celular"/>
+                            </div>
                         </div>
                     </p-fieldset>
                     <p-fieldset legend="Endereço">
                         <div class="ui-g-12 ui-fluid">
-                            <label for="rua">Rua</label>
-                            <input class="form-control" type="text" name="rua" id="rua" value={{pessoa.endereco.rua}} />
-                        </div>
-                        <div class="ui-g-12 ui-fluid">
-                            <label for="numero">Número</label>
-                            <input class="form-control" type="text" name="numero" id="numero" value={{pessoa.endereco.numero}} />
-                        </div>
-                        <div class="ui-g-12 ui-fluid">
-                            <label for="bairro">Bairro</label>
-                            <input class="form-control" type="text" name="bairro" id="bairro" value={{pessoa.endereco.bairro}} />
-                        </div>
-                        <div class="ui-g-12 ui-fluid">
-                            <label for="complemento">Complemento</label> 
-                            <input class="form-control" type="text" name="complemento" id="complemento" value={{pessoa.endereco.complemento}} />
-                        </div>
-                        <div class="ui-g-12 ui-fluid">
-                            <label for="cidade">Cidade</label>
-                            <p-autoComplete id="cidade" [suggestions]="cidadesFiltred" (completeMethod)="search($event)"
-                                field="nome" ></p-autoComplete>
+                            <label for="endereco">Endereco</label>
+                            <div class="ui-g-12 ui-fluid">
+                              <label for="rua">Rua</label>
+                              <input class="form-control" type="text" name="rua" id="rua" [(ngModel)]="enderecoEdit.rua">
+                            </div>                    
+                            <div class="ui-g-12 ui-fluid">
+                              <label for="numero">Numero</label>
+                              <input class="form-control" type="text" name="numero" id="numero" [(ngModel)]="enderecoEdit.numero">
+                            </div>                    
+                            <div class="ui-g-12 ui-fluid">
+                              <label for="bairro">Bairro</label>
+                              <input class="form-control" type="text" name="bairro" id="bairro" [(ngModel)]="enderecoEdit.bairro">
+                            </div>                    
+                            <div class="ui-g-12 ui-fluid">
+                              <label for="cep">CEP</label>
+                              <input class="form-control" type="text" name="cep" id="cep" [(ngModel)]="enderecoEdit.cep">
+                            </div>                    
+                            <div class="ui-g-12 ui-fluid">
+                              <label for="complemento">Complemento</label>
+                              <input class="form-control" type="text" name="complemento" id="complemento" [(ngModel)]="enderecoEdit.complemento">
+                            </div>                    
+                            <div class="ui-g-12 ui-fluid">
+                              <label for="cidade">Cidade</label>                    
+                              <p-autoComplete [(ngModel)]="enderecoEdit.cidade" id="cidade" [suggestions]="cidadesFiltred" (completeMethod)="search($event)"
+                                field="nome"></p-autoComplete>                    
+                            </div>
                         </div>
                     </p-fieldset>
                     <p-fieldset legend="Foto">
-                        <p-fileUpload chooseLabel="Selecionar..." cancelLabel="Cancelar"
-                            name="foto" url="{{urlApi}}/pessoa/upload/{{pessoa.id}}"
-                            (onUpload)="onUpload($event)" accept=".jpg" maxFileSize="1000000">
-                                <ng-template pTemplate="content">
-                                    <ul *ngIf="uploadFiles.lenght">
-                                        <li *ngFor="let file of uploadFiles">
-                                            {{file.name}} - {{file.size}} bytes
-                                        </li>
-                                    </ul>
-                                </ng-template>
-                        </p-fileUpload>
+                        <div class="row">
+                            <div class="ui-g-12 ui-fluid">
+                                <label for="foto">Foto</label>
+                                <p-fileUpload
+                                    chooseLabel="Selecionar..."
+                                    cancelLabel="Cancelar"
+                                    name="foto"
+                                    url="{{urlApi}}/pessoa/upload/{{pessoaEdit.id}}"
+                                    (onUpload)="onUpload($event)"
+                                    accept=".jpg"
+                                    maxFileSize="1000000">
+                                        <ng-template pTemplate="content">
+                                            <ul *ngIf="uploadedFiles.lenght">
+                                                <li *ngFor="let file of uploadedFiles">
+                                                    {{file.name}} - {{file.size}} bytes
+                                                </li>
+                                            </ul>
+                                        </ng-template>
+                                </p-fileUpload>
+                            </div>
+                        </div>
                     </p-fieldset>
                 </div>
             </div>
@@ -78,11 +118,11 @@
                 <div class="ui-g-12 ui-fluid">
                     <div class="ui-g-12 ui-fluid">
                         <label for="email">E-mail</label>
-                        <input class="form-control" type="text" name="email" id="nemailome" disabled="false" value={{pessoa.email}} />
+                        <input class="form-control" type="text" name="email" id="nemailome" disabled="false" value={{pessoaEdit.email}} />
                     </div>
                     <div class="ui-g-12 ui-fluid">
                         <label for="senha">Senha</label>
-                        <input class="form-control" pPassword type="password" name="senha" id="senha" value={{pessoa.senha}} />
+                        <input class="form-control" pPassword type="password" name="senha" id="senha" value={{pessoaEdit.senha}} />
                     </div>
                 </div>
             </div>

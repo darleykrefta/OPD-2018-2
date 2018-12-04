@@ -23,12 +23,9 @@ export class MenuComponent implements OnInit {
       this.items = [{
         items: [
           { label: 'Perfil', icon: 'pi pi-fw pi-user', routerLink: 'perfil' },
-          { label: 'Meus Anúncios', icon: 'fa fa-bullhorn', routerLink: '/meusanuncios' },
           { label: 'Sair', icon: 'pi pi-fw pi-download', command: (onclick) => { this.loginService.loggout(); } }
-
         ]
       }];
-
     } else {
       this.items = [{
         items: [
@@ -36,8 +33,6 @@ export class MenuComponent implements OnInit {
         ]
       }];
     }
-
-
   }
 
 }

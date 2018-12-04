@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class IndexService extends CrudService<Campanha, number> {
 
+
   constructor(http: HttpClient) {
     super(environment.api + '/campanha', http);
   }
@@ -21,14 +22,14 @@ export class IndexService extends CrudService<Campanha, number> {
     return this.http.get<Campanha[]>(url);
   }
 
-  findByPessoa(): Observable<Campanha[]> {
-    const url = `${this.getUrl()}/filter/meusanuncios`;
-    return this.http.get<Campanha[]>(url);
-  }
+findByPessoa(): Observable<Campanha[]> {
+  const url = `${this.getUrl()}/filter/meusanuncios`;
+  return this.http.get<Campanha[]>(url);
+}
 
-  finalizarAnuncio(id: number): Observable<void> {
-    const url = `${this.getUrl()}/finalizarAnuncio/${id}`;
-    return this.http.get<void>(url);
-  }
+finalizarAnuncio(id: number): Observable<void> {
+  const url = `${this.getUrl()}/finalizarAnuncio/${id}`;
+  return this.http.get<void>(url);
+}
 
 }

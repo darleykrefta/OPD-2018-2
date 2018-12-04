@@ -28,6 +28,8 @@ const routes: Routes = [
       {path: 'cidade', component: CidadeComponent},
       {path: 'categoria', component: CategoriaComponent},
       {path: 'endereco', component: EnderecoComponent},
+      {path: 'perfil', component: PerfilComponent},
+
       {path: 'index', component: IndexComponent},
       {path: 'cadastro', component: CadastroComponent},
       {path: 'cadastroAnuncio', component: AnuncioComponent},

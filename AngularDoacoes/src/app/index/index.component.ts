@@ -81,10 +81,6 @@ export class IndexComponent implements OnInit {
     this.campanhaService.findAll().subscribe( e => this.campanhas = e );
   }
 
-  findByPessoa() {
-    this.campanhaService.findByPessoa().subscribe(e => this.campanhas = e);
-  }
-
 
   findOne(id: number) {
      this.campanhaService.findOne( id)

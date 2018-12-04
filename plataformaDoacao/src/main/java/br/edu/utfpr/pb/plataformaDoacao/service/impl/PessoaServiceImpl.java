@@ -36,6 +36,8 @@ public class PessoaServiceImpl extends CrudServiceImpl <Pessoa, Long> implements
     	return super.save(iterable);
     }
     
+
+
 	@Override
 	public List<Pessoa> findByEmailOrderById(String email) {
 		// TODO Auto-generated method stub
@@ -55,6 +57,7 @@ public class PessoaServiceImpl extends CrudServiceImpl <Pessoa, Long> implements
 			}
 		}
 	}
+
 
 	@Override
 	public Page<Pessoa> findByNomeLikeOrCpfCnpjLike(String nome, String cpf_cnpj, Pageable pageable) {

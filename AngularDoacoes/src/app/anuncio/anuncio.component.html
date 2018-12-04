@@ -60,48 +60,7 @@
                   <input type="text" class="form-control" name="celular" id="celular" [(ngModel)]="campanhaEdit.celular">
               </div>
             </div>
-            <div class="form-group row">
-                <div class="col-12">
-                  <div class="card">
-                    <div class="card-header">
-                      Fotos
-                    </div>
-                    <div class="card-body">
-                        <div class="col-12">
-                          <p-fileUpload
-                            chooseLabel="Selecionar..."
-                            cancelLabel="Cancelar"
-                            name="foto"
-                              url="{{urlApi}}/campanha/upload/{{campanhaEdit.id}}"
-                                (onUpload)="onUpload($event)"
-                                accept=".jpg"
-                                multiple="multiple"
-                                maxFileSize="1000000">
-                                <ng-template pTemplate="content">
-                                    <ul *ngIf="uploadFiles.lenght">
-                                      <li *ngFor="let file of uploadFiles">
-                                        {{file.name}} - {{file.size}} bytes
-                                      </li>
-                                    </ul>
-                                </ng-template>
-                        </p-fileUpload>
-                        </div>
-                        <div class="col-12">
-                          <p-carousel [value]="uploadFiles">
-                            <ng-template let-item pTemplate="item">
-                                <div class="ui-grid-row">
-                                    <div class="ui-grid-col-12"><span>
-                                     ss:   {{item}}
-                                    </span>
-                                  </div>
-                                </div>
-                            </ng-template>
-                          </p-carousel>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             <div class="row">
               <div class="col-12">
                 <div class="card">
@@ -115,16 +74,65 @@
               </div>
             </div>
           </form>
-          <div class="m-3" style="position: relative; bottom: 0;">
-            <div class="pull-right">
-                <button type="button" class="btn btn-outline-danger " (click)="cancel()">
-                    <i class="fa fa-times" aria-hidden="true"></i> Cancelar
-                  </button>
-                  <button type="button" class="btn btn-outline-success ml-3" (click)="save()">
-                      <i class="fa fa-check" aria-hidden="true"></i> Salvar
-                  </button>
-            </div><!-- /.pull-right -->
-          </div><!-- /.m-3 -->
+          <div class="row">
+            <div class="col-12">
+                <div class="m-3" style="position: relative; bottom: 0;">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-outline-danger " (click)="cancel()">
+                            <i class="fa fa-times" aria-hidden="true"></i> Cancelar
+                          </button>
+                          <button type="button" class="btn btn-outline-success ml-3" (click)="save()">
+                              <i class="fa fa-check" aria-hidden="true"></i> Salvar
+                          </button>
+                  </div><!-- /.pull-right -->
+                </div><!-- /.m-3 -->
+            </div>
+          </div>
+          <div style="clear:both; margin-bottom: 3%;"></div>
+          <p style="color: #B22222; font-size: small;">ATENÇÃO: Será possivel SELECIONAR as fotos e efetuar o UPLOAD somente após salvar o anúncio.</p>
+          <div class="form-group row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  Fotos
+                </div>
+                <!--O botão Selecionar... pode ser habilitado somente após salvar a campanha.-->
+                <div class="card-body">
+                    <div class="col-12">
+                      <p-fileUpload
+                        chooseLabel="Selecionar..."
+                        cancelLabel="Cancelar"
+                        name="foto"
+                          url="{{urlApi}}/campanha/upload/{{campanhaEdit.id}}"
+                            (onUpload)="onUpload($event)"
+                            accept=".jpg"
+                            multiple="multiple"
+                            maxFileSize="1000000">
+                            <ng-template pTemplate="content">
+                                <ul *ngIf="uploadFiles.lenght">
+                                  <li *ngFor="let file of uploadFiles">
+                                    {{file.name}} - {{file.size}} bytes
+                                  </li>
+                                </ul>
+                            </ng-template>
+                    </p-fileUpload>
+                    </div>
+                    <div class="col-12">
+                      <p-carousel [value]="uploadFiles">
+                        <ng-template let-item pTemplate="item">
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-12"><span>
+                                 ss:   {{item}}
+                                </span>
+                              </div>
+                            </div>
+                        </ng-template>
+                      </p-carousel>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div><!-- /.card-body -->
       </div><!-- /.card -->
     </div><!-- /.col-md-8 .offset-md-2-->

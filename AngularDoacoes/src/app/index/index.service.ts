@@ -15,7 +15,7 @@ export class IndexService extends CrudService<Campanha, number> {
     super(environment.api + '/campanha', http);
   }
 
-   findSearchPageable(dataIni: string, dataFinal: string, categoria: string):
+   findSearchPageable(dataIni: string, dataFinal: string, categoria: number):
         Observable<Campanha []> {
     const url = `${this.getUrl()}/search?dataIni=${dataIni}&dataFim=${dataFinal}&categoria=${categoria}`;
     return this.http.get<Campanha[]>(url);

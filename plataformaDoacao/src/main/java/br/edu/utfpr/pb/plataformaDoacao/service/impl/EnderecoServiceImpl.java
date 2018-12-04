@@ -1,5 +1,7 @@
 package br.edu.utfpr.pb.plataformaDoacao.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.edu.utfpr.pb.plataformaDoacao.model.Cidade;
 import br.edu.utfpr.pb.plataformaDoacao.model.Endereco;
+import br.edu.utfpr.pb.plataformaDoacao.model.Mensagem;
 import br.edu.utfpr.pb.plataformaDoacao.repository.EnderecoRepository;
 import br.edu.utfpr.pb.plataformaDoacao.service.EnderecoService;
 
@@ -36,7 +39,7 @@ public class EnderecoServiceImpl extends CrudServiceImpl<Endereco, Long> impleme
 		return enderecoRepository.countByRuaLikeOrBairroLike(rua, bairro);
 	}
 
-	
+
 
 	
 	

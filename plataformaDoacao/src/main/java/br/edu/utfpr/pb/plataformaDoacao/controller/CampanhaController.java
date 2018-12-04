@@ -21,11 +21,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.edu.utfpr.pb.plataformaDoacao.model.Campanha;
 import br.edu.utfpr.pb.plataformaDoacao.model.Foto;
-import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
-import br.edu.utfpr.pb.plataformaDoacao.service.FotoService;
 import br.edu.utfpr.pb.plataformaDoacao.model.Mensagem;
-import br.edu.utfpr.pb.plataformaDoacao.service.MensagemService;
 import br.edu.utfpr.pb.plataformaDoacao.service.CampanhaService;
+import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
+import br.edu.utfpr.pb.plataformaDoacao.service.EnderecoService;
+import br.edu.utfpr.pb.plataformaDoacao.service.FotoService;
+import br.edu.utfpr.pb.plataformaDoacao.service.MensagemService;
 
 @RestController
 @RequestMapping("campanha")
@@ -33,12 +34,15 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 
 	@Autowired
 	private CampanhaService campanhaService;
-	
+
 	@Autowired
 	private FotoService fotoService;
 
 	@Autowired
 	private MensagemService mensagemService;
+	
+	@Autowired
+	private EnderecoService enderecoService;
 
 	@Override
 	protected CrudService<Campanha, Long> getService() {
@@ -49,7 +53,7 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 	public List<Mensagem> procurarMensagens(@RequestParam Long campanhaId) {
 		return mensagemService.findByCampanhaId(campanhaId);
 	}
-	
+
 	@GetMapping
 	public List<Campanha> findAll() {
 		return campanhaService.findAll();
@@ -77,11 +81,11 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 
 		return null;
 	}
-	
+
 	@PostMapping("upload/{id}")
-	public void upload(@PathVariable Long id, @RequestParam("foto") MultipartFile[] listFoto, HttpServletRequest request)
-			throws Exception {
-		
+	public void upload(@PathVariable Long id, @RequestParam("foto") MultipartFile[] listFoto,
+			HttpServletRequest request) throws Exception {
+
 		saveFile(id, listFoto, request);
 	}
 
@@ -90,15 +94,15 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
-		
+
 		List<Foto> listFotos = fotoService.findByCampanhaId(id);
-		
+
 		if (listFotos.size() > 0) {
 			for (Foto item : listFotos) {
 				fotoService.delete(item.getId());
 			}
 		}
-		
+
 		for (MultipartFile foto : listFoto) {
 			String caminhoAnexo = request.getServletContext().getRealPath("images/");
 			String extensao = foto.getOriginalFilename().substring(foto.getOriginalFilename().lastIndexOf("."),
@@ -109,14 +113,14 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 				BufferedOutputStream stream = new BufferedOutputStream(fileOut);
 				stream.write(foto.getBytes());
 				stream.close();
-				
+
 				Foto ft = new Foto();
 				ft.setCaminhoFoto(nomeArquivo);
 				Campanha campanha = new Campanha();
 				campanha = getService().findOne(id);
 				ft.setCampanha(campanha);
 				fotoService.save(ft);
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("Erro ao fazer" + "upload da imagem. " + e.getMessage());
@@ -124,4 +128,10 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 		}
 	}
 
+	@GetMapping("/finalizarAnuncio/{id}")
+	public void findByIdCampanha(@PathVariable Long id) {
+		Campanha campanha = getService().findOne(id);
+		campanha.setStatus(false);
+		getService().save(campanha);
+	}
 }

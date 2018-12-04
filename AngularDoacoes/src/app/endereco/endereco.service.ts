@@ -12,13 +12,7 @@ export class EnderecoService extends CrudService<Endereco, number> {
   constructor(http: HttpClient) {
     super(environment.api + '/endereco', http);
    }
-
-   //
-  //findEndereco(teste: String): Observable<Endereco> {
-  //  const url = `${this.getUrl()}/${teste}`;
-   // return this.http.get<Endereco>(url);
- // }
-
+   
   findSearchPageable(filter: string, page: number, size: number, order?: string, asc?: boolean): Observable<Page<Endereco>> {
     let url = `${this.getUrl()}/filter/nome?filter=${filter}&page=${page}&size=${size}`;
     if (order) {

@@ -19,4 +19,5 @@ export class AnuncioService extends CrudService<Campanha, number> {
     const url = `${this.getUrl()}/search?dataIni=${dataIni}&dataFim=${dataFinal}&categoria=${categoria}`;
     return this.http.get<Campanha[]>(url);
   }
+
 }

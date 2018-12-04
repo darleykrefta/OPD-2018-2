@@ -39,7 +39,7 @@ export class PessoaComponent implements OnInit {
      private loginService: LoginService) { }
 
   ngOnInit() {
-    this.loginService.verificaAdmin();
+    this.loginService.verificaPermissoes();
     this.enderecoService.findAll().subscribe(
       e => this.enderecos = e);
       this.cols = [

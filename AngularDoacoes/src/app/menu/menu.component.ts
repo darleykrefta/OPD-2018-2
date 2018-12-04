@@ -15,18 +15,29 @@ export class MenuComponent implements OnInit {
   isAuthenticated = false;
 
   constructor(private loginService: LoginService) {
-    this.loginService.isAuthenticated.asObservable().subscribe(e => this.isAuthenticated = e);
   }
 
   ngOnInit() {
-    this.items = [{
-      items: [
-        { label: 'Perfil', icon: 'pi pi-fw pi-user', routerLink: 'perfil' },
-        { label: 'Meus Anúncios', icon: 'fa fa-bullhorn', routerLink: '/meusanuncios' },
-        { label: 'Sair', icon: 'pi pi-fw pi-download', command: (onclick) => { this.loginService.loggout(); } }
+    this.isAuthenticated = this.loginService.getAuthenticated();
+    if (this.isAuthenticated) {
+      this.items = [{
+        items: [
+          { label: 'Perfil', icon: 'pi pi-fw pi-user', routerLink: 'perfil' },
+          { label: 'Meus Anúncios', icon: 'fa fa-bullhorn', routerLink: '/meusanuncios' },
+          { label: 'Sair', icon: 'pi pi-fw pi-download', command: (onclick) => { this.loginService.loggout(); } }
 
-      ]
-    }];
+        ]
+      }];
+
+    } else {
+      this.items = [{
+        items: [
+          { label: 'Fazer Login', icon: 'pi pi-fw pi-user', routerLink: 'login' }
+        ]
+      }];
+    }
+
+
   }
 
 }

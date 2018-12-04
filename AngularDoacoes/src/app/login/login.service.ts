@@ -51,12 +51,13 @@ export class LoginService implements CanActivate {
     return false;
 
   }
-
+  
   verificaUsuarioLogado(){
     if (!this.hasRole('USER')) {
       this.router.navigate(['/login']);
     }   
   }
+
   verificaPermissoes() {
     if (!this.hasRole('USER')) {
       this.router.navigate(['/login']);

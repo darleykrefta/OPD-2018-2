@@ -27,13 +27,14 @@ export class ResetPasswordComponent implements OnInit {
   save() {
     this.resetarPasswordService.save(this.editSenha).
       subscribe(e => {
-        
-        this.editSenha = new ResetarSenhaToken();
+    
         this.msgs = [{
           severity: 'success',
           summary: 'Confirmado',
           detail: 'Registro salvo com sucesso'
         }];
+
+        this.editSenha = new ResetarSenhaToken();
 
         setTimeout(() => {
           this.router.navigate(['/login']);

@@ -45,6 +45,11 @@ public class ResetarSenhaController {
 			
 			//ResetarSenhaToken resetarToken =  token.getPessoa();
 			
+			if(resetarSenhaDto.getSenha() != resetarSenhaDto.getConfirmSenha()) {
+				System.out.println("Diferentes");
+				return false;
+			}
+			
 			String updatedPassword = bCrypt.encode(resetarSenhaDto.getSenha());
 			
 			pessoa.setSenha(updatedPassword);

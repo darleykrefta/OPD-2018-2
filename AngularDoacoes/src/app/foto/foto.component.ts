@@ -1,3 +1,5 @@
+import { AnuncioService } from './../anuncio/anuncio.service';
+import { environment } from './../../environments/environment';
 import { Foto } from './../model/foto';
 import { FotoService } from './foto.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -12,18 +14,16 @@ export class FotoComponent implements OnInit {
 
   @Input() campanhaId: number;
   fotos: Foto[];
-  foto = new Foto();
-  campanha = new Campanha();
   images: any[];
 
-  constructor(private fotoService: FotoService ) { }
+  constructor(private fotoService: FotoService) { }
 
   ngOnInit() {
-    this.fotoService.getFotos(this.campanhaId).subscribe(e => this.fotos = e);
-
     this.images = [];
-    this.fotos.forEach( function(foto) {
-        this.images.push({source: this.foto.caminhoFoto});
+    this.fotoService.getFotos(this.campanhaId).subscribe(f => {
+      f.forEach( foto => {
+        this.images.push({source: environment.api + '/' + foto.caminhoFoto});
+      });
     });
   }
 

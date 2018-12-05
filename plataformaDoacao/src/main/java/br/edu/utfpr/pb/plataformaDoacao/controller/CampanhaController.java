@@ -147,4 +147,5 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 		campanha.setStatus(false);
 		getService().save(campanha);
 	}
+	
 }

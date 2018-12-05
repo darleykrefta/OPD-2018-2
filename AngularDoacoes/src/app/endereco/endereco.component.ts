@@ -29,13 +29,14 @@ export class EnderecoComponent implements OnInit {
   cidadesFiltred: Cidade[];
   cols: any[];
 
-  @Input() recebeAnuncioID;
+  @Input() anuncioID: string;
 
   @Output() respostaEndereco = new EventEmitter();
 
   constructor(private enderecoService: EnderecoService, private confirmationService: ConfirmationService,
     private cidadeService: CidadeService,
-    private loginService: LoginService) { }
+    private loginService: LoginService,
+    ) { }
 
   search(event) {
     this.cidadesFiltred = this.cidades.filter(
@@ -44,7 +45,8 @@ export class EnderecoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.findByCampanha(this.recebeAnuncioID);
+    console.log('endereco' + this.anuncioID);
+    this.findByCampanha(this.anuncioID);
     this.cidadeService.findAll().subscribe(e => this.cidades = e);
 
     this.cols = [

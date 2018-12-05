@@ -109,7 +109,7 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 
 		for (MultipartFile foto : listFoto) {
 			
-			File caminhoAnexo = new File("./src/main/webapps/images");
+			File caminhoAnexo = new File("./src/main/webapp/images");
 			
 			String extensao = foto.getOriginalFilename().substring(foto.getOriginalFilename().lastIndexOf("."),
 					foto.getOriginalFilename().length());
@@ -146,5 +146,10 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 		Campanha campanha = getService().findOne(id);
 		campanha.setStatus(false);
 		getService().save(campanha);
+	}
+	
+	@GetMapping("visualizaranuncio/{campanhaId}")
+	public List<Foto> listaFotos(@PathVariable Long campanhaId) {
+		return fotoService.findByCampanhaId(campanhaId);
 	}
 }

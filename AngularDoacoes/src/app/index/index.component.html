@@ -3,6 +3,18 @@
 <div class="ui-g">
     <div class="ui-g-12 ui-md-3">
         <h3 style="font-weight:normal">Buscar</h3>
+        <div class="row">
+            <div class="col-12">
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="todosRadio" name="Radio" class="custom-control-input" (click)="findAll()" checked>
+                    <label class="custom-control-label" for="todosRadio">Todos</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="meusRadio" name="Radio" class="custom-control-input" (click)="findByPessoa()">
+                    <label class="custom-control-label" for="meusRadio">Meus anúncios</label>
+                </div>
+            </div>
+        </div>
         <div>
             <div>
                 <label for="filtro1">Título ou descrição do anúncio</label>
@@ -50,7 +62,7 @@
         <div style="clear:both;"></div>
 
         <div class="ui-g-12 ui-md-12">   
-            <button pButton type="button" (click)="findSearchPaged(dataini, datafim, selectedCategoria.id)" 
+            <button pButton type="button" (click)="findSearchPaged(dataini, datafim, selectedCategoria)" 
                 label="Pesquisar" class="ui-button-info"></button>
             <button pButton type="button" (click)="this.findAll()" label="Limpar Busca" class="ui-button-info"></button>
         </div>
@@ -70,12 +82,10 @@
                         <hr class="ui-widget-content" style="border-top:0">
                         <a [routerLink]= "['campanha/visualizaranuncio/', campanha.id]" > 
                             <button pButton type="button" icon="pi pi-search" style="margin-top:0">
-                            
                             </button>
                         </a>
-                        <button pButton type="button" icon="fa fa-check" class="btn btn-danger" (click) ="setFinalizado($event, campanha)"
-                       style="margin-top:0" data-toggle="tooltip"
-                      title="Finalizar Anúncio"></button>
+                        <button pButton type="button" class="btn btn-danger" (click) ="setFinalizado($event, campanha)" data-toggle="tooltip"
+                      title="Finalizar Anúncio" [hidden]="escondeBtnFinalizar" [disabled]="(campanha.status == 0) || (desabilitaFinalizar == true)"><i class="fa fa-check"></i></button>
                     </p-panel>
                 </div>
             </ng-template>

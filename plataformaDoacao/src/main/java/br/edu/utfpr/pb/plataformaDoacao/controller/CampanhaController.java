@@ -61,21 +61,23 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 	@SuppressWarnings("unused")
 	@GetMapping("search")
 	public List<Campanha> findByDataInicioBetweenOrCategoriaId(@RequestParam(required = false) String dataIni,
-			@RequestParam(required = false) String dataFim, @RequestParam(required = false) String categoria) {
+			@RequestParam(required = false) String dataFim, @RequestParam(required = false) Long categoria) {
 
 		if (dataIni != null && dataFim != null && categoria != null && dataIni != "" && dataFim != ""
-				&& categoria != "") {
+				&& categoria != 0 ) {
 			return campanhaService.findByDataInicioBetweenOrCategoriaId(
 					LocalDate.parse(dataIni, DateTimeFormatter.ofPattern("dd/MM/yyyy")),
 					LocalDate.parse(dataFim, DateTimeFormatter.ofPattern("dd/MM/yyyy")), Long.valueOf(categoria));
-		} else if (dataIni != null && dataFim != null && dataIni != "" && dataFim != "" && categoria == ""
+		} else if (dataIni != null && dataFim != null && dataIni != "" && dataFim != "" && categoria == 0
 				&& categoria == null) {
 			return campanhaService.findByDataInicioBetween(
 					LocalDate.parse(dataIni, DateTimeFormatter.ofPattern("dd/MM/yyyy")),
 					LocalDate.parse(dataFim, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-		} else if (categoria != null && categoria != "" && dataIni == "" && dataFim == "" && dataIni != null
+		} else if (categoria != null && categoria != 0 && dataIni == "" && dataFim == "" && dataIni != null
 				&& dataFim != null) {
-			return campanhaService.findByCategoriaId(Long.parseLong(categoria));
+			return campanhaService.findByCategoriaId(categoria);
+		} else if (categoria == 0 && dataIni == "" && dataFim == "" ) {
+			return campanhaService.findAll();
 		}
 
 		return null;
@@ -103,18 +105,20 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 		}
 
 		for (MultipartFile foto : listFoto) {
-			String caminhoAnexo = request.getServletContext().getRealPath("images/");
+			
+			File caminhoAnexo = new File("./src/main/webapp/images");
+			
 			String extensao = foto.getOriginalFilename().substring(foto.getOriginalFilename().lastIndexOf("."),
 					foto.getOriginalFilename().length());
 			String nomeArquivo = id + Math.random() + extensao;
 			try {
-				FileOutputStream fileOut = new FileOutputStream(new File(caminhoAnexo + nomeArquivo));
+				FileOutputStream fileOut = new FileOutputStream(new File(caminhoAnexo + "/" + nomeArquivo));
 				BufferedOutputStream stream = new BufferedOutputStream(fileOut);
 				stream.write(foto.getBytes());
 				stream.close();
 
 				Foto ft = new Foto();
-				ft.setCaminhoFoto(nomeArquivo);
+				ft.setCaminhoFoto("images" + "\\" + nomeArquivo);
 				Campanha campanha = new Campanha();
 				campanha = getService().findOne(id);
 				ft.setCampanha(campanha);
@@ -132,5 +136,10 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 		Campanha campanha = getService().findOne(id);
 		campanha.setStatus(false);
 		getService().save(campanha);
+	}
+	
+	@GetMapping("visualizaranuncio/{campanhaId}")
+	public List<Foto> listaFotos(@PathVariable Long campanhaId) {
+		return fotoService.findByCampanhaId(campanhaId);
 	}
 }

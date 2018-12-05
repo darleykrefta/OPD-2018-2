@@ -29,6 +29,7 @@ const routes: Routes = [
       {path: 'index', component: IndexComponent},
       {path: 'cadastro', component: CadastroComponent},
       {path: 'cadastroAnuncio', component: AnuncioComponent},
+      {path: 'cadastroAnuncio/:id', component: AnuncioComponent},
       {path: 'index/campanha/visualizaranuncio/:campanhaId', component: VisualizarAnuncioComponent}
     ]
   },

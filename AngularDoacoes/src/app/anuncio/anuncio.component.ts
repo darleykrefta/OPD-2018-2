@@ -9,7 +9,7 @@ import { CategoriaService } from './../categoria/categoria.service';
 import { Categoria } from './../model/categoria';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EnderecoComponent } from '../endereco/endereco.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Pessoa } from '../model/pessoa';
 import { PessoaService } from '../pessoa/pessoa.service';
 
@@ -37,13 +37,20 @@ export class AnuncioComponent implements OnInit {
     private enderecoService: EnderecoService,
     private router: Router,
     private loginService: LoginService,
-    private pessoaService: PessoaService) {}
+    private pessoaService: PessoaService,
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.loginService.verificaPermissoes();
     this.categoriaService.findAll().subscribe(
       e => this.categorias = e);
-    this.newEntity();
+    let id: string;
+    this.route.params.subscribe((objeto: any) => { id = objeto['id']; });
+    if (id !== null) {
+      this.edit(this.anuncioService.findOne(Number(id)).subscribe(e => (this.campanhaEdit = e)));
+    } else {
+      this.newEntity();
+    }
   }
 
   newEntity() {
@@ -98,8 +105,8 @@ export class AnuncioComponent implements OnInit {
     this.uploadFiles.push(foto);
   }
 
-  showConsole() {
-    console.log(this.uploadFiles);
+  edit(campanha) {
+    this.campanhaEdit = campanha;
   }
 
 }

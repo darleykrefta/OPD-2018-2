@@ -55,6 +55,10 @@ import { VisualizarAnuncioComponent } from './visualizar-anuncio/visualizar-anun
 import { RouterModule } from '@angular/router';
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { MensagemService } from './mensagem/mensagem.service';
+import { EsqueciSenhaComponent } from './esqueci-senha/esqueci-senha.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordService } from './reset-password/reset-password.service';
+import { EsqueciSenhaService } from './esqueci-senha/esqueci-senha.service';
 import { PermissaoComponent } from './permissao/permissao.component';
 import { IndexService } from './index/index.service';
 import { FotoComponent } from './foto/foto.component';
@@ -76,6 +80,8 @@ import { FotoService } from './foto/foto.service';
     CadastroComponent,
     LoginComponent,
     PerfilComponent,
+    EsqueciSenhaComponent,
+    ResetPasswordComponent,
     PermissaoComponent,
     FotoComponent
   ],
@@ -127,6 +133,8 @@ import { FotoService } from './foto/foto.service';
     EnderecoService,
     CadastroService,
     LoginService,
+    ResetPasswordService,
+    EsqueciSenhaService,
     IndexService,
     FotoService
   ],

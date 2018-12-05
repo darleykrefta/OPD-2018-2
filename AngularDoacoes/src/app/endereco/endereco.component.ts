@@ -45,6 +45,7 @@ export class EnderecoComponent implements OnInit {
 
   ngOnInit() {
     this.findByCampanha(this.recebeAnuncioID);
+    this.loginService.verificaAdmin();
     this.cidadeService.findAll().subscribe(e => this.cidades = e);
 
     this.cols = [
@@ -154,6 +155,10 @@ export class EnderecoComponent implements OnInit {
       }
     });
   }
+
+
+
+
 
   getRandomInt(min, max) {
     min = Math.ceil(min);

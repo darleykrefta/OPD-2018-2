@@ -1,4 +1,5 @@
 import { AnuncioService } from './../anuncio/anuncio.service';
+import{EnderecoService} from './../endereco/endereco.service';
 
 import { Campanha } from '../model/campanha';
 import { ActivatedRoute } from '@angular/router';
@@ -17,8 +18,10 @@ export class VisualizarAnuncioComponent implements OnInit {
   campanha: Campanha;
   idAtual: number;
 
+
   constructor(private route: ActivatedRoute,
-    private anuncioService: AnuncioService) { }
+    private anuncioService: AnuncioService,
+    private enderecoService: EnderecoService) { }
 
   ngOnInit() {
     this.route.params.subscribe((objeto: any) => { this.idAtual = objeto['campanhaId']; });

@@ -7,9 +7,6 @@ import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
 import { LoginService } from '../login/login.service';
 import { Endereco } from '../model/endereco';
 import { EnderecoService } from '../endereco/endereco.service';
-import { Cidade } from '../model/cidade';
-import { CidadeService } from '../cidade/cidade.service';
-import { PermissaoComponent } from '../permissao/permissao.component';
 
 @Component({
   selector: 'app-pessoa',
@@ -23,14 +20,11 @@ export class PessoaComponent implements OnInit {
   cols: any[];
   pessoas: Pessoa[];
   totalRecords: number;
-  enderecoEdit: Endereco = new Endereco();
 
   enderecos: Endereco[];
   enderecosFiltered: Endereco[];
   pessoaEdit: Pessoa = new Pessoa();
 
-  cidades: Cidade[];
-  cidadesFiltred: Cidade[];
 
   showDialog = false;
   msgs: Message[] = [];
@@ -42,11 +36,10 @@ export class PessoaComponent implements OnInit {
   constructor(private pessoaService: PessoaService,
     private confirmationService: ConfirmationService,
      private enderecoService: EnderecoService,
-     private cidadeService: CidadeService,
      private loginService: LoginService) { }
 
   ngOnInit() {
-    this.loginService.verificaPermissoes();
+    this.loginService.verificaUsuarioLogado();
     this.enderecoService.findAll().subscribe(
       e => this.enderecos = e);
       this.cols = [
@@ -57,7 +50,8 @@ export class PessoaComponent implements OnInit {
         {field: 'cpfCnpj', header: 'CPF/CNPJ'},
         {field: 'telefone', header: 'Telefone'},
         {field: 'celular', header: 'Celular'},
-        {field: 'status', header: 'Status'}
+        {field: 'status', header: 'Status'},
+        // {field: 'endereco.id', header: 'Endereço'},
       ];
   }
 
@@ -90,30 +84,28 @@ export class PessoaComponent implements OnInit {
   newEntity() {
     this.showDialog = true;
     this.pessoaEdit = new Pessoa();
-    this.enderecoEdit = new Endereco();
-    this.pessoaEdit.endereco = this.enderecoEdit;
+    this.pessoaEdit.endereco = this.enderecos[0];
   }
 
   search(event) {
-      this.cidadesFiltred = this.cidades.filter(
-        p => p.nome.toLocaleLowerCase().includes(event.query.toLocaleLowerCase())
+    this.enderecosFiltered = this.enderecos
+      .filter(
+        e => e.rua.toLocaleLowerCase()
+          .includes(event.query.toLocaleLowerCase())
       );
   }
 
   save() {
-    this.pessoaEdit.endereco = this.enderecoEdit;
     this.pessoaService.save(this.pessoaEdit).subscribe(
       e => {
-        this.enderecoEdit = new Endereco();
         this.pessoaEdit = new Pessoa();
-        this.showDialog = false;
         this.dataTable.reset();
+        this.showDialog = false;
         this.msgs = [{
           severity: 'success',
           summary: 'Confirmado',
           detail: 'Registro salvo com sucesso!'
         }];
-        this.showDialog = false;
       }, error => {
         this.msgs = [{
           severity: 'error',
@@ -131,8 +123,7 @@ export class PessoaComponent implements OnInit {
   edit(pessoa: Pessoa) {
     this.today = Date.now();
     this.pessoaEdit = Object.assign({}, pessoa);
-    this.enderecoEdit = Object.assign({}, pessoa.endereco);
-        this.showDialog = true;
+    this.showDialog = true;
   }
 
   delete(pessoa: Pessoa) {

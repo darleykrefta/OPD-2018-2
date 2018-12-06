@@ -53,11 +53,4 @@ public class CampanhaServiceImpl extends CrudServiceImpl <Campanha, Long> implem
 		return campanhaRepository.findByDataInicioBetween(dataIni, dataFim);
 	}
 
-
-	@Override
-	public List<Campanha> findByPessoaId(Long id) {
-		// TODO Auto-generated method stub
-		return campanhaRepository.findByPessoaId(id);
-	}
-
 }

@@ -94,7 +94,6 @@ export class IndexComponent implements OnInit {
     this.escondeBtnFinalizar = false;
   }
 
-
   findOne(id: number) {
      this.campanhaService.findOne( id)
       .subscribe(campanha => this.campanha = campanha);

@@ -19,6 +19,4 @@ public interface CampanhaRepository extends JpaRepository<Campanha, Long> {
 	
 	List<Campanha> findByDataInicioBetween(LocalDate dataIni, LocalDate dataFim);
 	
-	List<Campanha> findByPessoaId(Long id);
-	
 }

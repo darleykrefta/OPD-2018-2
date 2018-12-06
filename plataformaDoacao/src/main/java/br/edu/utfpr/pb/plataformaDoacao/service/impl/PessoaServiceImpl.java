@@ -29,16 +29,15 @@ public class PessoaServiceImpl extends CrudServiceImpl <Pessoa, Long> implements
 		return pessoaRepository;
 	}
 	
-	@Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return pessoaRepository.findByEmail(s).orElseThrow(() -> new UsernameNotFoundException("Usuario não encontrado!"));
-    }
+
     
     @Override
     public Iterable<Pessoa> save(Iterable<Pessoa> iterable) {
     	return super.save(iterable);
     }
     
+
+
 	@Override
 	public List<Pessoa> findByEmailOrderById(String email) {
 		// TODO Auto-generated method stub
@@ -59,6 +58,7 @@ public class PessoaServiceImpl extends CrudServiceImpl <Pessoa, Long> implements
 		}
 	}
 
+
 	@Override
 	public Page<Pessoa> findByNomeLikeOrCpfCnpjLike(String nome, String cpf_cnpj, Pageable pageable) {
 		return pessoaRepository.findByNomeLikeOrCpfCnpjLike(nome, cpf_cnpj, pageable);
@@ -69,4 +69,27 @@ public class PessoaServiceImpl extends CrudServiceImpl <Pessoa, Long> implements
 	public long countByNomeLikeOrCpfCnpjLike(String nome, String cpf_cnpj) {
 		return pessoaRepository.countByNomeLikeOrCpfCnpjLike(nome, cpf_cnpj);
 	}
+
+	@Override
+	@Transactional
+	public void atualizarSenha(String senha, Long id) {
+		pessoaRepository.atualizarSenha(senha, id);
+		
+	}
+
+
+
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		
+		return pessoaRepository.findByEmail(email);
+	}
+
+
+
+	@Override
+	public Pessoa findByEmail(String email) {
+		return pessoaRepository.findByEmail(email);
+	}
+
 }

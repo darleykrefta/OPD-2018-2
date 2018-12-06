@@ -4,10 +4,6 @@ import { Pessoa } from '../model/pessoa';
 import { LoginService } from '../login/login.service';
 import { PessoaService } from '../pessoa/pessoa.service';
 import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
-import { Endereco } from '../model/endereco';
-import { EnderecoService } from '../endereco/endereco.service';
-import { CidadeService } from '../cidade/cidade.service';
-import { Cidade } from '../model/cidade';
 
 @Component({
   selector: 'app-perfil',
@@ -16,53 +12,38 @@ import { Cidade } from '../model/cidade';
 })
 export class PerfilComponent implements OnInit {
 
-  pessoas: Pessoa[];
-  totalRecords: number;
-  enderecoEdit: Endereco = new Endereco();
-
-  enderecos: Endereco[];
-  enderecosFiltered: Endereco[];
-  pessoaEdit: Pessoa = new Pessoa();
-
-  cidades: Cidade[];
-  cidadesFiltred: Cidade[];
-
-  showDialog = false;
+  pessoa: Pessoa;
+  pessoaEdit = new Pessoa();
   msgs: Message[] = [];
-
-  uploadedFiles: any[] = [];
+  uploadFiles: any[] = [];
   urlApi: string = environment.api;
   today: number = Date.now();
 
-  constructor(private loginService: LoginService, private pessoaService: PessoaService,
-     private confirmationService: ConfirmationService,
-     private enderecoService: EnderecoService,
-     private cidadeService: CidadeService) { }
+  constructor(private loginService: LoginService, private pessoaService: PessoaService) { }
 
   ngOnInit() {
     this.loginService.verificaUsuarioLogado();
     const a = this.loginService.getUserInfo();
-    this.pessoaEdit = a.principal;
-    this.today = Date.now();
-    this.enderecoService.findOne(this.pessoaEdit.endereco.id).subscribe(
-      e => this.enderecoEdit = e);
-    this.cidadeService.findAll().subscribe(e => this.cidades = e);
+    this.pessoa = a.principal;
+    console.log('Testando' + this.pessoa.nome);
+    console.log(this.pessoa.endereco.id);
+    console.log(this.pessoa.foto);
   }
 
   save() {
-    this.pessoaEdit.endereco = this.enderecoEdit;
-    this.pessoaService.save(this.pessoaEdit).subscribe(
-      e => {
+    this.pessoaService.save(this.pessoaEdit).
+      subscribe(e => {
+        this.pessoaEdit = new Pessoa();
         this.msgs = [{
           severity: 'success',
           summary: 'Confirmado',
-          detail: 'Registro salvo com sucesso!'
+          detail: 'Registro salvo com sucesso'
         }];
       }, error => {
-        this.msgs = [{
-          severity: 'error',
-          summary: 'Erro',
-          detail: 'Erro! Verifique os dados!'
+          this.msgs = [{
+            severity: 'error',
+            summary: 'Erro',
+            detail: 'Certifique-se de preencher todos dos campos.'
         }];
       }
     );
@@ -70,17 +51,16 @@ export class PerfilComponent implements OnInit {
 
   onUpload(event) {
     for (const file of event.files) {
-      this.uploadedFiles.push(file);
+      this.uploadFiles.push(file);
+      console.log(this.uploadFiles.push(file));
+      console.log(file);
     }
-    this.msgs = [{
-      severity : 'info',
-      summary: 'Arquivo salvo!',
-      detail: 'Arquivo salvo com sucesso'
-    }];
+    this.msgs = [{severity : 'info',
+                  summary: 'Arquivo salvo!',
+         detail: 'Arquivo salvo com sucesso' }];
 
     setTimeout(() => {
-      this.showDialog = false;
-      this.uploadedFiles = [];
+      this.uploadFiles = [];
     }, 500);
   }
 

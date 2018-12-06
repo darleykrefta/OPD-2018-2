@@ -80,11 +80,14 @@
                         <div class="campanha-detail">{{campanha.descricao}}</div>
                         <div class="campanha-detail">Período: {{campanha.dataInicio}} - {{campanha.dataFinal}}</div>
                         <hr class="ui-widget-content" style="border-top:0">
+                        <a role="button" class="btn btn-secondary rounded-circle mr-2" href="/cadastroAnuncio/{{campanha.id}}"> 
+                            <i class="fa fa-edit"></i>
+                        </a>
                         <a [routerLink]= "['campanha/visualizaranuncio/', campanha.id]" > 
                             <button pButton type="button" icon="pi pi-search" style="margin-top:0">
                             </button>
                         </a>
-                        <button pButton type="button" class="btn btn-danger" (click) ="setFinalizado($event, campanha)" data-toggle="tooltip"
+                        <button pButton type="button" class="btn btn-danger ml-2" (click) ="setFinalizado($event, campanha)" data-toggle="tooltip"
                       title="Finalizar Anúncio" [hidden]="escondeBtnFinalizar" [disabled]="(campanha.status == 0) || (desabilitaFinalizar == true)"><i class="fa fa-check"></i></button>
                     </p-panel>
                 </div>

@@ -34,6 +34,5 @@ export class PessoaService extends CrudService<Pessoa, number> {
   findByEmail(email: String): Observable<boolean> {
     const url = `${this.getUrl()}/filter/email?email=${email}`;
     return this.http.get<boolean>(url);
-
   }
 }

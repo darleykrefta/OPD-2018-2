@@ -1,4 +1,3 @@
-﻿
 INSERT INTO permissao (nome) values('ROLE_ADMIN');
 INSERT INTO permissao (nome) values('ROLE_USER');
 Insert into cidade (id_cidade, nome, sigla) values (1100015,'Alta Floresta DOeste', 'RO');
@@ -5576,5 +5575,8 @@ INSERT INTO ENDERECO (rua, numero, bairro, cep, complemento, Id_Cidade) VALUES('
 INSERT INTO endereco(bairro, cep, complemento, numero, rua, id_cidade) VALUES ('XYZ', '85560000', 'Ap 101', '272', 'ABC', 1100015);
 INSERT INTO categoria(id_categoria, nome) VALUES (1, 'Eletrônicos');
 INSERT into pessoa_institucao(apelido, cpf_cnpj, email, nome, senha, status, telefone, celular,id_endereco) values ('admin','999.999.999-99', 'admin', 'admin', '$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem',true, '99999-9999', '99999-9999',1);
+INSERT into pessoa_institucao(apelido, cpf_cnpj, email, nome, senha, status, telefone, celular,id_endereco) values ('vinicius','999.999.999-99', 'viniciusdalsasso@hotmail.com', 'vinicius', '1234',true, '99999-9999', '99999-9999',2);
 INSERT INTO pessoa_institucao_permissoes (pessoa_id_pessoa, permissoes_id) VALUES (1, 1);
 INSERT INTO pessoa_institucao_permissoes (pessoa_id_pessoa, permissoes_id) VALUES (1, 2);
+INSERT INTO pessoa_institucao_permissoes (pessoa_id_pessoa, permissoes_id) VALUES (2, 1);
+INSERT INTO pessoa_institucao_permissoes (pessoa_id_pessoa, permissoes_id) VALUES (2, 2);

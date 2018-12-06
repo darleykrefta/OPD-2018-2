@@ -24,7 +24,7 @@ export class CategoriaComponent implements OnInit {
     private loginService: LoginService) { }
 
   ngOnInit() {
-    this.loginService.verificaPermissoes();
+    this.loginService.verificaAdmin();
     this.findAll();
   }
 

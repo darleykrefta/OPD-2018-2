@@ -63,10 +63,10 @@ public class EnderecoController extends CrudController<Endereco, Long> {
 				.countByRuaLikeOrBairroLike("%" + filter + "%" , "%" + filter + "%");
 	}
 	
-	@GetMapping("filter/enderecoCampanha/{id}")
-	@Query("select t from endereco t join campanha_doacao_endereco u where u.campanha_id_doacao = :id")
-	List<Endereco> findAllByCampanhaId(@Param("id") String id) {
-		return enderecoService.findAllByCampanhaId(id);
-	}
+	//@GetMapping("filter/enderecoCampanha/{id}")
+	//@Query("select t from endereco t join campanha_doacao_endereco u where u.campanha_id_doacao = :id")
+	//List<Endereco> findAllByCampanhaId(@Param("id") String id) {
+	//	return enderecoService.findAllByCampanhaId(id);
+	//}
 	
 }

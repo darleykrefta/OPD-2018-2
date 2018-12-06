@@ -39,9 +39,9 @@ public class EnderecoServiceImpl extends CrudServiceImpl<Endereco, Long> impleme
 		return enderecoRepository.countByRuaLikeOrBairroLike(rua, bairro);
 	}
 
-	@Override
-	public List<Endereco> findAllByCampanhaId(String id) {
-		return enderecoRepository.findAllByCampanhaId(id);
-	}
+	//@Override
+	//public List<Endereco> findAllByCampanhaId(String id) {
+	//	return enderecoRepository.findAllByCampanhaId(id);
+	//}
 
 }

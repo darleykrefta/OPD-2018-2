@@ -10,12 +10,10 @@
   <p-table #tbPessoa [columns]="cols" [value]="pessoas" [lazy]="true" [rows]="5" [paginator]="true" [rowsPerPageOptions]="[5,10,15,20,50]"  [totalRecords]="totalRecords" (onLazyLoad)="load($event)">
     <ng-template pTemplate="caption">
       <div style="text-align: right">
-          <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-          <input type="text" pInputText size="50" placeholder="Filtrar" (input)="tbPessoa.filterGlobal($event.target.value, 'contains')" style="width:auto">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input type="text" pInputText size="50" placeholder="Filtrar" (input)="tbPessoa.filterGlobal($event.target.value, 'contains')" style="width:auto">
       </div>
-
-  </ng-template>
-
+    </ng-template>
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th *ngFor="let col of columns">
@@ -45,108 +43,118 @@
       </tr>
     </ng-template>
   </p-table>
-
   <p-confirmDialog></p-confirmDialog>
-
   <p-growl [(value)]="msgs"></p-growl>
-
-  <p-dialog header="Cadastro de Pessoas/Instituições"
-  [(visible)]="showDialog" modal="modal"
-  [responsive]="true" [width]="700">
+  <p-dialog header="Cadastro de Pessoas/Instituições" [(visible)]="showDialog" modal="modal" 
+    [responsive]="true" [width]="700">
   <p-tabView>
-   <p-tabPanel header="Cadastro">
-    <div class="row">
-      <div class="ui-g-12 ui-fluid">
+    <p-tabPanel header="Cadastro">
+      <div class="row">
         <div class="ui-g-12 ui-fluid">
-          <p-checkbox name="status" binary="true"
-          value="pessoaEdit.status" [(ngModel)]="pessoaEdit.status" label="Ativo"></p-checkbox>
-        </div>
-        <div class="ui-g-12 ui-fluid">
-          <label for="id">Código</label>
-          <input class="form-control" type="text" name="id" id="id" readonly [(ngModel)]="pessoaEdit.id"/>
-        </div>
-        <div class="ui-g-12 ui-fluid">
-          <label for="nome">Nome</label>
-          <input class="form-control" type="text" name="nome" id="nome" [(ngModel)]="pessoaEdit.nome"/>
-        </div>
-        <div class="ui-g-12 ui-fluid">
-          <label for="apelido">Apelido</label>
-          <input class="form-control" type="text" name="apelido" id="apelido" [(ngModel)]="pessoaEdit.apelido"/>
-        </div>
-        <div class="ui-g-12 ui-fluid">
-          <label for="cpf_cnpj">CPF/CNPJ</label>
-          <input class="form-control" type="text" name="cpf_cnpj" id="cpf_cnpj" [(ngModel)]="pessoaEdit.cpfCnpj"/>
-        </div>
-        <div class="ui-g-12 ui-fluid">
-          <label for="email">Email</label>
-          <input class="form-control" type="text" name="email" id="email" [(ngModel)]="pessoaEdit.email"/>
-        </div>
-        <div class="ui-g-12 ui-fluid">
-          <label for="telefone">Telefone</label>
-          <input class="form-control" type="text" name="telefone" id="telefone" [(ngModel)]="pessoaEdit.telefone"/>
-        </div>
-        <div class="ui-g-12 ui-fluid">
-          <label for="celular">Celular</label>
-          <input class="form-control" type="text" name="celular" id="celular" [(ngModel)]="pessoaEdit.celular"/>
-        </div>
-        <div class="ui-g-12 ui-fluid">
-          <label for="endereco">Endereco</label>
-          <p-autoComplete
-            [(ngModel)]="pessoaEdit.endereco"
-            [suggestions]="enderecosFiltered"
-            (completeMethod)="search($event)"
-            field="rua">
-          </p-autoComplete>
-        </div>
-
-        <div class="ui-g-12 ui-fluid">
-          <label for="senha">Senha</label>
-          <input class="form-control" type="text" name="senha" id="senha" [(ngModel)]="pessoaEdit.senha"/>
-        </div>
-      </div>
-      </div>
-  </p-tabPanel>
-
-  <p-tabPanel header="Foto" *ngIf="pessoaEdit.id" >
-          <div class="row">
-            <div class="ui-g-12 ui-fluid">
-              <label for="foto">Foto</label>
-              <p-fileUpload
-                chooseLabel="Selecionar..."
-                cancelLabel="Cancelar"
-                name="foto"
-                 url="{{urlApi}}/pessoa/upload/{{pessoaEdit.id}}"
-                    (onUpload)="onUpload($event)"
-                    accept=".jpg"
-                    maxFileSize="1000000">
-                    <ng-template pTemplate="content">
-                       <ul *ngIf="uploadedFiles.lenght">
-                         <li *ngFor="let file of uploadedFiles">
-                           {{file.name}} - {{file.size}} bytes
-                         </li>
-                       </ul>
-                    </ng-template>
-            </p-fileUpload>
-            </div>
-            <div class="ui-g-12 ui-fluid"
-                 *ngIf="pessoaEdit.foto">
-                <label for="fotoAtual">Foto atual</label>
-                <br />
-                <img alt="Nenhuma foto cadastrada!"
-                  src="{{urlApi}}/images/{{pessoaEdit.foto}}?{{today}}"
-                  width="100" height="150"/>
-            </div>
-
+          <div class="ui-g-12 ui-fluid">
+            <p-checkbox name="status" binary="true" value="pessoaEdit.status" [(ngModel)]="pessoaEdit.status" label="Ativo"></p-checkbox>
           </div>
-        </p-tabPanel>
-      </p-tabView>
-    <p-footer>
-      <button type="button" class="btn btn-danger" (click)="cancel()">
-        <i class="fa fa-ban"></i> Cancelar
-      </button>
-      <button type="button" class="btn btn-success" (click)="save()">
-        <i class="fa fa-save"></i> Salvar
-      </button>
-    </p-footer>
-  </p-dialog>
+          <div class="ui-g-12 ui-fluid">
+            <label for="id">Código</label>
+            <input class="form-control" type="text" name="id" id="id" readonly [(ngModel)]="pessoaEdit.id"/>
+          </div>
+          <div class="ui-g-12 ui-fluid">
+            <label for="nome">Nome</label>
+            <input class="form-control" type="text" name="nome" id="nome" [(ngModel)]="pessoaEdit.nome"/>
+          </div>
+          <div class="ui-g-12 ui-fluid">
+            <label for="apelido">Apelido</label>
+            <input class="form-control" type="text" name="apelido" id="apelido" [(ngModel)]="pessoaEdit.apelido"/>
+          </div>
+          <div class="ui-g-12 ui-fluid">
+            <label for="cpf_cnpj">CPF/CNPJ</label>
+            <input class="form-control" type="text" name="cpf_cnpj" id="cpf_cnpj" [(ngModel)]="pessoaEdit.cpfCnpj"/>
+          </div>
+          <div class="ui-g-12 ui-fluid">
+            <label for="email">Email</label>
+            <input class="form-control" type="text" name="email" id="email" [(ngModel)]="pessoaEdit.email"/>
+          </div>
+          <div class="ui-g-12 ui-fluid">
+            <label for="telefone">Telefone</label>
+            <input class="form-control" type="text" name="telefone" id="telefone" [(ngModel)]="pessoaEdit.telefone"/>
+          </div>
+          <div class="ui-g-12 ui-fluid">
+            <label for="celular">Celular</label>
+            <input class="form-control" type="text" name="celular" id="celular" [(ngModel)]="pessoaEdit.celular"/>
+          </div>
+          <div class="ui-g-12 ui-fluid">
+            <label for="endereco">Endereco</label>
+              <div class="ui-g-12 ui-fluid">
+                <label for="rua">Rua</label>
+                <input class="form-control" type="text" name="rua" id="rua" [(ngModel)]="enderecoEdit.rua">
+              </div>
+              <div class="ui-g-12 ui-fluid">
+                <label for="numero">Numero</label>
+                <input class="form-control" type="text" name="numero" id="numero" [(ngModel)]="enderecoEdit.numero">
+              </div>
+              <div class="ui-g-12 ui-fluid">
+                <label for="bairro">Bairro</label>
+                <input class="form-control" type="text" name="bairro" id="bairro" [(ngModel)]="enderecoEdit.bairro">
+              </div>
+              <div class="ui-g-12 ui-fluid">
+                <label for="cep">CEP</label>
+                <input class="form-control" type="text" name="cep" id="cep" [(ngModel)]="enderecoEdit.cep">
+              </div>
+              <div class="ui-g-12 ui-fluid">
+                <label for="complemento">Complemento</label>
+                <input class="form-control" type="text" name="complemento" id="complemento" [(ngModel)]="enderecoEdit.complemento">
+              </div>
+              <div class="ui-g-12 ui-fluid">
+                <label for="cidade">Cidade</label>
+                 <p-autoComplete [(ngModel)]="enderecoEdit.cidade" id="cidade" [suggestions]="cidadesFiltred" (completeMethod)="search($event)"
+                    field="nome"></p-autoComplete>
+              </div>
+          </div>
+          <div class="ui-g-12 ui-fluid">
+            <label for="senha">Senha</label>
+            <input class="form-control" type="password" name="senha" id="senha" [(ngModel)]="pessoaEdit.senha"/>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Foto" *ngIf="pessoaEdit.id" >
+      <div class="row">
+        <div class="ui-g-12 ui-fluid">
+          <label for="foto">Foto</label>
+            <p-fileUpload
+              chooseLabel="Selecionar..."
+              cancelLabel="Cancelar"
+              name="foto"
+              url="{{urlApi}}/pessoa/upload/{{pessoaEdit.id}}"
+              (onUpload)="onUpload($event)"
+              accept=".jpg"
+              maxFileSize="1000000">
+              <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFiles.lenght">
+                  <li *ngFor="let file of uploadedFiles">
+                    {{file.name}} - {{file.size}} bytes
+                  </li>
+                </ul>
+              </ng-template>
+            </p-fileUpload>
+        </div>
+        <div class="ui-g-12 ui-fluid"
+          *ngIf="pessoaEdit.foto">
+          <label for="fotoAtual">Foto atual</label>
+          <br />
+          <img alt="Nenhuma foto cadastrada!" src="{{urlApi}}/images/pessoa{{pessoaEdit.foto}}?{{today}}"
+            width="100" height="150"/>
+        </div>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+  <p-footer>
+    <button type="button" class="btn btn-danger" (click)="cancel()">
+      <i class="fa fa-ban"></i> Cancelar
+    </button>
+    <button type="button" class="btn btn-success" (click)="save()">
+      <i class="fa fa-save"></i> Salvar
+    </button>
+  </p-footer>
+</p-dialog>
 </div>

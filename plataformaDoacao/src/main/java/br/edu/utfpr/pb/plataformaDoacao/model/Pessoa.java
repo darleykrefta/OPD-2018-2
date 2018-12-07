@@ -17,12 +17,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -73,12 +75,13 @@ public class Pessoa implements Serializable, UserDetails {
 
 	@Column(name = "Status", length = 60, nullable = true)
 	private Boolean status;
-
-	@ManyToOne
+	
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "Id_Endereco", referencedColumnName = "Id_Endereco")
 	private Endereco endereco;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JsonIgnore
 	private Set<Permissao> permissoes;
 
 	public Pessoa(String email, String senha) {
@@ -87,6 +90,7 @@ public class Pessoa implements Serializable, UserDetails {
 	}
 	
 	@Override
+	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> auto = new ArrayList<>();
 		auto.addAll(getPermissoes());
@@ -103,6 +107,9 @@ public class Pessoa implements Serializable, UserDetails {
 	
 	public String getEncodedPassword(String pass) {
 		if (pass != null && ! pass.equals("")) {
+			if (bCrypt.matches(pass, getSenha()) == true) {
+				return pass;
+			}
 			return bCrypt.encode(pass);
 		}
 		return pass;

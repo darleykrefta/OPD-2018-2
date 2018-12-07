@@ -7,6 +7,8 @@ import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
 import { LoginService } from '../login/login.service';
 import { Endereco } from '../model/endereco';
 import { EnderecoService } from '../endereco/endereco.service';
+import { Cidade } from '../model/cidade';
+import { CidadeService } from '../cidade/cidade.service';
 
 @Component({
   selector: 'app-pessoa',
@@ -20,11 +22,14 @@ export class PessoaComponent implements OnInit {
   cols: any[];
   pessoas: Pessoa[];
   totalRecords: number;
+  enderecoEdit: Endereco = new Endereco();
 
   enderecos: Endereco[];
   enderecosFiltered: Endereco[];
   pessoaEdit: Pessoa = new Pessoa();
 
+  cidades: Cidade[];
+  cidadesFiltred: Cidade[];
 
   showDialog = false;
   msgs: Message[] = [];
@@ -36,12 +41,12 @@ export class PessoaComponent implements OnInit {
   constructor(private pessoaService: PessoaService,
     private confirmationService: ConfirmationService,
      private enderecoService: EnderecoService,
+     private cidadeService: CidadeService,
      private loginService: LoginService) { }
 
   ngOnInit() {
     this.loginService.verificaAdmin();
-    this.enderecoService.findAll().subscribe(
-      e => this.enderecos = e);
+    this.cidadeService.findAll().subscribe(e => this.cidades = e);
       this.cols = [
         {field: 'id', header: 'Código'},
         {field: 'nome', header: 'Nome'},
@@ -50,9 +55,10 @@ export class PessoaComponent implements OnInit {
         {field: 'cpfCnpj', header: 'CPF/CNPJ'},
         {field: 'telefone', header: 'Telefone'},
         {field: 'celular', header: 'Celular'},
-        {field: 'status', header: 'Status'},
-        // {field: 'endereco.id', header: 'Endereço'},
+        {field: 'status', header: 'Status'}
       ];
+      this.enderecoEdit = new Endereco();
+      this.enderecos = [];
   }
 
   findAllPaged(page: number, size: number) {
@@ -84,28 +90,31 @@ export class PessoaComponent implements OnInit {
   newEntity() {
     this.showDialog = true;
     this.pessoaEdit = new Pessoa();
-    this.pessoaEdit.endereco = this.enderecos[0];
+    this.enderecoEdit = new Endereco();
+    this.pessoaEdit.endereco = this.enderecoEdit;
   }
 
   search(event) {
-    this.enderecosFiltered = this.enderecos
-      .filter(
-        e => e.rua.toLocaleLowerCase()
-          .includes(event.query.toLocaleLowerCase())
+      this.cidadesFiltred = this.cidades.filter(
+        p => p.nome.toLocaleLowerCase().includes(event.query.toLocaleLowerCase())
       );
   }
 
   save() {
+    this.pessoaEdit.endereco = this.enderecoEdit;
     this.pessoaService.save(this.pessoaEdit).subscribe(
       e => {
+        this.enderecoEdit = new Endereco();
         this.pessoaEdit = new Pessoa();
-        this.dataTable.reset();
         this.showDialog = false;
+        this.pessoaService.findAll().subscribe(e => this.pessoas = e);
         this.msgs = [{
           severity: 'success',
           summary: 'Confirmado',
           detail: 'Registro salvo com sucesso!'
         }];
+        this.showDialog = false;
+        this.pessoaService.findAll();
       }, error => {
         this.msgs = [{
           severity: 'error',
@@ -114,6 +123,7 @@ export class PessoaComponent implements OnInit {
         }];
       }
     );
+    this.pessoaService.findAll().subscribe(e => this.pessoas = e);
   }
 
   cancel() {
@@ -123,6 +133,7 @@ export class PessoaComponent implements OnInit {
   edit(pessoa: Pessoa) {
     this.today = Date.now();
     this.pessoaEdit = Object.assign({}, pessoa);
+    this.enderecoEdit = Object.assign({}, pessoa.endereco);
     this.showDialog = true;
   }
 
@@ -135,8 +146,10 @@ export class PessoaComponent implements OnInit {
       accept: () => {
         this.pessoaService.delete(pessoa.id).subscribe(() => {
           this.msgs = [{severity: 'success', summary: 'Removido', detail: 'Registro removido com sucesso!'}];
+          this.pessoaService.findAll().subscribe(e => this.pessoas = e);
         }, error => {
           this.msgs = [{severity: 'error', summary: 'Erro', detail: 'Erro! Falha aos remover registro!'}];
+          this.pessoaService.findAll().subscribe(e => this.pessoas = e);
         });
       }
     });

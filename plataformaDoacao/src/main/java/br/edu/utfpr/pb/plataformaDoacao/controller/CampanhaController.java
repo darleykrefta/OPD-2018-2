@@ -39,9 +39,6 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 
 	@Autowired
 	private MensagemService mensagemService;
-	
-	@Autowired
-	private EnderecoService enderecoService;
 
 	@Override
 	protected CrudService<Campanha, Long> getService() {

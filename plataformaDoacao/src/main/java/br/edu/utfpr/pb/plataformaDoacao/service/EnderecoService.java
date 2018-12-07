@@ -15,6 +15,7 @@ public interface EnderecoService extends CrudService<Endereco, Long> {
 	Page<Endereco> findByRuaLikeOrBairroLike(String rua, String bairro, Pageable pageable);
 
 	long countByRuaLikeOrBairroLike(String rua, String bairro);
-	
-	
+
+	//List<Endereco> findAllByCampanhaId(String id);
+		
 }

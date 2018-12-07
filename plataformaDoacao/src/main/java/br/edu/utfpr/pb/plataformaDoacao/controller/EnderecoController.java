@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.P
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,8 +55,6 @@ public class EnderecoController extends CrudController<Endereco, Long> {
 				.findByRuaLikeOrBairroLike("%" + filter + "%" , "%" + filter + "%", pageRequest);
 	}
 	
-	
-	
 	@GetMapping("search/count")
 	public long findByRuaLikeOrBairroLike(
 			@RequestParam String filter) {
@@ -63,5 +63,10 @@ public class EnderecoController extends CrudController<Endereco, Long> {
 				.countByRuaLikeOrBairroLike("%" + filter + "%" , "%" + filter + "%");
 	}
 	
+	//@GetMapping("filter/enderecoCampanha/{id}")
+	//@Query("select t from endereco t join campanha_doacao_endereco u where u.campanha_id_doacao = :id")
+	//List<Endereco> findAllByCampanhaId(@Param("id") String id) {
+	//	return enderecoService.findAllByCampanhaId(id);
+	//}
 	
 }

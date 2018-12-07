@@ -1,8 +1,12 @@
 import { environment } from './../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { Pessoa } from '../model/pessoa';
+import { Endereco } from '../model/endereco';
+import { Cidade } from '../model/cidade';
 import { LoginService } from '../login/login.service';
 import { PessoaService } from '../pessoa/pessoa.service';
+import { EnderecoService } from '../endereco/endereco.service';
+import { CidadeService } from '../cidade/cidade.service';
 import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
 
 @Component({
@@ -12,38 +16,57 @@ import { LazyLoadEvent, Message, ConfirmationService } from 'primeng/api';
 })
 export class PerfilComponent implements OnInit {
 
-  pessoa: Pessoa;
-  pessoaEdit = new Pessoa();
+  pessoas: Pessoa[];
+  pessoa: Pessoa = new Pessoa();
+  totalRecords: number;
+  enderecoEdit: Endereco = new Endereco();
+
+  enderecos: Endereco[];
+  enderecosFiltered: Endereco[];
+  pessoaEdit: Pessoa = new Pessoa();
+
+  cidades: Cidade[];
+  cidadesFiltred: Cidade[];
+
+  showDialog = false;
   msgs: Message[] = [];
-  uploadFiles: any[] = [];
+
+  uploadedFiles: any[] = [];
   urlApi: string = environment.api;
   today: number = Date.now();
 
-  constructor(private loginService: LoginService, private pessoaService: PessoaService) { }
+  constructor(private loginService: LoginService, private pessoaService: PessoaService,
+              private confirmationService: ConfirmationService,
+              private enderecoService: EnderecoService,
+              private cidadeService: CidadeService) { }
 
   ngOnInit() {
     this.loginService.verificaAdmin();
     const a = this.loginService.getUserInfo();
     this.pessoa = a.principal;
-    console.log('Testando' + this.pessoa.nome);
-    console.log(this.pessoa.endereco.id);
-    console.log(this.pessoa.foto);
+
+    this.today = Date.now();
+    this.pessoaService.findOne(this.pessoa.id).subscribe(
+      e => this.pessoaEdit = e);
+    this.enderecoService.findOne(this.pessoa.endereco.id).subscribe(
+      e => this.enderecoEdit = e);
+    this.cidadeService.findAll().subscribe(e => this.cidades = e);
   }
 
   save() {
-    this.pessoaService.save(this.pessoaEdit).
-      subscribe(e => {
-        this.pessoaEdit = new Pessoa();
+    this.pessoaEdit.endereco = this.enderecoEdit;
+    this.pessoaService.save(this.pessoaEdit).subscribe(
+      e => {
         this.msgs = [{
           severity: 'success',
           summary: 'Confirmado',
-          detail: 'Registro salvo com sucesso'
+          detail: 'Registro salvo com sucesso!'
         }];
       }, error => {
-          this.msgs = [{
-            severity: 'error',
-            summary: 'Erro',
-            detail: 'Certifique-se de preencher todos dos campos.'
+        this.msgs = [{
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro! Verifique os dados!'
         }];
       }
     );
@@ -51,16 +74,17 @@ export class PerfilComponent implements OnInit {
 
   onUpload(event) {
     for (const file of event.files) {
-      this.uploadFiles.push(file);
-      console.log(this.uploadFiles.push(file));
-      console.log(file);
+      this.uploadedFiles.push(file);
     }
-    this.msgs = [{severity : 'info',
-                  summary: 'Arquivo salvo!',
-         detail: 'Arquivo salvo com sucesso' }];
+    this.msgs = [{
+      severity : 'info',
+      summary: 'Arquivo salvo!',
+      detail: 'Arquivo salvo com sucesso'
+    }];
 
     setTimeout(() => {
-      this.uploadFiles = [];
+      this.showDialog = false;
+      this.uploadedFiles = [];
     }, 500);
   }
 

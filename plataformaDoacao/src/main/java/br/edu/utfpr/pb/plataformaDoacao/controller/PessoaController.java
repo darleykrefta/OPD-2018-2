@@ -3,9 +3,7 @@ package br.edu.utfpr.pb.plataformaDoacao.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -23,14 +21,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.edu.utfpr.pb.plataformaDoacao.model.Cidade;
-import br.edu.utfpr.pb.plataformaDoacao.model.Permissao;
 import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
 import br.edu.utfpr.pb.plataformaDoacao.repository.PermissaoRepository;
 import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
 import br.edu.utfpr.pb.plataformaDoacao.service.PessoaService;
-
-
 
 @RestController
 @RequestMapping("pessoa")
@@ -40,7 +34,6 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 	private PessoaService pessoaService;
 	@Autowired
 	private PermissaoRepository permissaoRepository;
-	
 
 	@Override
 	protected CrudService<Pessoa, Long> getService() {
@@ -76,8 +69,15 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
   
 	@Override
 	public Pessoa save(@RequestBody @Valid Pessoa entity) {
+		if (entity.getId() == null) {
+			pessoaService.criptografarSenha(entity);
+			entity.addPermissao(permissaoRepository.findByNome("ROLE_USER"));
+			return super.save(entity);
+		} 
 		pessoaService.criptografarSenha(entity);
-		entity.addPermissao(permissaoRepository.findByNome("ROLE_USER"));
+		Pessoa p = pessoaService.findOne(entity.getId());
+		entity.setPermissoes(p.getPermissoes());
+		
 		return super.save(entity);
 	}
 	
@@ -93,32 +93,33 @@ public class PessoaController  extends CrudController<Pessoa, Long> {
 	
 
 	private void saveFile(Long id, MultipartFile foto, HttpServletRequest request) throws Exception {
-		File dir = new File(request.getServletContext().getRealPath("/images/"));
-		if(!dir.exists()) {
+		File dir = new File(request.getServletContext().getRealPath("/images/pessoa/"));
+		if (!dir.exists()) {
 			dir.mkdirs();
-				
-			}
-			String caminhoAnexo = request.getServletContext()
-					.getRealPath("images/");
-			String extensao = foto.getOriginalFilename().substring(foto.getOriginalFilename().lastIndexOf("."),
-					foto.getOriginalFilename().length());
-					String nomeArquivo = id + extensao;
-			try {
-				FileOutputStream fileOut = new FileOutputStream(new File(caminhoAnexo+nomeArquivo));
-				BufferedOutputStream stream = new BufferedOutputStream(fileOut);
-				stream.write(foto.getBytes());
-				stream.close();
-				
-				Pessoa pessoa = getService().findOne(id);
-				pessoa.setFoto(nomeArquivo);
-				getService().save(pessoa);
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new Exception("Erro ao fazer"
-						+ "upload da imagem. " +
-						e.getMessage());
-			}		
 		}
+
+		File caminhoAnexo = new File(request.getServletContext().getRealPath("/images/pessoa/"));
+			
+		String extensao = foto.getOriginalFilename().substring(foto.getOriginalFilename().lastIndexOf("."),
+				foto.getOriginalFilename().length());
+		String nomeArquivo = id + extensao;
+		System.out.print(caminhoAnexo + nomeArquivo);
+		try {
+			FileOutputStream fileOut = new FileOutputStream(new File(caminhoAnexo+nomeArquivo));
+			BufferedOutputStream stream = new BufferedOutputStream(fileOut);
+			stream.write(foto.getBytes());
+			stream.close();
+			
+			Pessoa pessoa = getService().findOne(id);
+			pessoa.setFoto(nomeArquivo);
+			getService().save(pessoa);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("Erro ao fazer" + "upload da imagem. " + e.getMessage());
+		}
+		
+	}
 	
 	@GetMapping("filter/email")
 	public boolean findByEmail(@RequestParam String email){

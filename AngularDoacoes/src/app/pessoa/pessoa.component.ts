@@ -45,7 +45,7 @@ export class PessoaComponent implements OnInit {
      private loginService: LoginService) { }
 
   ngOnInit() {
-    this.loginService.verificaUsuarioLogado();
+    this.loginService.verificaPermissoes();
     this.cidadeService.findAll().subscribe(e => this.cidades = e);
       this.cols = [
         {field: 'id', header: 'Código'},

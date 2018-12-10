@@ -45,6 +45,7 @@ export class EnderecoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loginService.verificaUsuarioLogado();
     console.log('endereco' + this.anuncioID);
     this.findByCampanha(this.anuncioID);
     this.cidadeService.findAll().subscribe(e => this.cidades = e);

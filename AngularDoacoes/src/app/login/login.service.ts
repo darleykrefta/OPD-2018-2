@@ -31,6 +31,15 @@ export class LoginService implements CanActivate {
       );
   }
 
+  getAuthenticated(): boolean {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   getUserInfo(): any {
     return this.userInfo;
   }
@@ -42,13 +51,28 @@ export class LoginService implements CanActivate {
     return false;
 
   }
-  verificaAdmin() {
-    if (!this.hasRole('ADMIN')) {
-      this.router.navigate(['/permissao']);
-    }
+  
+  verificaUsuarioLogado(){
     if (!this.hasRole('USER')) {
       this.router.navigate(['/login']);
+    }   
+  }
+
+  getTemplate(): boolean {
+    if (this.hasRole('ADMIN')) {
+      return true;          
+    }   else{
+      return true;
     }
+  }
+
+  verificaPermissoes() {
+    if (!this.hasRole('USER')) {
+      this.router.navigate(['/login']);
+    }   
+    else if (!this.hasRole('ADMIN')) {
+      this.router.navigate(['/permissao']);            
+    }   
   }
 
   loggout() {

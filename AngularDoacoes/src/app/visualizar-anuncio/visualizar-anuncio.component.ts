@@ -20,8 +20,7 @@ export class VisualizarAnuncioComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute,
-    private anuncioService: AnuncioService,
-    private enderecoService: EnderecoService) { }
+    private anuncioService: AnuncioService) { }
 
   ngOnInit() {
     this.route.params.subscribe((objeto: any) => { this.idAtual = objeto['campanhaId']; });

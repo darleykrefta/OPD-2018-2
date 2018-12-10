@@ -25,7 +25,6 @@ export class MensagemComponent implements OnInit {
     private loginService: LoginService) { }
 
   ngOnInit() {
-
     this.mensagemService.getComments(this.campanhaId).subscribe(e => this.mensagens = e);
 
   }
@@ -40,10 +39,10 @@ export class MensagemComponent implements OnInit {
     this.mensagemService.save(this.mensagem)
       .subscribe(() => {
         alert('Comentario Adicionado com Sucesso!!');
+        this.mensagemService.getComments(this.campanhaId).subscribe(e => this.mensagens = e);
       });
 
-      this.mensagemService.getComments(this.campanhaId).subscribe(e => this.mensagens = e);
-  }
+      }
 
 }
 

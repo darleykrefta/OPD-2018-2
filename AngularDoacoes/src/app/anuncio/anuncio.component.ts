@@ -42,7 +42,6 @@ export class AnuncioComponent implements OnInit {
     private route: ActivatedRoute) {}
 
   ngOnInit() {
-    //this.loginService.verificaUsuarioLogado();
     this.categoriaService.findAll().subscribe(
       e => this.categorias = e);
     let id: string;

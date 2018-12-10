@@ -14,10 +14,13 @@ export class MenuComponent implements OnInit {
 
   isAuthenticated = false;
 
+  template = false;
+
   constructor(private loginService: LoginService) {
   }
 
   ngOnInit() {
+    this.template = this.loginService.getTemplate();
     this.isAuthenticated = this.loginService.getAuthenticated();
     if (this.isAuthenticated) {
       this.items = [{
@@ -34,5 +37,6 @@ export class MenuComponent implements OnInit {
       }];
     }
   }
+
 
 }

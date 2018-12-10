@@ -35,31 +35,17 @@ public class ResetarSenhaController {
 	@PostMapping()
 	public boolean handlePasswordReset(@RequestBody @Valid ResetarSenhaDto resetarSenhaDto) {
 
-		//System.out.println("S: " + resetarSenhaDto.getSenha());
-		
 		try {
 			ResetarSenhaToken token = tokenRepository.findByToken(resetarSenhaDto.getToken());
 			
 		
 			Pessoa pessoa = token.getPessoa();
 			
-			//ResetarSenhaToken resetarToken =  token.getPessoa();
-			
-			if(resetarSenhaDto.getSenha() != resetarSenhaDto.getConfirmSenha()) {
-				System.out.println("Diferentes");
-				return false;
-			}
-			
 			String updatedPassword = bCrypt.encode(resetarSenhaDto.getSenha());
 			
 			pessoa.setSenha(updatedPassword);
-			pessoaService.save(pessoa); //atualizarSenha(updatedPassword, pessoa.getId());
-			//token.setSenha(updatedPassword);
-			//resetarSenhaService.save(token);
-			
+			pessoaService.save(pessoa);
 			tokenRepository.deleteById(token.getId());
-			//tokenRepository.delete(token);
-			
 
 			return true;
 		} catch (Exception ex) {

@@ -7,28 +7,25 @@
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#barraNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div *ngIf="isAuthenticated" id="barraNav" class="collapse navbar-collapse ">
-                <div class="container-fluid">
-                    <div class="row">
+            <div id="barraNav" class="collapse navbar-collapse ">
+                <div class="container-fluid">                    
+                    <div *ngIf="isAuthenticated" class="row">
                         <ul class="navbar-nav">
-                            <li><a href="#" routerLink="cadastroAnuncio" class="nav-link">Cadastrar Anúncios</a></li>
+                            <li ><a href="#" routerLink="cadastroAnuncio" class="nav-link">Cadastrar Anúncios</a></li>
                             <li><a href="#" routerLink="cidade" class="nav-link">Cidades</a></li>
-                            <li><a href="#" routerLink="endereco" class="nav-link">Endereços</a></li>
                             <li><a href="#" routerLink="pessoa" class="nav-link">Pessoas</a></li>
                             <li><a href="#" routerLink="categoria" class="nav-link">Categorias</a></li>
                         </ul>
                     </div>
-                </div>
-            </div>
-            <div *ngIf="!isAuthenticated" id="barraNav" class="collapse navbar-collapse ">
-                <div class="container-fluid">
-                    <div class="row">
+                    <div *ngIf="!isAuthenticated"  class="row">
                         <ul class="navbar-nav">
-                            <li><a href="#" routerLink="login" class="nav-link">Fazer Login</a></li>
+                            <li ><a href="#" routerLink="login" class="nav-link">Fazer Login</a></li>                            
                         </ul>
                     </div>
                 </div>
             </div>
+            
+            
         </nav>
     </div>
     <div class="p-col" style="width:5%; float: right;">

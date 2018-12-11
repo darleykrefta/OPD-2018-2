@@ -53,4 +53,16 @@ public class CampanhaServiceImpl extends CrudServiceImpl <Campanha, Long> implem
 		return campanhaRepository.findByDataInicioBetween(dataIni, dataFim);
 	}
 
+
+	@Override
+	public List<Campanha> findByStatus(Boolean status) {
+		return campanhaRepository.findByStatus(status);
+	}
+
+
+	@Override
+	public List<Campanha> findByPessoaId(Long id) {
+		return campanhaRepository.findByPessoaId(id);
+	}
+
 }

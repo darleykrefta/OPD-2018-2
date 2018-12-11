@@ -3,6 +3,7 @@ package br.edu.utfpr.pb.plataformaDoacao.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,9 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 import br.edu.utfpr.pb.plataformaDoacao.model.Campanha;
 import br.edu.utfpr.pb.plataformaDoacao.model.Foto;
 import br.edu.utfpr.pb.plataformaDoacao.model.Mensagem;
+import br.edu.utfpr.pb.plataformaDoacao.model.Pessoa;
 import br.edu.utfpr.pb.plataformaDoacao.service.CampanhaService;
 import br.edu.utfpr.pb.plataformaDoacao.service.CrudService;
-import br.edu.utfpr.pb.plataformaDoacao.service.EnderecoService;
 import br.edu.utfpr.pb.plataformaDoacao.service.FotoService;
 import br.edu.utfpr.pb.plataformaDoacao.service.MensagemService;
 
@@ -139,4 +141,17 @@ public class CampanhaController extends CrudController<Campanha, Long> {
 	public List<Foto> listaFotos(@PathVariable Long campanhaId) {
 		return fotoService.findByCampanhaId(campanhaId);
 	}
+	
+	@GetMapping("/ativos")
+	public List<Campanha> findByAtivos() {
+		return this.campanhaService.findByStatus(true);
+	}
+	
+	@GetMapping("filter/meusanuncios")
+	public List<Campanha> findByPessoaId(Principal principal){
+	Pessoa p = (Pessoa)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	//System.out.println(p);
+	return campanhaService.findByPessoaId(p.getId());
+	}
+	
 }

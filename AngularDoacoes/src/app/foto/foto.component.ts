@@ -20,6 +20,8 @@ export class FotoComponent implements OnInit {
 
   ngOnInit() {
     this.images = [];
+   // this.images.push({source: environment.api + '/images/1.5497754379438478.jpg'});
+    //this.images.push({source: environment.api + '/images/1.1218757325933715.jpg'});
     this.fotoService.getFotos(this.campanhaId).subscribe(f => {
       f.forEach( foto => {
         this.images.push({source: environment.api + '/' + foto.caminhoFoto});

@@ -104,7 +104,7 @@ export class AnuncioComponent implements OnInit {
   }
 
   onSelect(foto) {
-    this.uploadFiles.push(foto);
+    this.uploadFiles.push(foto); 
   }
 
   edit(campanha) {

@@ -73,7 +73,7 @@
             filterBy="titulo, descricao, dataInicio" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">            
             <ng-template pTemplate="gridItem" let-campanha>
                 <div style="padding:.5em" class="ui-g-12 ui-md-3">
-                    <p-panel [header]="campanha.titulo" [style]="{'text-align':'center'}">
+                    <p-panel [header]="campanha.titulo" [style]="{'text-align':'center'}" [hidden]="escondeBtnFinalizar">
                         <div class="campanha-detail">{{campanha.categoria.nome}}</div>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRUAbDc-i5ZkuJvC8c8MYfz37sbm-NvLu8h7wvVwzM6Rycok8"
                             width="130px">                        

@@ -8,6 +8,7 @@ import { Categoria } from '../model/categoria';
 import { CidadeService } from '../cidade/cidade.service';
 import { CategoriaService } from '../categoria/categoria.service';
 import { IndexService } from './index.service';
+import { NgIfContext } from '@angular/common';
 
 @Component({
   selector: 'app-index',
@@ -50,9 +51,8 @@ export class IndexComponent implements OnInit {
     this.campanhaService.count().subscribe(e => this.totalRecords = e);
     this.campanhaService.findPageable(page, size).subscribe(e => this.campanhas = e.content);
   }
-  
+
   findSearchPaged(dataIni: string, dataFinal: string, categoria: Categoria) {
-  
     if (dataIni === (undefined)) {
       dataIni = '';
     } else {

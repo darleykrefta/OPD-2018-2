@@ -44,7 +44,7 @@ export class IndexComponent implements OnInit {
     this.cidadeService.findAll().subscribe( e => this.cidades = e);
     this.categoriaService.findAll().subscribe( e => this.categorias = e);
 
-    this.findAll();
+    this.findAtivos();
   }
 
   findAllPaged(page: number, size: number) {
@@ -86,6 +86,12 @@ export class IndexComponent implements OnInit {
 
   findAll() {
     this.campanhaService.findAll().subscribe( e => this.campanhas = e );
+    this.escondeBtnFinalizar = true;
+  }
+
+  findAtivos() {
+    this.campanhaService.findByAtivo().subscribe( e => this.campanhas = e );
+    console.log(this.campanhas.length);
     this.escondeBtnFinalizar = true;
   }
 

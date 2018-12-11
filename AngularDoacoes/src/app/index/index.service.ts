@@ -32,6 +32,11 @@ finalizarAnuncio(id: number): Observable<void> {
   return this.http.get<void>(url);
 }
 
+findByAtivo(): Observable<Campanha[]> {
+  const url = `${this.getUrl()}/ativos`;
+  return this.http.get<Campanha[]>(url);
+}
+
 
 
 
